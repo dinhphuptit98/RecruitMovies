@@ -9,8 +9,12 @@
 #import "MoviesListViewController.h"
 #import "MovieViewCell.h"
 #import "MovieCollectionViewCell.h"
+#import "SelectedMovieViewController.h"
+#import "SlideMenuViewController.h"
 @interface MoviesListViewController ()
-
+@property (weak, nonatomic) IBOutlet UIButton *closeMenu;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *leadingMenuView;
+@property (weak, nonatomic) IBOutlet UIView *slideMenuView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *menuItem;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -20,6 +24,8 @@
 
 @implementation MoviesListViewController
 
+int numberCheck = 1;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.delegate = self;
@@ -28,12 +34,12 @@
     self.collectionView.delegate = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"MovieViewCell" bundle:nil] forCellReuseIdentifier:@"Cell"];
     [self.collectionView registerNib:[UINib nibWithNibName:@"MovieCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"CollectionCell"];
-    // Do any additional setup after loading the view.
+    
 }
 //UITableView
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return 20;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -48,7 +54,10 @@
     
     return cell;
 }
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    SelectedMovieViewController *movieVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SelectedMovieController"];
+    [[self navigationController] pushViewController:movieVC animated:YES];
+}
 
 //UICollectionView
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -62,42 +71,48 @@
     
     return cell;
 }
-
-
- // Uncomment this method to specify if the specified item should be highlighted during tracking
- - (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-	return YES;
- }
-
-
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return CGSizeMake(180, 210);
+}
 
  // Uncomment this method to specify if the specified item should be selected
  - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+     SelectedMovieViewController *movieVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SelectedMovieController"];
+     [[self navigationController] pushViewController:movieVC animated:YES];
  return YES;
  }
 
-
-
-// // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-// - (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {
-//	return NO;
-// }
-// 
-// - (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-//	return NO;
-// }
-// 
-// - (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-//	
-// }
-
-
-
-
+// button change View
 - (IBAction)changeView:(id)sender {
-    self.changeDisplay.image = [UIImage imageNamed:@"ic_view_list"];
-    self.tableView.hidden = YES;
-    self.collectionView.hidden = NO;
+    numberCheck = -numberCheck;
+    if (numberCheck == -1){
+        self.changeDisplay.image = [UIImage imageNamed:@"ic_view_list"];
+        self.tableView.hidden = YES;
+        self.collectionView.hidden = NO;
+    }
+    if (numberCheck == 1){
+        self.changeDisplay.image = [UIImage imageNamed:@"ic_view_module"];
+        self.tableView.hidden = NO;
+        self.collectionView.hidden = YES;
+    }
+    
+}
+- (IBAction)menuBt:(UIBarButtonItem *)sender {
+    numberCheck = -numberCheck;
+    if (numberCheck == -1){
+        self.leadingMenuView.constant = 0;
+        self.closeMenu.hidden = NO;
+    }
+    if (numberCheck == 1){
+        self.leadingMenuView.constant = -340;
+        self.closeMenu.hidden = YES;
+    }
+    
+}
+- (IBAction)closeMenu:(id)sender {
+    self.leadingMenuView.constant = -340;
+    self.closeMenu.hidden = YES;
 }
 
 

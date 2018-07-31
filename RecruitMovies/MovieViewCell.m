@@ -22,8 +22,8 @@
 }
 
 
-- (IBAction)starSelected:(id)sender {
-    [_starBt setSelected:YES];
+- (IBAction)starSelected:(UIButton*)sender {
+    [sender setSelected: !sender.selected];
     
 }
 

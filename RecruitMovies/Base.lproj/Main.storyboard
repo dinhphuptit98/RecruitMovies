@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Bf1-wk-Pvs">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Bf1-wk-Pvs">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -88,16 +89,13 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" indentationWidth="10" id="xYH-Rn-RJl">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" id="xYH-Rn-RJl">
                                         <rect key="frame" x="0.0" y="28" width="375" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xYH-Rn-RJl" id="vPj-l9-TF1">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="149.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="lqN-lS-N4g" kind="show" id="VN6-bh-oDe"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -105,21 +103,44 @@
                                     <outlet property="delegate" destination="xNJ-3L-sYN" id="xeR-0j-ZT3"/>
                                 </connections>
                             </tableView>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AGp-3n-D6l" userLabel="closeMenu">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="closeMenu:" destination="xNJ-3L-sYN" eventType="touchUpInside" id="cCV-jJ-Pop"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hr0-io-xSA" userLabel="SlideMenuView">
+                                <rect key="frame" x="-340" y="0.0" width="300" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.98707872180366885" blue="0.77448157751536517" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="AGp-3n-D6l" firstAttribute="centerX" secondItem="9Ea-k9-zhs" secondAttribute="centerX" id="6LE-BG-mDc"/>
                             <constraint firstAttribute="trailing" secondItem="0fr-5I-1bD" secondAttribute="trailing" id="EI2-fX-Vrw"/>
                             <constraint firstItem="0fr-5I-1bD" firstAttribute="top" secondItem="uGv-bS-xFi" secondAttribute="bottom" id="K0M-ug-EEi"/>
                             <constraint firstItem="6nW-gd-n2n" firstAttribute="top" secondItem="uGv-bS-xFi" secondAttribute="bottom" id="O0c-od-95z"/>
+                            <constraint firstAttribute="bottom" secondItem="Hr0-io-xSA" secondAttribute="bottom" id="Qxx-yb-2Nx"/>
                             <constraint firstItem="0fr-5I-1bD" firstAttribute="leading" secondItem="9Ea-k9-zhs" secondAttribute="leading" id="Rdf-Yq-36T"/>
+                            <constraint firstItem="AGp-3n-D6l" firstAttribute="centerY" secondItem="9Ea-k9-zhs" secondAttribute="centerY" id="Vxv-nY-h0Q"/>
+                            <constraint firstItem="Hr0-io-xSA" firstAttribute="top" secondItem="9Ea-k9-zhs" secondAttribute="top" id="apW-Nm-aMf"/>
                             <constraint firstItem="UKN-OK-qkb" firstAttribute="top" secondItem="0fr-5I-1bD" secondAttribute="bottom" id="bJw-c0-UZF"/>
+                            <constraint firstItem="AGp-3n-D6l" firstAttribute="width" secondItem="9Ea-k9-zhs" secondAttribute="width" id="c0w-RB-r6W"/>
+                            <constraint firstItem="Hr0-io-xSA" firstAttribute="width" secondItem="9Ea-k9-zhs" secondAttribute="width" multiplier="4/5" id="ccZ-XX-9hF"/>
                             <constraint firstItem="UKN-OK-qkb" firstAttribute="top" secondItem="6nW-gd-n2n" secondAttribute="bottom" constant="-49" id="ePQ-3M-93i"/>
                             <constraint firstItem="6nW-gd-n2n" firstAttribute="leading" secondItem="9Ea-k9-zhs" secondAttribute="leading" id="hvj-ya-YUA"/>
                             <constraint firstAttribute="trailing" secondItem="6nW-gd-n2n" secondAttribute="trailing" id="omH-DQ-UIV"/>
+                            <constraint firstItem="AGp-3n-D6l" firstAttribute="height" secondItem="9Ea-k9-zhs" secondAttribute="height" id="wg8-xF-olL"/>
+                            <constraint firstItem="Hr0-io-xSA" firstAttribute="leading" secondItem="9Ea-k9-zhs" secondAttribute="leading" constant="-340" id="xjn-PG-Fgc"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Popular Movies" id="zwU-Sh-spV">
-                        <barButtonItem key="leftBarButtonItem" image="ic_menu" id="mBp-mq-rLz"/>
+                        <barButtonItem key="leftBarButtonItem" image="ic_menu" id="mBp-mq-rLz">
+                            <connections>
+                                <action selector="menuBt:" destination="xNJ-3L-sYN" id="dq4-Kn-pa5"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="ic_view_module" id="qqP-Xx-NjM">
                             <connections>
                                 <action selector="changeView:" destination="xNJ-3L-sYN" id="3CW-l2-ufz"/>
@@ -128,8 +149,11 @@
                     </navigationItem>
                     <connections>
                         <outlet property="changeDisplay" destination="qqP-Xx-NjM" id="k0D-aG-6UK"/>
+                        <outlet property="closeMenu" destination="AGp-3n-D6l" id="w3f-Mt-vLD"/>
                         <outlet property="collectionView" destination="0fr-5I-1bD" id="3Ye-iS-lzH"/>
+                        <outlet property="leadingMenuView" destination="xjn-PG-Fgc" id="0gc-NA-dhk"/>
                         <outlet property="menuItem" destination="mBp-mq-rLz" id="QgB-cj-b9M"/>
+                        <outlet property="slideMenuView" destination="Hr0-io-xSA" id="wia-RM-y1w"/>
                         <outlet property="tableView" destination="6nW-gd-n2n" id="4eK-3o-aEv"/>
                         <outlet property="viewCollectionBt" destination="qqP-Xx-NjM" id="Zgx-Hv-tFU"/>
                     </connections>
@@ -141,7 +165,7 @@
         <!--View Controller-->
         <scene sceneID="H7o-VR-duO">
             <objects>
-                <viewController id="lqN-lS-N4g" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SelectedMovieController" id="lqN-lS-N4g" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7Dr-19-Kgx"/>
                         <viewControllerLayoutGuide type="bottom" id="cYr-yp-Maq"/>
@@ -164,7 +188,7 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" id="89O-vE-y45">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" red="0.40000000600000002" green="0.40000000600000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.16247651900000001" green="0.20814409580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="Dro-Oj-Ukr" kind="relationship" relationship="viewControllers" id="oMs-RU-IlF"/>
@@ -175,7 +199,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pzd-SM-og0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1010" y="-591"/>
+            <point key="canvasLocation" x="-1078" y="-597"/>
         </scene>
         <!--About-->
         <scene sceneID="8JQ-Kj-ZlE">
@@ -203,8 +227,9 @@
                     <tabBarItem key="tabBarItem" title="Movie" image="ic_home" id="hMd-GP-ovt"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="oPu-r5-271">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.16247651900000001" green="0.20814409580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -213,7 +238,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9sL-xo-Xnz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-135.19999999999999" y="-1083.5082458770617"/>
+            <point key="canvasLocation" x="-335" y="-1084"/>
         </scene>
         <!--Favorites-->
         <scene sceneID="Ztk-T3-J3l">
@@ -222,7 +247,7 @@
                     <tabBarItem key="tabBarItem" title="Favorites" image="ic_favorite" id="1Ge-WC-iQv"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="uWQ-xB-IYV">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
