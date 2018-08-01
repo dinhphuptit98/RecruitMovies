@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		84FAAD7F2110CB5C003656A5 /* SelectedMovieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FAAD7E2110CB5C003656A5 /* SelectedMovieViewController.m */; };
+		93A0D87A2111460500D97399 /* SelectedMovie.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A0D8792111460500D97399 /* SelectedMovie.m */; };
+		93A0D87C2111461900D97399 /* SelectedMovie.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93A0D87B2111461900D97399 /* SelectedMovie.xib */; };
 		93A1EBA7211011800053726E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A1EBA6211011800053726E /* main.m */; };
 		93A1EBAA211011800053726E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A1EBA9211011800053726E /* AppDelegate.m */; };
 		93A1EBB0211011800053726E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93A1EBAE211011800053726E /* Main.storyboard */; };
@@ -54,6 +56,9 @@
 		84FAAD7D2110CB5C003656A5 /* SelectedMovieViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectedMovieViewController.h; sourceTree = "<group>"; };
 		84FAAD7E2110CB5C003656A5 /* SelectedMovieViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectedMovieViewController.m; sourceTree = "<group>"; };
 		8D6DDD89A2246508923C9C3D /* Pods-RecruitMovies.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecruitMovies.release.xcconfig"; path = "Pods/Target Support Files/Pods-RecruitMovies/Pods-RecruitMovies.release.xcconfig"; sourceTree = "<group>"; };
+		93A0D8782111460500D97399 /* SelectedMovie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectedMovie.h; sourceTree = "<group>"; };
+		93A0D8792111460500D97399 /* SelectedMovie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectedMovie.m; sourceTree = "<group>"; };
+		93A0D87B2111461900D97399 /* SelectedMovie.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectedMovie.xib; sourceTree = "<group>"; };
 		93A1EBA2211011800053726E /* RecruitMovies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecruitMovies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93A1EBA6211011800053726E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		93A1EBA8211011800053726E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -215,10 +220,13 @@
 				93A1EBB6211011800053726E /* LaunchScreen.storyboard */,
 				93A1EBEC21101FF40053726E /* MovieViewCell.xib */,
 				93A1EBF12110201B0053726E /* MovieCollectionViewCell.xib */,
+				93A0D87B2111461900D97399 /* SelectedMovie.xib */,
 				93A1EBEA21101FF40053726E /* MovieViewCell.h */,
 				93A1EBEB21101FF40053726E /* MovieViewCell.m */,
 				93A1EBEF2110201B0053726E /* MovieCollectionViewCell.h */,
 				93A1EBF02110201B0053726E /* MovieCollectionViewCell.m */,
+				93A0D8782111460500D97399 /* SelectedMovie.h */,
+				93A0D8792111460500D97399 /* SelectedMovie.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -355,6 +363,7 @@
 				93A1EBF32110201B0053726E /* MovieCollectionViewCell.xib in Resources */,
 				93A1EBB8211011800053726E /* LaunchScreen.storyboard in Resources */,
 				93A1EBEE21101FF40053726E /* MovieViewCell.xib in Resources */,
+				93A0D87C2111461900D97399 /* SelectedMovie.xib in Resources */,
 				93A1EBB0211011800053726E /* Main.storyboard in Resources */,
 				93FD3B0721103B96005B4A03 /* Assets.xcassets in Resources */,
 			);
@@ -444,6 +453,7 @@
 				93A1EBE621101F760053726E /* AboutViewController.m in Sources */,
 				93A1EBE321101F6C0053726E /* SettingsViewController.m in Sources */,
 				93A1EBED21101FF40053726E /* MovieViewCell.m in Sources */,
+				93A0D87A2111460500D97399 /* SelectedMovie.m in Sources */,
 				93A1EBE021101F4C0053726E /* FavoriteMoviesViewController.m in Sources */,
 				93A1EBDD21101F190053726E /* MoviesListViewController.m in Sources */,
 				84FAAD7F2110CB5C003656A5 /* SelectedMovieViewController.m in Sources */,
