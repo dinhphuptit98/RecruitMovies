@@ -11,6 +11,7 @@
 #import "MovieCollectionViewCell.h"
 #import "SelectedMovieViewController.h"
 #import "SlideMenuViewController.h"
+#import <AFNetworking.h>
 @interface MoviesListViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *closeMenu;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *leadingMenuView;
@@ -34,7 +35,11 @@ int numberCheck = 1;
     self.collectionView.delegate = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"MovieViewCell" bundle:nil] forCellReuseIdentifier:@"Cell"];
     [self.collectionView registerNib:[UINib nibWithNibName:@"MovieCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"CollectionCell"];
-    
+    getDataPublicMovie();
+}
+
+void getDataPublicMovie(){
+    NSString *urlPublicMovie = @"";
 }
 //UITableView
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -75,15 +80,14 @@ int numberCheck = 1;
 {
     return CGSizeMake(180, 210);
 }
-
- // Uncomment this method to specify if the specified item should be selected
+// Uncomment this method to specify if the specified item should be selected
  - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
      SelectedMovieViewController *movieVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SelectedMovieController"];
      [[self navigationController] pushViewController:movieVC animated:YES];
  return YES;
  }
 
-// button change View
+// button change TableView to CollectionView
 - (IBAction)changeView:(id)sender {
     numberCheck = -numberCheck;
     if (numberCheck == -1){
@@ -98,6 +102,8 @@ int numberCheck = 1;
     }
     
 }
+
+//button open Menu and close Menu
 - (IBAction)menuBt:(UIBarButtonItem *)sender {
     numberCheck = -numberCheck;
     if (numberCheck == -1){
@@ -110,6 +116,8 @@ int numberCheck = 1;
     }
     
 }
+
+//button close Menu
 - (IBAction)closeMenu:(id)sender {
     self.leadingMenuView.constant = -340;
     self.closeMenu.hidden = YES;
