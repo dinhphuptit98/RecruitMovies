@@ -10,7 +10,7 @@
 
 
 @implementation RecruitMoviesFetcherManager
--(Movie *) getDataMovie:(NSString *)URLlink :(NSInteger) pageNumber {
++ (Movie *) getDataMovie:(NSString *)URLlink :(NSInteger) pageNumber {
     Movie *movie;
     
     NSString *urlString = [NSString stringWithFormat:@"%@%ld",URLlink,(long)pageNumber];
@@ -21,11 +21,17 @@
     [policy setValidatesDomainName:NO];
     [policy setAllowInvalidCertificates:YES];
     
-    [manager POST:urlString parameters:nil progress:nil success:^(NSURLSessionTask *task,id responseObject){
-        NSLog(@"%@",[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]);
-    } failure:^(NSURLSessionTask *task, NSError *error){
-        NSLog(@"%@",error);
+
+    NSURLSessionDataTask *dataTask = [manager GET:urlString parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSLog(@"REPOSEN=====%@", responseObject);
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"FAILD====%@", error);
     }];
+    [dataTask resume];
     return movie;
 }
 @end

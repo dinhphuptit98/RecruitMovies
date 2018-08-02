@@ -10,7 +10,7 @@
 
 @implementation Constant
 NSString *BaseMovieURL = @"api.themoviedb.org/3/configuration?api_key=e7631ffcb8e766993e5ec0c1f4245f93";
-NSString *MoviePopular = @"api.themoviedb.org/3/movie/popular?api_key=e7631ffcb8e766993e5ec0c1f4245f93&page=";
+NSString *MoviePopular = @"http://api.themoviedb.org/3/movie/popular?api_key=e7631ffcb8e766993e5ec0c1f4245f93&page=";
 NSString *MovieTopRates = @"api.themoviedb.org/3/movie/top_rated?api_key=e7631ffcb8e766993e5ec0c1f4245f93&page=";
 NSString *MovieUpComing = @"api.themoviedb.org/3/movie/upcoming?api_key=e7631ffcb8e766993e5ec0c1f4245f93&page=";
 NSString *MovieNowPlaying = @"api.themoviedb.org/3/movie/now_playing?api_key=e7631ffcb8e766993e5ec0c1f4245f93&page=";

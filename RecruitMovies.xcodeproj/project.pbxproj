@@ -333,6 +333,7 @@
 				93A1EBA8211011800053726E /* AppDelegate.h */,
 				93A1EBA9211011800053726E /* AppDelegate.m */,
 				93A1EBAE211011800053726E /* Main.storyboard */,
+				38F37AE12112F52100F84857 /* ConstantURL */,
 				93A1EBE921101FA80053726E /* Model */,
 				93A1EBE821101FA10053726E /* View */,
 				93A1EBE721101F990053726E /* Controller */,
@@ -402,7 +403,6 @@
 			isa = PBXGroup;
 			children = (
 				38F37AE22112F53100F84857 /* GetDataMovie */,
-				38F37AE12112F52100F84857 /* ConstantURL */,
 				38F37AE02112F51800F84857 /* Movie */,
 			);
 			name = Model;

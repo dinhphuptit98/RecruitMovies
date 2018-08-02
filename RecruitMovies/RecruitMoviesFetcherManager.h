@@ -11,5 +11,5 @@
 #import "Constant.h"
 #import "Movie.h"
 @interface RecruitMoviesFetcherManager : NSObject
--(Movie *) getDataMovie:(NSString *)URLlink :(NSInteger) pageNumber;
++ (Movie *) getDataMovie:(NSString *)URLlink :(NSInteger) pageNumber;
 @end
