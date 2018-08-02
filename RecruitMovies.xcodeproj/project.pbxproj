@@ -19,6 +19,9 @@
 		38F37AD32112F24900F84857 /* RatingMovieCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38F37AD12112F24900F84857 /* RatingMovieCell.xib */; };
 		38F37AD72112F35B00F84857 /* YearCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38F37AD52112F35B00F84857 /* YearCell.m */; };
 		38F37AD82112F35B00F84857 /* YearCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38F37AD62112F35B00F84857 /* YearCell.xib */; };
+		8422E84721132543000563AB /* FavoritesViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8422E84521132543000563AB /* FavoritesViewCell.m */; };
+		8422E84821132543000563AB /* FavoritesViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8422E84621132543000563AB /* FavoritesViewCell.xib */; };
+		8422E84D2113371B000563AB /* Character.m in Sources */ = {isa = PBXBuildFile; fileRef = 8422E84C2113371B000563AB /* Character.m */; };
 		84FAAD7F2110CB5C003656A5 /* SelectedMovieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FAAD7E2110CB5C003656A5 /* SelectedMovieViewController.m */; };
 		93A0D87A2111460500D97399 /* SelectedMovie.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A0D8792111460500D97399 /* SelectedMovie.m */; };
 		93A0D87C2111461900D97399 /* SelectedMovie.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93A0D87B2111461900D97399 /* SelectedMovie.xib */; };
@@ -84,6 +87,11 @@
 		3B69A641DCD06B5E07A7E154 /* libPods-RecruitMoviesUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RecruitMoviesUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7754CFA883388B78AAE42D30 /* Pods-RecruitMovies.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecruitMovies.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RecruitMovies/Pods-RecruitMovies.debug.xcconfig"; sourceTree = "<group>"; };
 		783D7B9FE947F2090C658F8D /* Pods-RecruitMoviesUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecruitMoviesUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RecruitMoviesUITests/Pods-RecruitMoviesUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		8422E84421132543000563AB /* FavoritesViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FavoritesViewCell.h; sourceTree = "<group>"; };
+		8422E84521132543000563AB /* FavoritesViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FavoritesViewCell.m; sourceTree = "<group>"; };
+		8422E84621132543000563AB /* FavoritesViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoritesViewCell.xib; sourceTree = "<group>"; };
+		8422E84B2113371B000563AB /* Character.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Character.h; sourceTree = "<group>"; };
+		8422E84C2113371B000563AB /* Character.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Character.m; sourceTree = "<group>"; };
 		84FAAD7D2110CB5C003656A5 /* SelectedMovieViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectedMovieViewController.h; sourceTree = "<group>"; };
 		84FAAD7E2110CB5C003656A5 /* SelectedMovieViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectedMovieViewController.m; sourceTree = "<group>"; };
 		8D6DDD89A2246508923C9C3D /* Pods-RecruitMovies.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecruitMovies.release.xcconfig"; path = "Pods/Target Support Files/Pods-RecruitMovies/Pods-RecruitMovies.release.xcconfig"; sourceTree = "<group>"; };
@@ -305,6 +313,25 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		8422E84921132547000563AB /* FavoritesCell */ = {
+			isa = PBXGroup;
+			children = (
+				8422E84621132543000563AB /* FavoritesViewCell.xib */,
+				8422E84521132543000563AB /* FavoritesViewCell.m */,
+				8422E84421132543000563AB /* FavoritesViewCell.h */,
+			);
+			name = FavoritesCell;
+			sourceTree = "<group>";
+		};
+		8422E84A211336EF000563AB /* Character */ = {
+			isa = PBXGroup;
+			children = (
+				8422E84B2113371B000563AB /* Character.h */,
+				8422E84C2113371B000563AB /* Character.m */,
+			);
+			name = Character;
+			sourceTree = "<group>";
+		};
 		93A1EB99211011800053726E = {
 			isa = PBXGroup;
 			children = (
@@ -333,6 +360,7 @@
 				93A1EBA8211011800053726E /* AppDelegate.h */,
 				93A1EBA9211011800053726E /* AppDelegate.m */,
 				93A1EBAE211011800053726E /* Main.storyboard */,
+				93A1EBB6211011800053726E /* LaunchScreen.storyboard */,
 				38F37AE12112F52100F84857 /* ConstantURL */,
 				93A1EBE921101FA80053726E /* Model */,
 				93A1EBE821101FA10053726E /* View */,
@@ -374,8 +402,8 @@
 		93A1EBE721101F990053726E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				38F37AE62112FD1500F84857 /* ShowMovie */,
 				38F37AE52112FD0400F84857 /* ListMovie */,
+				38F37AE62112FD1500F84857 /* ShowMovie */,
 				38F37AE42112FCF900F84857 /* Favorite */,
 				38F37AE32112FCE900F84857 /* Setting */,
 				38DA829821129AFC0055B1B5 /* About */,
@@ -386,8 +414,8 @@
 		93A1EBE821101FA10053726E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				93A1EBB6211011800053726E /* LaunchScreen.storyboard */,
 				38295F7F2111AC8A00DCEF75 /* SlideMenuView.xib */,
+				8422E84921132547000563AB /* FavoritesCell */,
 				38F37AD92112F46300F84857 /* MovieCell */,
 				38F37ADA2112F47500F84857 /* MovieCollecCell */,
 				38F37ADB2112F49100F84857 /* SelectedMovieCell */,
@@ -402,6 +430,7 @@
 		93A1EBE921101FA80053726E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8422E84A211336EF000563AB /* Character */,
 				38F37AE22112F53100F84857 /* GetDataMovie */,
 				38F37AE02112F51800F84857 /* Movie */,
 			);
@@ -538,6 +567,7 @@
 				38295F802111AC8A00DCEF75 /* SlideMenuView.xib in Resources */,
 				38F37AD32112F24900F84857 /* RatingMovieCell.xib in Resources */,
 				93A0D87C2111461900D97399 /* SelectedMovie.xib in Resources */,
+				8422E84821132543000563AB /* FavoritesViewCell.xib in Resources */,
 				93A1EBB0211011800053726E /* Main.storyboard in Resources */,
 				38295F7E2111AB4D00DCEF75 /* ActorAndActressCell.xib in Resources */,
 				93FD3B0721103B96005B4A03 /* Assets.xcassets in Resources */,
@@ -633,9 +663,11 @@
 				93A1EBE321101F6C0053726E /* SettingsViewController.m in Sources */,
 				93A1EBED21101FF40053726E /* MovieViewCell.m in Sources */,
 				93A0D87A2111460500D97399 /* SelectedMovie.m in Sources */,
+				8422E84D2113371B000563AB /* Character.m in Sources */,
 				93A1EBE021101F4C0053726E /* FavoriteMoviesViewController.m in Sources */,
 				38F37AD72112F35B00F84857 /* YearCell.m in Sources */,
 				38F37AC62112D84800F84857 /* Constant.m in Sources */,
+				8422E84721132543000563AB /* FavoritesViewCell.m in Sources */,
 				93A1EBDD21101F190053726E /* MoviesListViewController.m in Sources */,
 				84FAAD7F2110CB5C003656A5 /* SelectedMovieViewController.m in Sources */,
 				3886D35C2112AA9300C6D5C0 /* Movie.m in Sources */,

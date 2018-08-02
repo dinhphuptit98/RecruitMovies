@@ -37,6 +37,8 @@ int numberCheck = 1;
     [self.collectionView registerNib:[UINib nibWithNibName:@"MovieCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"CollectionCell"];
     [self.tableView reloadData];
     [self.collectionView reloadData];
+    
+    //getData
     [RecruitMoviesFetcherManager getDataMovie:MoviePopular :1];
     
 
