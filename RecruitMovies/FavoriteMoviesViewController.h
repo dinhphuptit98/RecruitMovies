@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+#import <SWRevealViewController.h>
 
-@interface FavoriteMoviesViewController : UIViewController
+@interface FavoriteMoviesViewController : UIViewController <SWRevealViewControllerDelegate>
 
 @end

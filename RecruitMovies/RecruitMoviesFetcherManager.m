@@ -11,8 +11,9 @@
 
 @implementation RecruitMoviesFetcherManager
 //get data List Movie
-+ (Movie *) getDataMovie:(NSString *)URLlink :(NSInteger) pageNumber {
-    Movie *movie;
++ (NSMutableArray *) getDataMovie:(NSString *)URLlink :(NSInteger) pageNumber {
+    NSMutableArray *arrMovie;
+    __block Movie *movie;
     
     NSString *urlString = [NSString stringWithFormat:@"%@%ld",URLlink,(long)pageNumber];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -27,14 +28,20 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
-        NSDictionary *resul = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:NULL];
-        NSLog(@"REPOSEN=====%@", resul);
-        
+        NSDictionary *object = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:NULL];
+//        NSLog(@"REPOSEN=====%@", object);
+        NSArray *results = object[@"results"];
+//        NSLog(@"%@",results);
+        for(int i=0;i<results.count;i++){
+            movie = results[1];
+            [arrMovie addObject:movie];
+        }
+        NSLog(@"%@",movie);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"FAILD====%@", error);
     }];
     [dataTask resume];
-    return movie;
+    return arrMovie;
 }
 // get data Movie Detail
 + (Movie *) getDataMovieDetail :(NSInteger) idMovie {

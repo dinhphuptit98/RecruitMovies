@@ -24,7 +24,7 @@
 
 - (IBAction)starSelected:(UIButton*)sender {
     [sender setSelected: !sender.selected];
-    
+    [self.delegate setIndex:self.starBt.tag];
 }
 
 @end

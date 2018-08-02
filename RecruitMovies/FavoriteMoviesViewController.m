@@ -10,6 +10,7 @@
 #import "FavoritesViewCell.h"
 #import "Movie.h"
 @interface FavoriteMoviesViewController () <UITableViewDelegate,UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *menuItem;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
@@ -18,6 +19,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.revealViewController.delegate = self;
+    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+    self.menuItem.target = self.revealViewController;
+    self.menuItem.action = @selector(revealToggle:);
     [self.tableView registerNib:[UINib nibWithNibName:@"FavoritesViewCell" bundle:nil] forCellReuseIdentifier:@"Cell"];
     [self.tableView reloadData];
 }

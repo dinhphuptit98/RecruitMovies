@@ -18,5 +18,9 @@ target 'RecruitMovies' do
   end
 	
   pod 'AFNetworking', '~> 3.0'
-
+pod 'SWRevealViewController'
+pod 'SVPullToRefresh'
+pod 'SDWebImage'
+pod 'SBJson5'
+pod 'FMDB'
 end

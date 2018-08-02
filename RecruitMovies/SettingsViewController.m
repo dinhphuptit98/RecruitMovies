@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic,strong) NSArray *arrFilterMovie;
 @property (nonatomic,strong) NSArray *arrSorted;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *menuItem;
 @end
 
 @implementation SettingsViewController
@@ -22,6 +23,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.revealViewController.delegate = self;
+    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+    self.menuItem.target = self.revealViewController;
+    self.menuItem.action = @selector(revealToggle:);
     [self.tableView registerNib:[UINib nibWithNibName:@"FilterMovieCell" bundle:nil] forCellReuseIdentifier:@"Cell1"];
     [self.tableView registerNib:[UINib nibWithNibName:@"RatingMovieCell" bundle:nil] forCellReuseIdentifier:@"Cell2"];
     [self.tableView registerNib:[UINib nibWithNibName:@"YearCell" bundle:nil] forCellReuseIdentifier:@"Cell3"];

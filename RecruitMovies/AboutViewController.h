@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <SWRevealViewController.h>
 
-@interface AboutViewController : UIViewController 
+@interface AboutViewController : UIViewController <SWRevealViewControllerDelegate>
 
 @end

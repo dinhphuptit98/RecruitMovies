@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 @protocol MovieViewCellDelegate <NSObject>
--(void)setIndex:(NSUInteger*)index;
+-(void)setIndex:(NSInteger)index;
 @end
 @interface MovieViewCell : UITableViewCell
 

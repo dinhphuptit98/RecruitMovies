@@ -14,17 +14,41 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - FMDB (2.7.2):
+    - FMDB/standard (= 2.7.2)
+  - FMDB/standard (2.7.2)
+  - SBJson5 (5.0.0)
+  - SDWebImage (4.0.0):
+    - SDWebImage/Core (= 4.0.0)
+  - SDWebImage/Core (4.0.0)
+  - SVPullToRefresh (0.4.1)
+  - SWRevealViewController (2.3.0)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
+  - FMDB
+  - SBJson5
+  - SDWebImage
+  - SVPullToRefresh
+  - SWRevealViewController
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AFNetworking
+    - FMDB
+    - SBJson5
+    - SDWebImage
+    - SVPullToRefresh
+    - SWRevealViewController
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  FMDB: 6198a90e7b6900cfc046e6bc0ef6ebb7be9236aa
+  SBJson5: 20d321dc587addeb3b21466d13de2f99dc8fe620
+  SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
+  SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
+  SWRevealViewController: 6d3fd97f70112fd7cef9de14df4260eacce4c63a
 
-PODFILE CHECKSUM: a1a3a5c65bfd420c56cd184a1606e48d842c49d8
+PODFILE CHECKSUM: 615c02fab70bef16fe9e0fc4cde88c2786fc85e9
 
 COCOAPODS: 1.5.3

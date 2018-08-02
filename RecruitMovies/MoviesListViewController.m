@@ -7,7 +7,6 @@
 
 
 #import "MoviesListViewController.h"
-#import "MovieViewCell.h"
 #import "MovieCollectionViewCell.h"
 
 #import "SelectedMovieViewController.h"
@@ -29,6 +28,12 @@ int numberCheck = 1;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //SWRevealViewController.h
+    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+    self.revealViewController.delegate = self;
+    self.menuItem.target = self.revealViewController;
+    self.menuItem.action = @selector(revealToggle:);
+    
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.collectionView.dataSource = self;
@@ -38,10 +43,9 @@ int numberCheck = 1;
     [self.tableView reloadData];
     [self.collectionView reloadData];
     
-    //getData
+//    getData
     [RecruitMoviesFetcherManager getDataMovie:MoviePopular :1];
     
-
 }
 
 //UITableView
@@ -59,13 +63,20 @@ int numberCheck = 1;
 {
     
     MovieViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    
+    cell.delegate = self;
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     SelectedMovieViewController *showMovieVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SelectedMovieController"];
     [[self navigationController] pushViewController:showMovieVC animated:YES];
     
+    //truyen IdMovie sang man Detail
+    
+}
+// delegate button star trong CEll
+- (void)setIndex:(NSInteger )index {
+    
+    NSLog(@"nguyen dinh phu");
 }
 
 //UICollectionView
@@ -88,6 +99,8 @@ int numberCheck = 1;
  - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
      SelectedMovieViewController *movieVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SelectedMovieController"];
      [[self navigationController] pushViewController:movieVC animated:YES];
+     
+     //truyen IdMovie sang man Detail
  return YES;
  }
 
@@ -109,8 +122,8 @@ int numberCheck = 1;
 
 //button open Menu and close Menu
 - (IBAction)menuBt:(UIBarButtonItem *)sender {
-    numberCheck = -numberCheck;
-   
+    
+
 }
 
 

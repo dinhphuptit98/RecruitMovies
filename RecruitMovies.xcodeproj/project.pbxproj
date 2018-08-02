@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		38295F7D2111AB4D00DCEF75 /* ActorAndActressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38295F7B2111AB4D00DCEF75 /* ActorAndActressCell.m */; };
 		38295F7E2111AB4D00DCEF75 /* ActorAndActressCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38295F7C2111AB4D00DCEF75 /* ActorAndActressCell.xib */; };
-		38295F802111AC8A00DCEF75 /* SlideMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38295F7F2111AC8A00DCEF75 /* SlideMenuView.xib */; };
 		3886D35C2112AA9300C6D5C0 /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = 3886D35B2112AA9300C6D5C0 /* Movie.m */; };
 		38F37AC62112D84800F84857 /* Constant.m in Sources */ = {isa = PBXBuildFile; fileRef = 38F37AC52112D84800F84857 /* Constant.m */; };
 		38F37AC92112E00000F84857 /* RecruitMoviesFetcherManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 38F37AC82112E00000F84857 /* RecruitMoviesFetcherManager.m */; };
@@ -22,6 +21,10 @@
 		8422E84721132543000563AB /* FavoritesViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8422E84521132543000563AB /* FavoritesViewCell.m */; };
 		8422E84821132543000563AB /* FavoritesViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8422E84621132543000563AB /* FavoritesViewCell.xib */; };
 		8422E84D2113371B000563AB /* Character.m in Sources */ = {isa = PBXBuildFile; fileRef = 8422E84C2113371B000563AB /* Character.m */; };
+		845F327D21136661000CE523 /* CharacterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 845F327C21136661000CE523 /* CharacterManager.m */; };
+		845F3281211373F4000CE523 /* SlideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 845F3280211373F4000CE523 /* SlideMenuViewController.m */; };
+		845F328421137450000CE523 /* SWRevealViewControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 845F328321137450000CE523 /* SWRevealViewControllerViewController.m */; };
+		84BF4822211386B00079D71E /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84BF4821211386B00079D71E /* EditProfileViewController.m */; };
 		84FAAD7F2110CB5C003656A5 /* SelectedMovieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FAAD7E2110CB5C003656A5 /* SelectedMovieViewController.m */; };
 		93A0D87A2111460500D97399 /* SelectedMovie.m in Sources */ = {isa = PBXBuildFile; fileRef = 93A0D8792111460500D97399 /* SelectedMovie.m */; };
 		93A0D87C2111461900D97399 /* SelectedMovie.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93A0D87B2111461900D97399 /* SelectedMovie.xib */; };
@@ -68,7 +71,6 @@
 		38295F7A2111AB4D00DCEF75 /* ActorAndActressCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActorAndActressCell.h; sourceTree = "<group>"; };
 		38295F7B2111AB4D00DCEF75 /* ActorAndActressCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActorAndActressCell.m; sourceTree = "<group>"; };
 		38295F7C2111AB4D00DCEF75 /* ActorAndActressCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActorAndActressCell.xib; sourceTree = "<group>"; };
-		38295F7F2111AC8A00DCEF75 /* SlideMenuView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SlideMenuView.xib; sourceTree = "<group>"; };
 		3886D35A2112AA9300C6D5C0 /* Movie.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Movie.h; sourceTree = "<group>"; };
 		3886D35B2112AA9300C6D5C0 /* Movie.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Movie.m; sourceTree = "<group>"; };
 		38F37AC42112D84800F84857 /* Constant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constant.h; sourceTree = "<group>"; };
@@ -92,6 +94,14 @@
 		8422E84621132543000563AB /* FavoritesViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoritesViewCell.xib; sourceTree = "<group>"; };
 		8422E84B2113371B000563AB /* Character.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Character.h; sourceTree = "<group>"; };
 		8422E84C2113371B000563AB /* Character.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Character.m; sourceTree = "<group>"; };
+		845F327B21136661000CE523 /* CharacterManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CharacterManager.h; sourceTree = "<group>"; };
+		845F327C21136661000CE523 /* CharacterManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CharacterManager.m; sourceTree = "<group>"; };
+		845F327F211373F4000CE523 /* SlideMenuViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SlideMenuViewController.h; sourceTree = "<group>"; };
+		845F3280211373F4000CE523 /* SlideMenuViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SlideMenuViewController.m; sourceTree = "<group>"; };
+		845F328221137450000CE523 /* SWRevealViewControllerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWRevealViewControllerViewController.h; sourceTree = "<group>"; };
+		845F328321137450000CE523 /* SWRevealViewControllerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewControllerViewController.m; sourceTree = "<group>"; };
+		84BF4820211386B00079D71E /* EditProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
+		84BF4821211386B00079D71E /* EditProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
 		84FAAD7D2110CB5C003656A5 /* SelectedMovieViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectedMovieViewController.h; sourceTree = "<group>"; };
 		84FAAD7E2110CB5C003656A5 /* SelectedMovieViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectedMovieViewController.m; sourceTree = "<group>"; };
 		8D6DDD89A2246508923C9C3D /* Pods-RecruitMovies.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecruitMovies.release.xcconfig"; path = "Pods/Target Support Files/Pods-RecruitMovies/Pods-RecruitMovies.release.xcconfig"; sourceTree = "<group>"; };
@@ -332,10 +342,33 @@
 			name = Character;
 			sourceTree = "<group>";
 		};
+		845F327A211365A7000CE523 /* GetDataCharacter */ = {
+			isa = PBXGroup;
+			children = (
+				845F327B21136661000CE523 /* CharacterManager.h */,
+				845F327C21136661000CE523 /* CharacterManager.m */,
+			);
+			name = GetDataCharacter;
+			sourceTree = "<group>";
+		};
+		845F327E211373D6000CE523 /* SlideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				845F328221137450000CE523 /* SWRevealViewControllerViewController.h */,
+				845F328321137450000CE523 /* SWRevealViewControllerViewController.m */,
+				845F327F211373F4000CE523 /* SlideMenuViewController.h */,
+				845F3280211373F4000CE523 /* SlideMenuViewController.m */,
+				84BF4820211386B00079D71E /* EditProfileViewController.h */,
+				84BF4821211386B00079D71E /* EditProfileViewController.m */,
+			);
+			name = SlideMenu;
+			sourceTree = "<group>";
+		};
 		93A1EB99211011800053726E = {
 			isa = PBXGroup;
 			children = (
 				93A1EBA4211011800053726E /* RecruitMovies */,
+				93A1EBA5211011800053726E /* Supporting Files */,
 				93A1EBA3211011800053726E /* Products */,
 				93A1EBC1211011800053726E /* RecruitMoviesTests */,
 				93A1EBCC211011810053726E /* RecruitMoviesUITests */,
@@ -365,7 +398,6 @@
 				93A1EBE921101FA80053726E /* Model */,
 				93A1EBE821101FA10053726E /* View */,
 				93A1EBE721101F990053726E /* Controller */,
-				93A1EBA5211011800053726E /* Supporting Files */,
 			);
 			path = RecruitMovies;
 			sourceTree = "<group>";
@@ -379,6 +411,7 @@
 				93A1EBA6211011800053726E /* main.m */,
 			);
 			name = "Supporting Files";
+			path = RecruitMovies;
 			sourceTree = "<group>";
 		};
 		93A1EBC1211011800053726E /* RecruitMoviesTests */ = {
@@ -404,6 +437,7 @@
 			children = (
 				38F37AE52112FD0400F84857 /* ListMovie */,
 				38F37AE62112FD1500F84857 /* ShowMovie */,
+				845F327E211373D6000CE523 /* SlideMenu */,
 				38F37AE42112FCF900F84857 /* Favorite */,
 				38F37AE32112FCE900F84857 /* Setting */,
 				38DA829821129AFC0055B1B5 /* About */,
@@ -414,7 +448,6 @@
 		93A1EBE821101FA10053726E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				38295F7F2111AC8A00DCEF75 /* SlideMenuView.xib */,
 				8422E84921132547000563AB /* FavoritesCell */,
 				38F37AD92112F46300F84857 /* MovieCell */,
 				38F37ADA2112F47500F84857 /* MovieCollecCell */,
@@ -430,9 +463,10 @@
 		93A1EBE921101FA80053726E /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				8422E84A211336EF000563AB /* Character */,
 				38F37AE22112F53100F84857 /* GetDataMovie */,
 				38F37AE02112F51800F84857 /* Movie */,
+				845F327A211365A7000CE523 /* GetDataCharacter */,
+				8422E84A211336EF000563AB /* Character */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -564,7 +598,6 @@
 				93A1EBF32110201B0053726E /* MovieCollectionViewCell.xib in Resources */,
 				93A1EBB8211011800053726E /* LaunchScreen.storyboard in Resources */,
 				93A1EBEE21101FF40053726E /* MovieViewCell.xib in Resources */,
-				38295F802111AC8A00DCEF75 /* SlideMenuView.xib in Resources */,
 				38F37AD32112F24900F84857 /* RatingMovieCell.xib in Resources */,
 				93A0D87C2111461900D97399 /* SelectedMovie.xib in Resources */,
 				8422E84821132543000563AB /* FavoritesViewCell.xib in Resources */,
@@ -654,9 +687,11 @@
 			files = (
 				93A1EBAA211011800053726E /* AppDelegate.m in Sources */,
 				38295F7D2111AB4D00DCEF75 /* ActorAndActressCell.m in Sources */,
+				845F328421137450000CE523 /* SWRevealViewControllerViewController.m in Sources */,
 				38F37AD22112F24900F84857 /* RatingMovieCell.m in Sources */,
 				38F37ACD2112EB8D00F84857 /* FilterMovieCell.m in Sources */,
 				93A1EBA7211011800053726E /* main.m in Sources */,
+				845F327D21136661000CE523 /* CharacterManager.m in Sources */,
 				38F37AC92112E00000F84857 /* RecruitMoviesFetcherManager.m in Sources */,
 				93A1EBB3211011800053726E /* RecruitMovies.xcdatamodeld in Sources */,
 				93A1EBE621101F760053726E /* AboutViewController.m in Sources */,
@@ -670,8 +705,10 @@
 				8422E84721132543000563AB /* FavoritesViewCell.m in Sources */,
 				93A1EBDD21101F190053726E /* MoviesListViewController.m in Sources */,
 				84FAAD7F2110CB5C003656A5 /* SelectedMovieViewController.m in Sources */,
+				84BF4822211386B00079D71E /* EditProfileViewController.m in Sources */,
 				3886D35C2112AA9300C6D5C0 /* Movie.m in Sources */,
 				93A1EBF22110201B0053726E /* MovieCollectionViewCell.m in Sources */,
+				845F3281211373F4000CE523 /* SlideMenuViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

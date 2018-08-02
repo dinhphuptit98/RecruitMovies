@@ -11,6 +11,7 @@
 @interface AboutViewController () <UIWebViewDelegate>
 @property (weak, nonatomic) IBOutlet UIWebView *webAboutView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *menuItem;
 
 @end
 
@@ -18,6 +19,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.revealViewController.delegate = self;
+    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+    self.menuItem.target = self.revealViewController;
+    self.menuItem.action = @selector(revealToggle:);
     self.webAboutView.delegate = self;
     NSString *stringURL = @"https://www.themoviedb.org/about";
     NSURL *url = [NSURL URLWithString:stringURL];

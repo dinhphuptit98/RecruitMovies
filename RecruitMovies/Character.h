@@ -10,14 +10,11 @@
 
 @interface Character : NSObject
 
--(id)init:(NSString*) nameCharacter withDate:(NSString*) date withRating:(NSInteger) rating withOverView:(NSString*) overView withURLImage:(NSString*) URLImage withCheck: (NSInteger) check;
+-(id)init:(NSString*) nameCharacter withURLImage:(NSString*) URLImage;
 
-@property (nonatomic,copy) NSString *nameMovie;
-@property (nonatomic,copy) NSString *date;
-@property (nonatomic,assign) NSInteger rating;
-@property (nonatomic,copy) NSString *overView;
+@property (nonatomic,copy) NSString *nameCharacter;
 @property (nonatomic,copy) NSString *URLImage;
-@property (nonatomic,assign) NSInteger check;
+
 
 
 @end
