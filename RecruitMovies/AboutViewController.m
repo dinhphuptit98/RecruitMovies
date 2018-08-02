@@ -8,7 +8,7 @@
 
 #import "AboutViewController.h"
 
-@interface AboutViewController ()
+@interface AboutViewController () <UIWebViewDelegate>
 @property (weak, nonatomic) IBOutlet UIWebView *webAboutView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 
@@ -18,7 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.webAboutView.delegate = self;
     NSString *stringURL = @"https://www.themoviedb.org/about";
     NSURL *url = [NSURL URLWithString:stringURL];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -29,6 +29,7 @@
     [self.spinner startAnimating];
 }
 -(void)webViewDidFinishLoad:(UIWebView *)webView{
-    [self.spinner hidesWhenStopped];
+    [self.spinner stopAnimating];
+    self.spinner.hidesWhenStopped = true;
 }
 @end

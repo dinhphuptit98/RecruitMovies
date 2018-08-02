@@ -4,18 +4,18 @@
 //
 //  Created by RTC-HN156 on 7/31/18.
 //  Copyright © 2018 RTC-HN156. All rights reserved.
-//
+
 
 #import "MoviesListViewController.h"
 #import "MovieViewCell.h"
 #import "MovieCollectionViewCell.h"
+
 #import "SelectedMovieViewController.h"
-#import "SlideMenuViewController.h"
-#import <AFNetworking.h>
+
+#import "Movie.h"
+#import "Constant.h"
+#import "RecruitMoviesFetcherManager.h"
 @interface MoviesListViewController ()
-@property (weak, nonatomic) IBOutlet UIButton *closeMenu;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *leadingMenuView;
-@property (weak, nonatomic) IBOutlet UIView *slideMenuView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *menuItem;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -35,12 +35,12 @@ int numberCheck = 1;
     self.collectionView.delegate = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"MovieViewCell" bundle:nil] forCellReuseIdentifier:@"Cell"];
     [self.collectionView registerNib:[UINib nibWithNibName:@"MovieCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"CollectionCell"];
-    getDataPublicMovie();
+    [self.tableView reloadData];
+    [self.collectionView reloadData];
+    
+
 }
 
-void getDataPublicMovie(){
-    NSString *urlPublicMovie = @"";
-}
 //UITableView
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -55,13 +55,14 @@ void getDataPublicMovie(){
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    MovieViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    SelectedMovieViewController *movieVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SelectedMovieController"];
-    [[self navigationController] pushViewController:movieVC animated:YES];
+    SelectedMovieViewController *showMovieVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SelectedMovieController"];
+    [[self navigationController] pushViewController:showMovieVC animated:YES];
+    
 }
 
 //UICollectionView
@@ -70,7 +71,7 @@ void getDataPublicMovie(){
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CollectionCell" forIndexPath:indexPath];
+    MovieCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CollectionCell" forIndexPath:indexPath];
     
     // Configure the cell
     
@@ -106,22 +107,10 @@ void getDataPublicMovie(){
 //button open Menu and close Menu
 - (IBAction)menuBt:(UIBarButtonItem *)sender {
     numberCheck = -numberCheck;
-    if (numberCheck == -1){
-        self.leadingMenuView.constant = 0;
-        self.closeMenu.hidden = NO;
-    }
-    if (numberCheck == 1){
-        self.leadingMenuView.constant = -340;
-        self.closeMenu.hidden = YES;
-    }
-    
+   
 }
 
-//button close Menu
-- (IBAction)closeMenu:(id)sender {
-    self.leadingMenuView.constant = -340;
-    self.closeMenu.hidden = YES;
-}
+
 
 
 @end

@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface SelectedMovieViewController : UIViewController
-
+@property (nonatomic,assign) NSInteger idMovie;
 @end

@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@protocol MovieViewCellDelegate <NSObject>
+-(void)setIndex:(NSUInteger*)index;
+@end
 @interface MovieViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageMovie;
@@ -18,5 +20,5 @@
 @property (weak, nonatomic) IBOutlet UIImageView *adult;
 @property (weak, nonatomic) IBOutlet UIButton *starBt;
 - (IBAction)starSelected:(id)sender;
-
+@property (nonatomic, weak) id<MovieViewCellDelegate> delegate;
 @end
