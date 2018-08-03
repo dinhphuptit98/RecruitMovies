@@ -7,7 +7,7 @@
 //
 
 #import "SlideMenuViewController.h"
-
+#import "EditProfileViewController.h"
 @interface SlideMenuViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -27,6 +27,8 @@
 
 
 - (IBAction)edit:(UIButton *)sender {
+    EditProfileViewController *showMovieVC = [self.storyboard instantiateViewControllerWithIdentifier:@"EditProfileViewController"];
+    [[self navigationController] pushViewController:showMovieVC animated:YES];
 }
 - (IBAction)showAll:(UIButton *)sender {
 }
