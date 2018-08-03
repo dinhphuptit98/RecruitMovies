@@ -10,6 +10,9 @@
 #import <AFNetworking.h>
 #import "Constant.h"
 #import "Movie.h"
+
 @interface RecruitMoviesFetcherManager : NSObject
-+ (Movie *) getDataMovie:(NSString *)URLlink :(NSInteger) pageNumber;
++ (void) getDataMovie:(NSString *)URLlink pageNumber:(NSInteger) pageNumber blockSuccess:(void(^)(NSMutableArray *resultMovies))blockSuccess blockFailure:(void(^)(NSError *error))blockFailure;
++ (Movie *) getDataMovieDetail :(NSInteger) idMovie;
++ (Movie *) getDataSearchMovie :(NSString*) nameMovie ;
 @end

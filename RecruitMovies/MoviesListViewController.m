@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *viewCollectionBt;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *changeDisplay;
+@property (strong, nonatomic)  NSMutableArray *arrMoviePopular;
 @end
 
 @implementation MoviesListViewController
@@ -29,66 +30,81 @@ int numberCheck = 1;
 - (void)viewDidLoad {
     [super viewDidLoad];
     //SWRevealViewController.h
-    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+    [self.view addGestureRecognizer:self.revealViewController.tapGestureRecognizer];
     self.revealViewController.delegate = self;
     self.menuItem.target = self.revealViewController;
-    self.menuItem.action = @selector(revealToggle:);
-    
+    self.menuItem.action = @selector(revealToggle: );
+    self.revealViewController.rearViewRevealWidth = self.view.frame.size.width - 50;
+    //tableView and CollectionView
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"MovieViewCell" bundle:nil] forCellReuseIdentifier:@"Cell"];
     [self.collectionView registerNib:[UINib nibWithNibName:@"MovieCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"CollectionCell"];
-    [self.tableView reloadData];
-    [self.collectionView reloadData];
+
     
 //    getData
-    [RecruitMoviesFetcherManager getDataMovie:MoviePopular :1];
-    
+    self.arrMoviePopular = [[NSMutableArray  alloc] init];
+    __weak MoviesListViewController *weakSelf= self;
+    [RecruitMoviesFetcherManager getDataMovie:MoviePopular pageNumber:1 blockSuccess:^(NSMutableArray *resultMovies) {
+            weakSelf.arrMoviePopular = resultMovies;
+        [self.tableView reloadData];
+        [self.collectionView reloadData];
+    } blockFailure:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
+    NSLog(@"%@",self.arrMoviePopular);
 }
 
 //UITableView
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 20;
+    return self.arrMoviePopular.count;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    return 150;
+    return 200;
 }
 //hien thi cell
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
     MovieViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    cell.nameMovie.text = [NSString stringWithFormat:@"%@",[self.arrMoviePopular[indexPath.row] nameMovie]];
+    cell.timeMovie.text = [NSString stringWithFormat:@"%@",[self.arrMoviePopular[indexPath.row] dateMovie]];
+    cell.rateMovie.text = [NSString stringWithFormat:@"%.1f%@",[self.arrMoviePopular[indexPath.row] rating],@"/10"];
+    cell.overViewMovie.text = [NSString stringWithFormat:@"%@",[self.arrMoviePopular[indexPath.row] overView]];
+    if ([self.arrMoviePopular[indexPath.row] check] == 1){
+        cell.starBt.selected = false;
+    }
+    if ([self.arrMoviePopular[indexPath.row] check] == -1){
+        cell.starBt.selected = true;
+    }
     cell.delegate = self;
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     SelectedMovieViewController *showMovieVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SelectedMovieController"];
     [[self navigationController] pushViewController:showMovieVC animated:YES];
-    
-    //truyen IdMovie sang man Detail
+    NSLog(@"%d",[self.arrMoviePopular[indexPath.row] idMovie]);
+
     
 }
 // delegate button star trong CEll
 - (void)setIndex:(NSInteger )index {
-    
-    NSLog(@"nguyen dinh phu");
+
 }
 
 //UICollectionView
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 10;
+    return self.arrMoviePopular.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     MovieCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CollectionCell" forIndexPath:indexPath];
-    
-    // Configure the cell
-    
+    cell.nameMovie.text = [NSString stringWithFormat:@"%@",[self.arrMoviePopular[indexPath.item] nameMovie]];;
     return cell;
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -99,8 +115,7 @@ int numberCheck = 1;
  - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
      SelectedMovieViewController *movieVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SelectedMovieController"];
      [[self navigationController] pushViewController:movieVC animated:YES];
-     
-     //truyen IdMovie sang man Detail
+     NSLog(@"%d",[self.arrMoviePopular[indexPath.row] idMovie]);
  return YES;
  }
 

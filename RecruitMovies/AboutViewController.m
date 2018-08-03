@@ -21,7 +21,7 @@
     [super viewDidLoad];
     
     self.revealViewController.delegate = self;
-    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+    [self.view addGestureRecognizer:self.revealViewController.tapGestureRecognizer];
     self.menuItem.target = self.revealViewController;
     self.menuItem.action = @selector(revealToggle:);
     self.webAboutView.delegate = self;

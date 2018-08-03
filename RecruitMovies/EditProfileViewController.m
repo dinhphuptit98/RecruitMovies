@@ -7,9 +7,17 @@
 //
 
 #import "EditProfileViewController.h"
-
-@interface EditProfileViewController () <UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+#import "SlideMenuViewController.h"
+@interface EditProfileViewController () <UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIPickerViewDelegate,UIPickerViewDataSource>
 @property (weak, nonatomic) IBOutlet UIImageView *photoUser;
+@property (weak, nonatomic) IBOutlet UITextField *nameUser;
+@property (weak, nonatomic) IBOutlet UILabel *dateUser;
+@property (weak, nonatomic) IBOutlet UITextField *emailUser;
+@property (weak, nonatomic) IBOutlet UILabel *sexLabel;
+@property (weak, nonatomic) IBOutlet UISwitch *switchBt;
+@property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
+@property (weak, nonatomic) IBOutlet UIButton *cancelPicker;
+@property (weak, nonatomic) IBOutlet UIButton *savePicker;
 
 @end
 
@@ -19,6 +27,18 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
+- (IBAction)cancel:(UIBarButtonItem *)sender {
+    [[self navigationController] dismissViewControllerAnimated:true completion:nil];
+}
+- (IBAction)save:(UIBarButtonItem *)sender {
+    [[self navigationController] dismissViewControllerAnimated:true completion:nil];
+    [[NSUserDefaults standardUserDefaults] setObject:self.nameUser.text forKey:@"nameUser"];
+    [[NSUserDefaults standardUserDefaults] setObject:self.emailUser.text forKey:@"emailUser"];
+    [[NSUserDefaults standardUserDefaults] setObject:self.sexLabel.text forKey:@"sexUser"];
+    [[NSUserDefaults standardUserDefaults] setObject:self.dateUser.text forKey:@"dateUser"];
+//    [[NSUserDefaults standardUserDefaults] setObject:self.photoUser.image forKey:@"photoUser"];
+}
+// pick Image
 - (IBAction)tapLibrary:(UIButton *)sender {
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.delegate = self;
@@ -38,15 +58,36 @@
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
 }
-- (IBAction)cancel:(UIButton *)sender {
-    
-}
 
-- (IBAction)save:(UIButton *)sender {
-}
 
-- (IBAction)pickerDate:(UIButton *)sender {
-}
 - (IBAction)swithSex:(UISwitch *)sender {
+    if (sender.isOn){
+        self.sexLabel.text = @"Male";
+    }else{
+        self.sexLabel.text = @"Female";
+    }
 }
+- (IBAction)pickerDate:(UIButton *)sender {
+    self.datePicker.hidden = false;
+    self.cancelPicker.hidden = false;
+    self.savePicker.hidden = false;
+}
+- (IBAction)cancelPicker:(UIButton *)sender {
+    self.datePicker.hidden = true;
+    self.cancelPicker.hidden = true;
+    self.savePicker.hidden = true;
+}
+- (IBAction)saveButton:(UIButton *)sender {
+    self.datePicker.hidden = true;
+    self.cancelPicker.hidden = true;
+    self.savePicker.hidden = true;
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"YYYY-MMMM d"];
+    self.dateUser.text = [dateFormatter stringFromDate:self.datePicker.date];
+    NSLog(@"%@",self.dateUser);
+}
+
+
+
+
 @end

@@ -16,7 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    NSLog(@"%d",self.idMovie);
 }
 
 - (void)didReceiveMemoryWarning {

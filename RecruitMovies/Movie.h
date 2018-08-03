@@ -10,11 +10,12 @@
 
 @interface Movie : NSObject
 
--(id)initWithName:(NSString*) nameMovie withDate:(NSString*) date withRating:(NSInteger) rating withOverView:(NSString*) overView withURLImage:(NSString*) URLImage withCheck: (NSInteger) check;
-
+-(id)initWithName:(NSInteger)idMovie nameMovie:(NSString*) nameMovie withDate:(NSString*) dateMovie withRating:(double) rating withOverView:(NSString*) overView withURLImage:(NSString*) URLImage withCheck: (NSInteger) check withAdult: (NSInteger) adult;
+@property (nonatomic,assign) NSInteger adult;
+@property (nonatomic,assign) NSInteger idMovie;
 @property (nonatomic,copy) NSString *nameMovie;
-@property (nonatomic,copy) NSString *date;
-@property (nonatomic,assign) NSInteger rating;
+@property (nonatomic,copy) NSString *dateMovie;
+@property (nonatomic,assign) double rating;
 @property (nonatomic,copy) NSString *overView;
 @property (nonatomic,copy) NSString *URLImage;
 @property (nonatomic,assign) NSInteger check;

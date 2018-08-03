@@ -10,10 +10,11 @@
 
 
 @implementation RecruitMoviesFetcherManager
+
 //get data List Movie
-+ (NSMutableArray *) getDataMovie:(NSString *)URLlink :(NSInteger) pageNumber {
-    NSMutableArray *arrMovie;
-    __block Movie *movie;
++ (void) getDataMovie:(NSString *)URLlink pageNumber:(NSInteger) pageNumber blockSuccess:(void(^)(NSMutableArray *resultMovies))blockSuccess blockFailure:(void(^)(NSError *error))blockFailure{
+    
+    NSMutableArray<Movie*> *arrMovie = [[NSMutableArray  alloc] init];
     
     NSString *urlString = [NSString stringWithFormat:@"%@%ld",URLlink,(long)pageNumber];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -23,25 +24,35 @@
     [policy setValidatesDomainName:NO];
     [policy setAllowInvalidCertificates:YES];
     
-
-    NSURLSessionDataTask *dataTask = [manager GET:urlString parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
-        
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
-        NSDictionary *object = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:NULL];
-//        NSLog(@"REPOSEN=====%@", object);
-        NSArray *results = object[@"results"];
-//        NSLog(@"%@",results);
-        for(int i=0;i<results.count;i++){
-            movie = results[1];
-            [arrMovie addObject:movie];
-        }
-        NSLog(@"%@",movie);
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"FAILD====%@", error);
-    }];
-    [dataTask resume];
-    return arrMovie;
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+        NSURLSessionDataTask *dataTask = [manager GET:urlString parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+            
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            
+            NSDictionary *object = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:NULL];
+            NSArray *results = object[@"results"];
+            for(int i=0;i<results.count;i++){
+                Movie *movie = [[Movie alloc] init];
+                movie.idMovie = (NSInteger)[results[i] valueForKey:@"id"];
+                movie.nameMovie = [results[i] valueForKey:@"title"];
+                movie.dateMovie = [results[i] valueForKey:@"release_date"];
+                movie.rating = [[results[i] valueForKey:@"vote_average"] doubleValue];
+                movie.overView = [results[i] valueForKey:@"overview"];
+                movie.URLImage = [results[i] valueForKey:@"backdrop_path"];
+                movie.check = 1;
+                movie.adult = (NSInteger)[results valueForKey:@"adult"];
+                [arrMovie addObject:movie];
+            }
+            dispatch_async(dispatch_get_main_queue(), ^(void){
+                blockSuccess(arrMovie);
+            });
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            NSLog(@"FAILD====%@", error);
+            blockFailure(error);
+        }];
+        [dataTask resume];
+    });
+    
 }
 // get data Movie Detail
 + (Movie *) getDataMovieDetail :(NSInteger) idMovie {

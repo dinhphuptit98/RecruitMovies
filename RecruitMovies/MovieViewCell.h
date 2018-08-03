@@ -13,10 +13,10 @@
 @interface MovieViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageMovie;
-@property (weak, nonatomic) IBOutlet UILabel *nameMovie;
-@property (weak, nonatomic) IBOutlet UILabel *timeMovie;
-@property (weak, nonatomic) IBOutlet UILabel *rateMovie;
-@property (weak, nonatomic) IBOutlet UILabel *overViewMovie;
+@property (assign, nonatomic) IBOutlet UILabel *nameMovie;
+@property (assign, nonatomic) IBOutlet UILabel *timeMovie;
+@property (assign, nonatomic) IBOutlet UILabel *rateMovie;
+@property (assign, nonatomic) IBOutlet UILabel *overViewMovie;
 @property (weak, nonatomic) IBOutlet UIImageView *adult;
 @property (weak, nonatomic) IBOutlet UIButton *starBt;
 - (IBAction)starSelected:(id)sender;

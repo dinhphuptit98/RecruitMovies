@@ -17,18 +17,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-
-- (IBAction)edit:(UIButton *)sender {
-    EditProfileViewController *showMovieVC = [self.storyboard instantiateViewControllerWithIdentifier:@"EditProfileViewController"];
-    [[self navigationController] pushViewController:showMovieVC animated:YES];
+-(void)viewWillAppear:(BOOL)animated{
+    self.nameUser.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"nameUser"];
+    self.emailUser.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"emailUser"];
+    self.sexUser.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"sexUser"];
+    self.dateUser.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"dateUser"];
+//    self.photoUser.image = [[NSUserDefaults standardUserDefaults] objectForKey:@"photoUser"];
 }
 - (IBAction)showAll:(UIButton *)sender {
 }
