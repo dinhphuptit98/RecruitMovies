@@ -13,6 +13,5 @@
 
 @interface RecruitMoviesFetcherManager : NSObject
 + (void) getDataMovie:(NSString *)URLlink pageNumber:(NSInteger) pageNumber blockSuccess:(void(^)(NSMutableArray *resultMovies))blockSuccess blockFailure:(void(^)(NSError *error))blockFailure;
-+ (Movie *) getDataMovieDetail :(NSInteger) idMovie;
-+ (Movie *) getDataSearchMovie :(NSString*) nameMovie ;
+
 @end

@@ -10,4 +10,5 @@
 
 @interface SelectedMovieViewController : UIViewController
 @property (nonatomic,assign) NSInteger idMovie;
+@property (nonatomic,assign) NSInteger check;
 @end

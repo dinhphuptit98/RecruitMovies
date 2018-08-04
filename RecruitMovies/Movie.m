@@ -10,7 +10,7 @@
 
 @implementation Movie
 
--(id)initWithName:(NSInteger)idMovie nameMovie:(NSString*) nameMovie withDate:(NSString*) dateMovie withRating:(double) rating withOverView:(NSString*) overView withURLImage:(NSString*) URLImage withCheck: (NSInteger) check withAdult: (NSInteger) adult {
+-(id)initWithName:(NSInteger)idMovie nameMovie:(NSString*) nameMovie withDate:(NSString*) dateMovie withRating:(double) rating withOverView:(NSString*) overView withURLImage:(NSString*) URLImage withAdult: (bool) adult {
     self = [self init];
     if(self){
         self.idMovie = idMovie;
@@ -19,7 +19,6 @@
         self.rating = rating;
         self.overView = overView;
         self.URLImage = URLImage;
-        self.check = check;
         self.adult = adult;
     }
     return self;

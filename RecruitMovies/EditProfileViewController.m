@@ -8,7 +8,7 @@
 
 #import "EditProfileViewController.h"
 #import "SlideMenuViewController.h"
-@interface EditProfileViewController () <UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIPickerViewDelegate,UIPickerViewDataSource>
+@interface EditProfileViewController () <UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIPickerViewDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *photoUser;
 @property (weak, nonatomic) IBOutlet UITextField *nameUser;
 @property (weak, nonatomic) IBOutlet UILabel *dateUser;
@@ -36,7 +36,7 @@
     [[NSUserDefaults standardUserDefaults] setObject:self.emailUser.text forKey:@"emailUser"];
     [[NSUserDefaults standardUserDefaults] setObject:self.sexLabel.text forKey:@"sexUser"];
     [[NSUserDefaults standardUserDefaults] setObject:self.dateUser.text forKey:@"dateUser"];
-//    [[NSUserDefaults standardUserDefaults] setObject:self.photoUser.image forKey:@"photoUser"];
+    
 }
 // pick Image
 - (IBAction)tapLibrary:(UIButton *)sender {
@@ -51,7 +51,12 @@
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     [self.photoUser setImage:info[UIImagePickerControllerOriginalImage]];
+    NSData *imageData = UIImageJPEGRepresentation(self.photoUser.image, 1);
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:imageData forKey:@"photoUser"];
+    [defaults synchronize];
     [picker dismissViewControllerAnimated:YES completion:nil];
+
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {

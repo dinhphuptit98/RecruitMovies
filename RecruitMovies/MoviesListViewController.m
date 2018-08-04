@@ -8,9 +8,7 @@
 
 #import "MoviesListViewController.h"
 #import "MovieCollectionViewCell.h"
-
 #import "SelectedMovieViewController.h"
-
 #import "Movie.h"
 #import "Constant.h"
 #import "RecruitMoviesFetcherManager.h"
@@ -25,7 +23,7 @@
 
 @implementation MoviesListViewController
 
-int numberCheck = 1;
+int numberCheck = 1 ;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -42,19 +40,23 @@ int numberCheck = 1;
     self.collectionView.delegate = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"MovieViewCell" bundle:nil] forCellReuseIdentifier:@"Cell"];
     [self.collectionView registerNib:[UINib nibWithNibName:@"MovieCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"CollectionCell"];
-
     
-//    getData
+    
+    //    getData
     self.arrMoviePopular = [[NSMutableArray  alloc] init];
     __weak MoviesListViewController *weakSelf= self;
-    [RecruitMoviesFetcherManager getDataMovie:MoviePopular pageNumber:1 blockSuccess:^(NSMutableArray *resultMovies) {
-            weakSelf.arrMoviePopular = resultMovies;
-        [self.tableView reloadData];
-        [self.collectionView reloadData];
-    } blockFailure:^(NSError *error) {
-        NSLog(@"%@",error);
-    }];
-    NSLog(@"%@",self.arrMoviePopular);
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+        [RecruitMoviesFetcherManager getDataMovie:MoviePopular pageNumber:3 blockSuccess:^(NSMutableArray *resultMovies) {
+            dispatch_async(dispatch_get_main_queue(), ^(void){
+                weakSelf.arrMoviePopular = resultMovies;
+                [self.tableView reloadData];
+                [self.collectionView reloadData];
+            });
+        } blockFailure:^(NSError *error) {
+            NSLog(@"%@",error);
+        }];
+    });
+   
 }
 
 //UITableView
@@ -76,25 +78,29 @@ int numberCheck = 1;
     cell.timeMovie.text = [NSString stringWithFormat:@"%@",[self.arrMoviePopular[indexPath.row] dateMovie]];
     cell.rateMovie.text = [NSString stringWithFormat:@"%.1f%@",[self.arrMoviePopular[indexPath.row] rating],@"/10"];
     cell.overViewMovie.text = [NSString stringWithFormat:@"%@",[self.arrMoviePopular[indexPath.row] overView]];
-    if ([self.arrMoviePopular[indexPath.row] check] == 1){
-        cell.starBt.selected = false;
-    }
-    if ([self.arrMoviePopular[indexPath.row] check] == -1){
-        cell.starBt.selected = true;
-    }
+    dispatch_async(dispatch_get_global_queue(0,0), ^{
+        NSString *url = [NSString stringWithFormat:@"http://image.tmdb.org/t/p/w780/%@",[self.arrMoviePopular[indexPath.row] URLImage]];
+        NSData * data = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: url]];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // WARNING: is the cell still using the same data by this point??
+            cell.imageMovie.image = [UIImage imageWithData: data];
+        });
+    });
     cell.delegate = self;
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    SelectedMovieViewController *showMovieVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SelectedMovieController"];
+    SelectedMovieViewController *showMovieVC;
+    showMovieVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SelectedMovieController"];
+    showMovieVC.idMovie = [self.arrMoviePopular[indexPath.row] idMovie];
+    showMovieVC.check = numberCheck;
     [[self navigationController] pushViewController:showMovieVC animated:YES];
-    NSLog(@"%d",[self.arrMoviePopular[indexPath.row] idMovie]);
-
+    
     
 }
 // delegate button star trong CEll
 - (void)setIndex:(NSInteger )index {
-
+    
 }
 
 //UICollectionView
@@ -105,6 +111,14 @@ int numberCheck = 1;
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     MovieCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CollectionCell" forIndexPath:indexPath];
     cell.nameMovie.text = [NSString stringWithFormat:@"%@",[self.arrMoviePopular[indexPath.item] nameMovie]];;
+    dispatch_async(dispatch_get_global_queue(0,0), ^{
+        NSString *url = [NSString stringWithFormat:@"http://image.tmdb.org/t/p/w780/%@",[self.arrMoviePopular[indexPath.row] URLImage]];
+        NSData * data = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: url]];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // WARNING: is the cell still using the same data by this point??
+            cell.photoMovie.image = [UIImage imageWithData: data];
+        });
+    });
     return cell;
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -112,12 +126,12 @@ int numberCheck = 1;
     return CGSizeMake(180, 210);
 }
 // Uncomment this method to specify if the specified item should be selected
- - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-     SelectedMovieViewController *movieVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SelectedMovieController"];
-     [[self navigationController] pushViewController:movieVC animated:YES];
-     NSLog(@"%d",[self.arrMoviePopular[indexPath.row] idMovie]);
- return YES;
- }
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    SelectedMovieViewController *movieVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SelectedMovieController"];
+    movieVC.idMovie = [self.arrMoviePopular[indexPath.row] idMovie];
+    [[self navigationController] pushViewController:movieVC animated:YES];
+    return YES;
+}
 
 // button change TableView to CollectionView
 - (IBAction)changeView:(id)sender {
@@ -135,11 +149,7 @@ int numberCheck = 1;
     
 }
 
-//button open Menu and close Menu
-- (IBAction)menuBt:(UIBarButtonItem *)sender {
-    
 
-}
 
 
 

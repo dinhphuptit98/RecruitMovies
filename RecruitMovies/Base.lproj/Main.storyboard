@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="tCq-ZY-xdS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="tCq-ZY-xdS">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -573,11 +573,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Popular Movies" id="zwU-Sh-spV">
-                        <barButtonItem key="leftBarButtonItem" image="ic_menu" id="mBp-mq-rLz">
-                            <connections>
-                                <action selector="menuBt:" destination="xNJ-3L-sYN" id="dq4-Kn-pa5"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="leftBarButtonItem" image="ic_menu" id="mBp-mq-rLz"/>
                         <barButtonItem key="rightBarButtonItem" image="ic_view_module" id="qqP-Xx-NjM">
                             <connections>
                                 <action selector="changeView:" destination="xNJ-3L-sYN" id="3CW-l2-ufz"/>
@@ -596,10 +592,10 @@
             </objects>
             <point key="canvasLocation" x="804" y="-1084"/>
         </scene>
-        <!--View Controller-->
+        <!--Selected Movie View Controller-->
         <scene sceneID="H7o-VR-duO">
             <objects>
-                <viewController storyboardIdentifier="SelectedMovieController" id="lqN-lS-N4g" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SelectedMovieController" id="lqN-lS-N4g" customClass="SelectedMovieViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7Dr-19-Kgx"/>
                         <viewControllerLayoutGuide type="bottom" id="cYr-yp-Maq"/>

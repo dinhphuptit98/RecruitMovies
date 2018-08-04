@@ -24,7 +24,11 @@
     self.emailUser.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"emailUser"];
     self.sexUser.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"sexUser"];
     self.dateUser.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"dateUser"];
-//    self.photoUser.image = [[NSUserDefaults standardUserDefaults] objectForKey:@"photoUser"];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if ([defaults objectForKey:@"photoUser"]){
+        NSData *loadData = [defaults objectForKey:@"photoUser"];
+        self.photoUser.image = [UIImage imageWithData:loadData];
+    }
 }
 - (IBAction)showAll:(UIButton *)sender {
 }

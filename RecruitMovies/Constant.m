@@ -17,6 +17,6 @@ NSString *MovieNowPlaying = @"api.themoviedb.org/3/movie/now_playing?api_key=e76
 NSString *MovieDetail = @"api.themoviedb.org/3/movie/{movieId}?api_key=e7631ffcb8e766993e5ec0c1f4245f93";
 NSString *CastAndCrew = @"api.themoviedb.org/3/movie/{movieId}/credits?api_key=e7631ffcb8e766993e5ec0c1f4245f93";
 NSString *SearchMovie = @"api.themoviedb.org/3/search/movie?api_key=e7631ffcb8e766993e5ec0c1f4245f93&query=";
-NSString *GetImage = @"image.tmdb.org/t/p/w92/";
+NSString *GetImage = @"image.tmdb.org/t/p/w300/";
 
 @end
