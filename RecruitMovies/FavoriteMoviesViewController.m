@@ -70,6 +70,11 @@
 //        [self.myListItems removeObjectAtIndex:indexPath.row];
 //        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 //        [self saveList];
+        
+        [CoreDataHelper.shared deleteWith:[self.moviesFavorite[indexPath.row] nameMovie]];
+        [self.moviesFavorite removeObjectAtIndex:indexPath.row];
+        [tableView reloadData];
+//        [tableView deleteRowsAtIndexPaths:<#(nonnull NSArray<NSIndexPath *> *)#> withRowAnimation:<#(UITableViewRowAnimation)#>]
     }
 
 }
