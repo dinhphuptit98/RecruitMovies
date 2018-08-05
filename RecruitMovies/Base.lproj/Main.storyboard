@@ -57,7 +57,7 @@
         <!--Favorite Movies View Controller-->
         <scene sceneID="gLE-Dx-nMg">
             <objects>
-                <viewController id="bRt-X8-Q4L" customClass="FavoriteMoviesViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FavoriteMoviesViewController" id="bRt-X8-Q4L" customClass="FavoriteMoviesViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="nIC-BZ-718"/>
                         <viewControllerLayoutGuide type="bottom" id="2X6-J8-e09"/>

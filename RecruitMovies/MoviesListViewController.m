@@ -9,10 +9,13 @@
 #import "MoviesListViewController.h"
 #import "MovieCollectionViewCell.h"
 #import "SelectedMovieViewController.h"
+#import "FavoriteMoviesViewController.h"
 #import "Movie.h"
 #import "Constant.h"
 #import "RecruitMoviesFetcherManager.h"
-@interface MoviesListViewController ()
+#import <SWRevealViewController.h>
+#import "MovieViewCell.h"
+@interface MoviesListViewController () <UITableViewDelegate,UITableViewDataSource,UICollectionViewDataSource,UICollectionViewDelegate,MovieViewCellDelegate,SWRevealViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *menuItem;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -87,6 +90,7 @@ int numberCheck = 1 ;
         });
     });
     cell.delegate = self;
+    cell.starBt.tag = indexPath.row;
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -94,12 +98,16 @@ int numberCheck = 1 ;
     showMovieVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SelectedMovieController"];
     showMovieVC.idMovie = [self.arrMoviePopular[indexPath.row] idMovie];
     showMovieVC.check = numberCheck;
+    
     [[self navigationController] pushViewController:showMovieVC animated:YES];
     
     
 }
 // delegate button star trong CEll
 - (void)setIndex:(NSInteger )index {
+    FavoriteMoviesViewController *favoriteViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"FavoriteMoviesViewController"];
+    favoriteViewController.favoriteMovie = self.arrMoviePopular[index];
+    
     
 }
 

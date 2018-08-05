@@ -20,7 +20,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="479" height="149.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="007" translatesAutoresizingMaskIntoConstraints="NO" id="PkJ-Co-p8k">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PkJ-Co-p8k">
                         <rect key="frame" x="22" y="41" width="88" height="88"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="PkJ-Co-p8k" secondAttribute="height" multiplier="1:1" id="dAA-YH-oaX"/>
@@ -148,7 +148,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="007" width="259" height="367"/>
         <image name="ic_adult" width="48" height="24"/>
         <image name="ic_star" width="24" height="24"/>
         <image name="ic_stared" width="24" height="24"/>

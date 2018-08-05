@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <SWRevealViewController.h>
-#import "MovieViewCell.h"
 
-@interface MoviesListViewController : UIViewController  <UITableViewDelegate,UITableViewDataSource,UICollectionViewDataSource,UICollectionViewDelegate,MovieViewCellDelegate,SWRevealViewControllerDelegate>
+
+@interface MoviesListViewController : UIViewController  
 
 @end

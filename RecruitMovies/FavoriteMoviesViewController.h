@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <CoreData/CoreData.h>
-#import <SWRevealViewController.h>
+#import "Movie.h"
 
-@interface FavoriteMoviesViewController : UIViewController <SWRevealViewControllerDelegate>
-
+@interface FavoriteMoviesViewController : UIViewController 
+@property (nonatomic) Movie* favoriteMovie;
 @end

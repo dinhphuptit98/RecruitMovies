@@ -12,12 +12,6 @@
 		3886D35C2112AA9300C6D5C0 /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = 3886D35B2112AA9300C6D5C0 /* Movie.m */; };
 		38F37AC62112D84800F84857 /* Constant.m in Sources */ = {isa = PBXBuildFile; fileRef = 38F37AC52112D84800F84857 /* Constant.m */; };
 		38F37AC92112E00000F84857 /* RecruitMoviesFetcherManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 38F37AC82112E00000F84857 /* RecruitMoviesFetcherManager.m */; };
-		38F37ACD2112EB8D00F84857 /* FilterMovieCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38F37ACB2112EB8D00F84857 /* FilterMovieCell.m */; };
-		38F37ACE2112EB8D00F84857 /* FilterMovieCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38F37ACC2112EB8D00F84857 /* FilterMovieCell.xib */; };
-		38F37AD22112F24900F84857 /* RatingMovieCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38F37AD02112F24900F84857 /* RatingMovieCell.m */; };
-		38F37AD32112F24900F84857 /* RatingMovieCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38F37AD12112F24900F84857 /* RatingMovieCell.xib */; };
-		38F37AD72112F35B00F84857 /* YearCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38F37AD52112F35B00F84857 /* YearCell.m */; };
-		38F37AD82112F35B00F84857 /* YearCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38F37AD62112F35B00F84857 /* YearCell.xib */; };
 		8422E84721132543000563AB /* FavoritesViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8422E84521132543000563AB /* FavoritesViewCell.m */; };
 		8422E84821132543000563AB /* FavoritesViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8422E84621132543000563AB /* FavoritesViewCell.xib */; };
 		8422E84D2113371B000563AB /* Character.m in Sources */ = {isa = PBXBuildFile; fileRef = 8422E84C2113371B000563AB /* Character.m */; };
@@ -77,15 +71,6 @@
 		38F37AC52112D84800F84857 /* Constant.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Constant.m; sourceTree = "<group>"; };
 		38F37AC72112E00000F84857 /* RecruitMoviesFetcherManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecruitMoviesFetcherManager.h; sourceTree = "<group>"; };
 		38F37AC82112E00000F84857 /* RecruitMoviesFetcherManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecruitMoviesFetcherManager.m; sourceTree = "<group>"; };
-		38F37ACA2112EB8D00F84857 /* FilterMovieCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilterMovieCell.h; sourceTree = "<group>"; };
-		38F37ACB2112EB8D00F84857 /* FilterMovieCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FilterMovieCell.m; sourceTree = "<group>"; };
-		38F37ACC2112EB8D00F84857 /* FilterMovieCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterMovieCell.xib; sourceTree = "<group>"; };
-		38F37ACF2112F24900F84857 /* RatingMovieCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RatingMovieCell.h; sourceTree = "<group>"; };
-		38F37AD02112F24900F84857 /* RatingMovieCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RatingMovieCell.m; sourceTree = "<group>"; };
-		38F37AD12112F24900F84857 /* RatingMovieCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RatingMovieCell.xib; sourceTree = "<group>"; };
-		38F37AD42112F35B00F84857 /* YearCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YearCell.h; sourceTree = "<group>"; };
-		38F37AD52112F35B00F84857 /* YearCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YearCell.m; sourceTree = "<group>"; };
-		38F37AD62112F35B00F84857 /* YearCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YearCell.xib; sourceTree = "<group>"; };
 		3B69A641DCD06B5E07A7E154 /* libPods-RecruitMoviesUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RecruitMoviesUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7754CFA883388B78AAE42D30 /* Pods-RecruitMovies.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecruitMovies.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RecruitMovies/Pods-RecruitMovies.debug.xcconfig"; sourceTree = "<group>"; };
 		783D7B9FE947F2090C658F8D /* Pods-RecruitMoviesUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecruitMoviesUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RecruitMoviesUITests/Pods-RecruitMoviesUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -218,36 +203,6 @@
 				38295F7B2111AB4D00DCEF75 /* ActorAndActressCell.m */,
 			);
 			name = "Actor&ActressCell";
-			sourceTree = "<group>";
-		};
-		38F37ADD2112F4CC00F84857 /* FilterCell */ = {
-			isa = PBXGroup;
-			children = (
-				38F37ACB2112EB8D00F84857 /* FilterMovieCell.m */,
-				38F37ACA2112EB8D00F84857 /* FilterMovieCell.h */,
-				38F37ACC2112EB8D00F84857 /* FilterMovieCell.xib */,
-			);
-			name = FilterCell;
-			sourceTree = "<group>";
-		};
-		38F37ADE2112F4E800F84857 /* RatingCell */ = {
-			isa = PBXGroup;
-			children = (
-				38F37AD02112F24900F84857 /* RatingMovieCell.m */,
-				38F37ACF2112F24900F84857 /* RatingMovieCell.h */,
-				38F37AD12112F24900F84857 /* RatingMovieCell.xib */,
-			);
-			name = RatingCell;
-			sourceTree = "<group>";
-		};
-		38F37ADF2112F4F700F84857 /* YearCell */ = {
-			isa = PBXGroup;
-			children = (
-				38F37AD62112F35B00F84857 /* YearCell.xib */,
-				38F37AD52112F35B00F84857 /* YearCell.m */,
-				38F37AD42112F35B00F84857 /* YearCell.h */,
-			);
-			name = YearCell;
 			sourceTree = "<group>";
 		};
 		38F37AE02112F51800F84857 /* Movie */ = {
@@ -393,7 +348,6 @@
 				93A1EBA8211011800053726E /* AppDelegate.h */,
 				93A1EBA9211011800053726E /* AppDelegate.m */,
 				93A1EBAE211011800053726E /* Main.storyboard */,
-				93A1EBB6211011800053726E /* LaunchScreen.storyboard */,
 				38F37AE12112F52100F84857 /* ConstantURL */,
 				93A1EBE921101FA80053726E /* Model */,
 				93A1EBE821101FA10053726E /* View */,
@@ -405,6 +359,7 @@
 		93A1EBA5211011800053726E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				93A1EBB6211011800053726E /* LaunchScreen.storyboard */,
 				93A1EBB9211011800053726E /* Info.plist */,
 				93FD3B0621103B96005B4A03 /* Assets.xcassets */,
 				93A1EBB1211011800053726E /* RecruitMovies.xcdatamodeld */,
@@ -453,9 +408,6 @@
 				38F37ADA2112F47500F84857 /* MovieCollecCell */,
 				38F37ADB2112F49100F84857 /* SelectedMovieCell */,
 				38F37ADC2112F4AA00F84857 /* Actor&ActressCell */,
-				38F37ADD2112F4CC00F84857 /* FilterCell */,
-				38F37ADE2112F4E800F84857 /* RatingCell */,
-				38F37ADF2112F4F700F84857 /* YearCell */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -593,12 +545,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				38F37AD82112F35B00F84857 /* YearCell.xib in Resources */,
-				38F37ACE2112EB8D00F84857 /* FilterMovieCell.xib in Resources */,
 				93A1EBF32110201B0053726E /* MovieCollectionViewCell.xib in Resources */,
 				93A1EBB8211011800053726E /* LaunchScreen.storyboard in Resources */,
 				93A1EBEE21101FF40053726E /* MovieViewCell.xib in Resources */,
-				38F37AD32112F24900F84857 /* RatingMovieCell.xib in Resources */,
 				93A0D87C2111461900D97399 /* SelectedMovie.xib in Resources */,
 				8422E84821132543000563AB /* FavoritesViewCell.xib in Resources */,
 				93A1EBB0211011800053726E /* Main.storyboard in Resources */,
@@ -688,8 +637,6 @@
 				93A1EBAA211011800053726E /* AppDelegate.m in Sources */,
 				38295F7D2111AB4D00DCEF75 /* ActorAndActressCell.m in Sources */,
 				845F328421137450000CE523 /* SWRevealViewControllerViewController.m in Sources */,
-				38F37AD22112F24900F84857 /* RatingMovieCell.m in Sources */,
-				38F37ACD2112EB8D00F84857 /* FilterMovieCell.m in Sources */,
 				93A1EBA7211011800053726E /* main.m in Sources */,
 				845F327D21136661000CE523 /* CharacterManager.m in Sources */,
 				38F37AC92112E00000F84857 /* RecruitMoviesFetcherManager.m in Sources */,
@@ -700,7 +647,6 @@
 				93A0D87A2111460500D97399 /* SelectedMovie.m in Sources */,
 				8422E84D2113371B000563AB /* Character.m in Sources */,
 				93A1EBE021101F4C0053726E /* FavoriteMoviesViewController.m in Sources */,
-				38F37AD72112F35B00F84857 /* YearCell.m in Sources */,
 				38F37AC62112D84800F84857 /* Constant.m in Sources */,
 				8422E84721132543000563AB /* FavoritesViewCell.m in Sources */,
 				93A1EBDD21101F190053726E /* MoviesListViewController.m in Sources */,
