@@ -90,7 +90,6 @@
     NSManagedObjectContext *context = [AppDelegate.shared persistentContainer].viewContext;
     MovieFavorite *newEvent = [[MovieFavorite alloc] initWithContext:context];
     
-    // If appropriate, configure the new managed object.
     newEvent.nameMovie = name;
     [self saveContext];
 }

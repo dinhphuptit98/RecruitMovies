@@ -58,23 +58,24 @@
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     FavoritesViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     cell.nameFavoriteMovie.text = [self.moviesFavorite[indexPath.row] nameMovie];
-    cell.dateFavoriteMovie.text = [self.moviesFavorite[indexPath.row] nameMovie];
-//    cell.nameFavoriteMovie.text = [self.moviesFavorite[indexPath.row] nameMovie];
-//    cell.nameFavoriteMovie.text = [self.moviesFavorite[indexPath.row] nameMovie];
-//    cell.nameFavoriteMovie.text = [self.moviesFavorite[indexPath.row] nameMovie];
+    cell.dateFavoriteMovie.text = [self.moviesFavorite[indexPath.row] dateMovie];
+    cell.ratingFavoriteMovie.text = [NSString stringWithFormat:@"%.1f",[self.moviesFavorite[indexPath.row] rating]];
+    cell.overViewFavoriteMovie.text = [self.moviesFavorite[indexPath.row] overView];
+    dispatch_async(dispatch_get_global_queue(0,0), ^{
+        NSString *url = [NSString stringWithFormat:@"http://image.tmdb.org/t/p/w780/%@",[self.moviesFavorite[indexPath.row] URLImage]];
+        NSData * data = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: url]];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            cell.photoFavoriteMovie.image = [UIImage imageWithData: data];
+        });
+    });
     return cell;
 }
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-//        //add code here for when you hit delete
-//        [self.myListItems removeObjectAtIndex:indexPath.row];
-//        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-//        [self saveList];
-        
         [CoreDataHelper.shared deleteWith:[self.moviesFavorite[indexPath.row] nameMovie]];
         [self.moviesFavorite removeObjectAtIndex:indexPath.row];
         [tableView reloadData];
-//        [tableView deleteRowsAtIndexPaths:<#(nonnull NSArray<NSIndexPath *> *)#> withRowAnimation:<#(UITableViewRowAnimation)#>]
+        
     }
 
 }

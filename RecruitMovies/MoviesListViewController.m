@@ -39,6 +39,7 @@ int numberCheck = 1 ;
     self.menuItem.target = self.revealViewController;
     self.menuItem.action = @selector(revealToggle: );
     self.revealViewController.rearViewRevealWidth = self.view.frame.size.width - 50;
+    
     //tableView and CollectionView
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -47,8 +48,7 @@ int numberCheck = 1 ;
     [self.tableView registerNib:[UINib nibWithNibName:@"MovieViewCell" bundle:nil] forCellReuseIdentifier:@"Cell"];
     [self.collectionView registerNib:[UINib nibWithNibName:@"MovieCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"CollectionCell"];
     
-    
-    //    getData
+    //    getDataMoviePopular
     self.arrMoviePopular = [[NSMutableArray  alloc] init];
     __weak MoviesListViewController *weakSelf= self;
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
@@ -72,13 +72,11 @@ int numberCheck = 1 ;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     return 200;
 }
 //hien thi cell
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     MovieViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     cell.nameMovieLabel.text = [NSString stringWithFormat:@"%@",[self.arrMoviePopular[indexPath.row] nameMovie]];
     cell.timeMovie.text = [NSString stringWithFormat:@"%@",[self.arrMoviePopular[indexPath.row] dateMovie]];
@@ -101,19 +99,18 @@ int numberCheck = 1 ;
     SelectedMovieViewController *showMovieVC;
     showMovieVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SelectedMovieController"];
     showMovieVC.idMovie = [self.arrMoviePopular[indexPath.row] idMovie];
-    showMovieVC.check = numberCheck;
+    showMovieVC.check = [self.arrMoviePopular[indexPath.row] isFavorite];
     
     [[self navigationController] pushViewController:showMovieVC animated:YES];
     
     
 }
-// delegate button star trong CEll
 
+// delegate button star trong CEll
 - (void)didSelectedRatingAt:(NSIndexPath *)indexPath with:(bool)isLike {
     NSString *nameMovieFavorite = [self.arrMoviePopular[indexPath.row] nameMovie];
     if (isLike) {
         // luu cai ten movie tai indexPath vao coredata
-        
         [CoreDataHelper.shared innsert:nameMovieFavorite];
     } else {
         // xoa cai ten movie tai indexPath vao coredata
@@ -123,7 +120,7 @@ int numberCheck = 1 ;
 //    UINavigationController *navi = [self.tabBarController viewControllers][1];
 //    FavoriteMoviesViewController * favoriteViewController = [navi viewControllers][0];
 //    favoriteViewController.allMovies = self.arrMoviePopular;
-    [self.tabBarController setSelectedIndex:1];
+//    [self.tabBarController setSelectedIndex:1];
 }
 
 //UICollectionView
@@ -150,9 +147,11 @@ int numberCheck = 1 ;
 }
 // Uncomment this method to specify if the specified item should be selected
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    SelectedMovieViewController *movieVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SelectedMovieController"];
-    movieVC.idMovie = [self.arrMoviePopular[indexPath.row] idMovie];
-    [[self navigationController] pushViewController:movieVC animated:YES];
+    SelectedMovieViewController *showMovieVC;
+    showMovieVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SelectedMovieController"];
+    showMovieVC.idMovie = [self.arrMoviePopular[indexPath.row] idMovie];
+    showMovieVC.check = numberCheck;
+    [[self navigationController] pushViewController:showMovieVC animated:YES];
     return YES;
 }
 
