@@ -10,5 +10,6 @@
 #import "Movie.h"
 
 @interface FavoriteMoviesViewController : UIViewController 
-@property (nonatomic) Movie* favoriteMovie;
+@property (strong, nonatomic) NSMutableArray *moviesFavorite;
+@property (strong, nonatomic) NSMutableArray *allMovies;
 @end

@@ -10,7 +10,7 @@
 
 @interface Movie : NSObject
 
--(id)initWithName:(NSInteger)idMovie nameMovie:(NSString*) nameMovie withDate:(NSString*) dateMovie withRating:(double) rating withOverView:(NSString*) overView withURLImage:(NSString*) URLImage withAdult: (bool) adult;
+-(id)initWithName:(NSInteger)idMovie nameMovie:(NSString*) nameMovie withDate:(NSString*) dateMovie withRating:(double) rating withOverView:(NSString*) overView withURLImage:(NSString*) URLImage withAdult: (bool) adult and: (bool) isFavorite;
 @property (nonatomic,assign) bool adult;
 @property (nonatomic,assign) NSInteger idMovie;
 @property (nonatomic,copy) NSString *nameMovie;
@@ -18,5 +18,5 @@
 @property (nonatomic,assign) double rating;
 @property (nonatomic,copy) NSString *overView;
 @property (nonatomic,copy) NSString *URLImage;
-
+@property (nonatomic,assign) bool isFavorite;
 @end

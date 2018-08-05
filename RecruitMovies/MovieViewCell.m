@@ -24,7 +24,7 @@
 
 - (IBAction)starSelected:(UIButton*)sender {
     [sender setSelected: !sender.selected];
-        [self.delegate setIndex:sender.tag];
+    [self.delegate didSelectedRatingAt:self.indexPath with:sender.selected];
 }
 
 @end

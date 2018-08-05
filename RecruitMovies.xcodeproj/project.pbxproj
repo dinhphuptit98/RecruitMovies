@@ -15,6 +15,7 @@
 		8422E84721132543000563AB /* FavoritesViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8422E84521132543000563AB /* FavoritesViewCell.m */; };
 		8422E84821132543000563AB /* FavoritesViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8422E84621132543000563AB /* FavoritesViewCell.xib */; };
 		8422E84D2113371B000563AB /* Character.m in Sources */ = {isa = PBXBuildFile; fileRef = 8422E84C2113371B000563AB /* Character.m */; };
+		844FF2EC211737F700E27636 /* CoreDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 844FF2EB211737F700E27636 /* CoreDataHelper.m */; };
 		845F327D21136661000CE523 /* CharacterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 845F327C21136661000CE523 /* CharacterManager.m */; };
 		845F3281211373F4000CE523 /* SlideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 845F3280211373F4000CE523 /* SlideMenuViewController.m */; };
 		845F328421137450000CE523 /* SWRevealViewControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 845F328321137450000CE523 /* SWRevealViewControllerViewController.m */; };
@@ -79,6 +80,8 @@
 		8422E84621132543000563AB /* FavoritesViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoritesViewCell.xib; sourceTree = "<group>"; };
 		8422E84B2113371B000563AB /* Character.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Character.h; sourceTree = "<group>"; };
 		8422E84C2113371B000563AB /* Character.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Character.m; sourceTree = "<group>"; };
+		844FF2EA211737F700E27636 /* CoreDataHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreDataHelper.h; sourceTree = "<group>"; };
+		844FF2EB211737F700E27636 /* CoreDataHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataHelper.m; sourceTree = "<group>"; };
 		845F327B21136661000CE523 /* CharacterManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CharacterManager.h; sourceTree = "<group>"; };
 		845F327C21136661000CE523 /* CharacterManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CharacterManager.m; sourceTree = "<group>"; };
 		845F327F211373F4000CE523 /* SlideMenuViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SlideMenuViewController.h; sourceTree = "<group>"; };
@@ -392,9 +395,9 @@
 			children = (
 				38F37AE52112FD0400F84857 /* ListMovie */,
 				38F37AE62112FD1500F84857 /* ShowMovie */,
-				845F327E211373D6000CE523 /* SlideMenu */,
 				38F37AE42112FCF900F84857 /* Favorite */,
 				38F37AE32112FCE900F84857 /* Setting */,
+				845F327E211373D6000CE523 /* SlideMenu */,
 				38DA829821129AFC0055B1B5 /* About */,
 			);
 			name = Controller;
@@ -419,6 +422,8 @@
 				38F37AE02112F51800F84857 /* Movie */,
 				845F327A211365A7000CE523 /* GetDataCharacter */,
 				8422E84A211336EF000563AB /* Character */,
+				844FF2EA211737F700E27636 /* CoreDataHelper.h */,
+				844FF2EB211737F700E27636 /* CoreDataHelper.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -652,6 +657,7 @@
 				93A1EBDD21101F190053726E /* MoviesListViewController.m in Sources */,
 				84FAAD7F2110CB5C003656A5 /* SelectedMovieViewController.m in Sources */,
 				84BF4822211386B00079D71E /* EditProfileViewController.m in Sources */,
+				844FF2EC211737F700E27636 /* CoreDataHelper.m in Sources */,
 				3886D35C2112AA9300C6D5C0 /* Movie.m in Sources */,
 				93A1EBF22110201B0053726E /* MovieCollectionViewCell.m in Sources */,
 				845F3281211373F4000CE523 /* SlideMenuViewController.m in Sources */,

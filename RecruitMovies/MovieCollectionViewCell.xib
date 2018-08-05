@@ -56,7 +56,7 @@
             </constraints>
             <size key="customSize" width="269" height="292"/>
             <connections>
-                <outlet property="nameMovie" destination="Q6h-Gv-PzN" id="DO3-js-yQt"/>
+                <outlet property="nameMovieLabel" destination="Q6h-Gv-PzN" id="F6F-33-e70"/>
                 <outlet property="photoMovie" destination="1gA-N5-lbM" id="XtX-El-ZZI"/>
             </connections>
             <point key="canvasLocation" x="67" y="48"/>

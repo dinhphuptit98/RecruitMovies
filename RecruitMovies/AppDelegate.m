@@ -14,6 +14,20 @@
 
 @implementation AppDelegate
 
+//+ (AppDelegate *)sharedAppDelegate{
+//    return (AppDelegate *)[UIApplication sharedApplication].delegate;
+//}
+
++ (AppDelegate*)shared
+{
+    static AppDelegate *shared = nil;
+    static dispatch_once_t oneToken;
+    dispatch_once(&oneToken, ^{
+        shared = [[self alloc] init];
+    });
+    return shared;
+}
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.

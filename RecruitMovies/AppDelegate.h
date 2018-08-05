@@ -10,7 +10,8 @@
 #import <CoreData/CoreData.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
-
+//+ (AppDelegate *)sharedAppDelegate;
++ (AppDelegate*)shared;
 @property (strong, nonatomic) UIWindow *window;
 
 @property (readonly, strong) NSPersistentContainer *persistentContainer;

@@ -7,7 +7,7 @@
 //
 
 #import "RecruitMoviesFetcherManager.h"
-
+#import "CoreDataHelper.h"
 
 @implementation RecruitMoviesFetcherManager
 
@@ -27,6 +27,9 @@
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *object = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:NULL];
         NSArray *results = object[@"results"];
+        
+        NSMutableArray *moviesFav = [CoreDataHelper.shared getFavoriteMovies];
+        
         for(int i=0;i<results.count;i++){
             Movie *movie = [[Movie alloc] init];
             movie.idMovie = (NSInteger)[results[i] valueForKey:@"id"];
@@ -36,6 +39,7 @@
             movie.overView = [results[i] valueForKey:@"overview"];
             movie.URLImage = [results[i] valueForKey:@"poster_path"];
             movie.adult = (NSInteger)[results valueForKey:@"adult"];
+            movie.isFavorite = [moviesFav containsObject:movie.nameMovie];
             [arrMovie addObject:movie];
         }
         blockSuccess(arrMovie);

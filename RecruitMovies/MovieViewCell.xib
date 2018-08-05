@@ -138,7 +138,7 @@
             <connections>
                 <outlet property="adult" destination="F14-DH-2WT" id="eI1-Uf-Dv6"/>
                 <outlet property="imageMovie" destination="PkJ-Co-p8k" id="2US-ps-lWR"/>
-                <outlet property="nameMovie" destination="7uB-eQ-GAb" id="dek-Mv-8dk"/>
+                <outlet property="nameMovieLabel" destination="7uB-eQ-GAb" id="CA5-YZ-fAr"/>
                 <outlet property="overViewMovie" destination="F6p-eB-eH9" id="Ige-dJ-N7S"/>
                 <outlet property="rateMovie" destination="hiN-Wr-luo" id="93M-9O-04V"/>
                 <outlet property="starBt" destination="w35-lu-Be6" id="7HW-Hr-Qmn"/>

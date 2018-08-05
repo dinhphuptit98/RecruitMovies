@@ -10,6 +10,6 @@
 
 @interface MovieCollectionViewCell : UICollectionViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *photoMovie;
-@property (weak, nonatomic) IBOutlet UILabel *nameMovie;
+@property (weak, nonatomic) IBOutlet UILabel *nameMovieLabel;
 
 @end

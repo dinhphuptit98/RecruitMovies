@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-
 @interface MoviesListViewController : UIViewController  
-
+@property (strong, nonatomic)  NSMutableArray *arrMoviePopular;
 @end

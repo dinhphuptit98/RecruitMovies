@@ -15,13 +15,16 @@
 #import "RecruitMoviesFetcherManager.h"
 #import <SWRevealViewController.h>
 #import "MovieViewCell.h"
+#import "CoreDataHelper.h"
+#import "MovieFavorite+CoreDataClass.h"
+
 @interface MoviesListViewController () <UITableViewDelegate,UITableViewDataSource,UICollectionViewDataSource,UICollectionViewDelegate,MovieViewCellDelegate,SWRevealViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *menuItem;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *viewCollectionBt;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *changeDisplay;
-@property (strong, nonatomic)  NSMutableArray *arrMoviePopular;
+
 @end
 
 @implementation MoviesListViewController
@@ -77,7 +80,7 @@ int numberCheck = 1 ;
 {
     
     MovieViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    cell.nameMovie.text = [NSString stringWithFormat:@"%@",[self.arrMoviePopular[indexPath.row] nameMovie]];
+    cell.nameMovieLabel.text = [NSString stringWithFormat:@"%@",[self.arrMoviePopular[indexPath.row] nameMovie]];
     cell.timeMovie.text = [NSString stringWithFormat:@"%@",[self.arrMoviePopular[indexPath.row] dateMovie]];
     cell.rateMovie.text = [NSString stringWithFormat:@"%.1f%@",[self.arrMoviePopular[indexPath.row] rating],@"/10"];
     cell.overViewMovie.text = [NSString stringWithFormat:@"%@",[self.arrMoviePopular[indexPath.row] overView]];
@@ -89,8 +92,9 @@ int numberCheck = 1 ;
             cell.imageMovie.image = [UIImage imageWithData: data];
         });
     });
+    [cell.starBt setSelected:[self.arrMoviePopular[indexPath.row] isFavorite]];
     cell.delegate = self;
-    cell.starBt.tag = indexPath.row;
+    cell.indexPath = indexPath;
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -104,11 +108,22 @@ int numberCheck = 1 ;
     
 }
 // delegate button star trong CEll
-- (void)setIndex:(NSInteger )index {
-    FavoriteMoviesViewController *favoriteViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"FavoriteMoviesViewController"];
-    favoriteViewController.favoriteMovie = self.arrMoviePopular[index];
-    
-    
+
+- (void)didSelectedRatingAt:(NSIndexPath *)indexPath with:(bool)isLike {
+    NSString *nameMovieFavorite = [self.arrMoviePopular[indexPath.row] nameMovie];
+    if (isLike) {
+        // luu cai ten movie tai indexPath vao coredata
+        
+        [CoreDataHelper.shared innsert:nameMovieFavorite];
+    } else {
+        // xoa cai ten movie tai indexPath vao coredata
+        [CoreDataHelper.shared deleteWith:nameMovieFavorite];
+    }
+   
+//    UINavigationController *navi = [self.tabBarController viewControllers][1];
+//    FavoriteMoviesViewController * favoriteViewController = [navi viewControllers][0];
+//    favoriteViewController.allMovies = self.arrMoviePopular;
+    [self.tabBarController setSelectedIndex:1];
 }
 
 //UICollectionView
@@ -118,7 +133,7 @@ int numberCheck = 1 ;
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     MovieCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CollectionCell" forIndexPath:indexPath];
-    cell.nameMovie.text = [NSString stringWithFormat:@"%@",[self.arrMoviePopular[indexPath.item] nameMovie]];;
+    cell.nameMovieLabel.text = [NSString stringWithFormat:@"%@",[self.arrMoviePopular[indexPath.item] nameMovie]];;
     dispatch_async(dispatch_get_global_queue(0,0), ^{
         NSString *url = [NSString stringWithFormat:@"http://image.tmdb.org/t/p/w780/%@",[self.arrMoviePopular[indexPath.row] URLImage]];
         NSData * data = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: url]];
