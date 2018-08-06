@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 @protocol FilterCellDelegate <NSObject>
--(void)didSelectedRatingAt: (NSIndexPath*) indexPath with: (bool) isLike andWith:(NSString*) numberOfPage;
+-(void)didSelectedRatingAt: (NSIndexPath*) indexPath with:(bool) isLike andWith:(NSString*) numberOfPage;
 @end
 @interface FilterCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *nameMovieFilter;

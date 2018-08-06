@@ -16,6 +16,7 @@
 @property (strong, nonatomic) IBOutlet UIView *viewHeader;
 @property (nonatomic,strong) NSString *numberPage;
 @property (nonatomic,assign) BOOL checked;
+@property (nonatomic,assign) NSIndexPath *indexPathChecked;
 @end
 @implementation SettingsViewController
 
@@ -32,11 +33,6 @@
 
     self.arrFilterMovie = @[@"Popular Movie",@"Top Rate Movie",@"Upcoming Movies",@"Now Playing Movies"];
     self.arrSorted = @[@"Release date",@"Rating"];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 //UITableView
@@ -134,7 +130,10 @@
 }
 
 - (void)didSelectedRatingAt:(NSIndexPath *)indexPath with:(bool)isLike andWith:(NSString *)numberOfPage{
-    <#code#>
+    self.numberPage = numberOfPage;
+    self.indexPathChecked = indexPath;
+    self.checked = isLike;
+    
 }
 
 

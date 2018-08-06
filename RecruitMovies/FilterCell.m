@@ -22,6 +22,7 @@
 - (IBAction)checkedMovies:(UIButton *)sender {
     [sender setSelected: !sender.selected];
     [self.delegate didSelectedRatingAt:self.indexPath with:sender.selected andWith:self.numberPage.text];
+    NSLog(@"%d",self.indexPath);
 }
 
 @end
