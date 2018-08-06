@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -28,12 +28,6 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_check_box" translatesAutoresizingMaskIntoConstraints="NO" id="Imj-KP-uNs">
-                        <rect key="frame" x="276.5" y="0.0" width="43.5" height="43.5"/>
-                        <constraints>
-                            <constraint firstAttribute="width" secondItem="Imj-KP-uNs" secondAttribute="height" id="7Ao-i6-L9V"/>
-                        </constraints>
-                    </imageView>
                     <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5eB-4b-vPJ">
                         <rect key="frame" x="227" y="0.0" width="93" height="43.5"/>
                         <color key="backgroundColor" red="0.78060233160000003" green="0.78060233160000003" blue="0.78060233160000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -41,31 +35,44 @@
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <textInputTraits key="textInputTraits"/>
                     </textField>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jmv-ws-Dlp">
+                        <rect key="frame" x="276.5" y="0.0" width="43.5" height="43.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="Jmv-ws-Dlp" secondAttribute="height" id="c9j-Sh-HqX"/>
+                        </constraints>
+                        <state key="normal" image="ic_check_box"/>
+                        <state key="selected" image="checked box"/>
+                        <connections>
+                            <action selector="checkedMovies:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="2Ah-Gv-h6q"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="5eB-4b-vPJ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="8cC-NB-zR6"/>
+                    <constraint firstAttribute="bottom" secondItem="Jmv-ws-Dlp" secondAttribute="bottom" id="B58-Bu-Q9a"/>
                     <constraint firstAttribute="bottom" secondItem="5eB-4b-vPJ" secondAttribute="bottom" id="DUL-Cn-qVX"/>
                     <constraint firstItem="5eB-4b-vPJ" firstAttribute="leading" secondItem="1JB-sy-sg4" secondAttribute="trailing" id="EQh-mO-b7r"/>
-                    <constraint firstAttribute="trailing" secondItem="Imj-KP-uNs" secondAttribute="trailing" id="K9c-T7-Jlo"/>
-                    <constraint firstItem="Imj-KP-uNs" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="RWT-JM-ryX"/>
+                    <constraint firstItem="Jmv-ws-Dlp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Roh-fp-vLx"/>
                     <constraint firstAttribute="trailing" secondItem="5eB-4b-vPJ" secondAttribute="trailing" id="Vjv-1X-wlK"/>
                     <constraint firstItem="1JB-sy-sg4" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" constant="11" id="Xkt-1F-IP6"/>
                     <constraint firstItem="1JB-sy-sg4" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="2/3" constant="-2.3333333333333144" id="bEY-L0-esT"/>
                     <constraint firstItem="1JB-sy-sg4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-11" id="c8J-K0-Pwf"/>
+                    <constraint firstAttribute="trailing" secondItem="Jmv-ws-Dlp" secondAttribute="trailing" id="gFL-uF-eLM"/>
                     <constraint firstItem="1JB-sy-sg4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="rUQ-3G-5Q2"/>
-                    <constraint firstItem="Imj-KP-uNs" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" id="tmq-mz-lPY"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
-                <outlet property="checkedFilter" destination="Imj-KP-uNs" id="NaB-Dl-FeG"/>
+                <outlet property="checkedMovie" destination="Jmv-ws-Dlp" id="YPQ-Mv-aAD"/>
                 <outlet property="nameMovieFilter" destination="1JB-sy-sg4" id="mKi-YS-inl"/>
+                <outlet property="numberOfPage" destination="5eB-4b-vPJ" id="8Xj-Um-k9h"/>
                 <outlet property="numberPage" destination="5eB-4b-vPJ" id="Bri-DG-IDl"/>
             </connections>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="checked box" width="24" height="24"/>
         <image name="ic_check_box" width="24" height="24"/>
     </resources>
 </document>

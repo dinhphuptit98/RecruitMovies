@@ -8,12 +8,14 @@
 
 #import "SettingsViewController.h"
 #import "FilterCell.h"
-@interface SettingsViewController () <UITableViewDelegate,UITableViewDataSource>
+@interface SettingsViewController () <UITableViewDelegate,UITableViewDataSource,FilterCellDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic,strong) NSArray *arrFilterMovie;
 @property (nonatomic,strong) NSArray *arrSorted;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *menuItem;
 @property (strong, nonatomic) IBOutlet UIView *viewHeader;
+@property (nonatomic,strong) NSString *numberPage;
+@property (nonatomic,assign) BOOL checked;
 @end
 @implementation SettingsViewController
 
@@ -85,14 +87,14 @@
             break;
         case 3:
             filterCell.nameMovieFilter.text = @"Number Of Page perLoading";
-            filterCell.checkedFilter.hidden = true;
+            filterCell.checkedMovie.hidden = true;
             filterCell.numberPage.hidden = false;
             break;
         default:
             break;
     }
     
-
+    filterCell.delegate = self;
     return filterCell;
 }
 - (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -130,10 +132,11 @@
     }
     return title;
 }
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 0){
-        FilterCell *cell;
-        cell.checkedFilter.image = [UIImage imageNamed:@"ic_checked_box"];
-    }
+
+- (void)didSelectedRatingAt:(NSIndexPath *)indexPath with:(bool)isLike andWith:(NSString *)numberOfPage{
+    <#code#>
 }
+
+
+
 @end

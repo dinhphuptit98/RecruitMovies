@@ -17,8 +17,11 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+    
+}
+- (IBAction)checkedMovies:(UIButton *)sender {
+    [sender setSelected: !sender.selected];
+    [self.delegate didSelectedRatingAt:self.indexPath with:sender.selected andWith:self.numberPage.text];
 }
 
 @end

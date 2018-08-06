@@ -430,9 +430,9 @@
 		93A1EBE821101FA10053726E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				38F37AD92112F46300F84857 /* MovieCell */,
 				388636242117FD6E00E90F7B /* FilterCell */,
 				8422E84921132547000563AB /* FavoritesCell */,
-				38F37AD92112F46300F84857 /* MovieCell */,
 				38F37ADA2112F47500F84857 /* MovieCollecCell */,
 				38F37ADB2112F49100F84857 /* SelectedMovieCell */,
 				38F37ADC2112F4AA00F84857 /* Actor&ActressCell */,
