@@ -10,31 +10,35 @@
 
 @implementation CharacterManager
 
-// get data Movie Detail
-+ (Character *) getDataCharacter :(NSInteger) idMovie {
-    Character *character;
+//get data Character
++ (void) getDataCharacter:(NSString *)URLlink blockSuccess:(void(^)(NSMutableArray *resultCharacter))blockSuccess blockFailure:(void(^)(NSError *error))blockFailure{
     
-    NSString *urlString = [NSString stringWithFormat:@"%@%ld%@",@"api.themoviedb.org/3/movie/",(long)idMovie,@"?api_key=e7631ffcb8e766993e5ec0c1f4245f93"];
+    NSMutableArray<Character*> *arrCharacter = [[NSMutableArray  alloc] init];
+    
+    NSString *urlString = [NSString stringWithFormat:@"%@",URLlink];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     AFSecurityPolicy* policy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeCertificate];
     [policy setValidatesDomainName:NO];
     [policy setAllowInvalidCertificates:YES];
-    
-    
     NSURLSessionDataTask *dataTask = [manager GET:urlString parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
-        
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSDictionary *object = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:NULL];
+        NSArray *casts = object[@"cast"];
         
-        NSDictionary *resul = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:NULL];
-        NSLog(@"REPOSEN=====%@", resul);
+        for(int i=0;i<casts.count;i++){
+            Character *character = [[Character alloc] init];
+            character.nameCharacter = [casts[i] valueForKey:@"name"];
+            character.URLImage = [casts[i] valueForKey:@"profile_path"];
+            [arrCharacter addObject:character];
+        }
+        blockSuccess(arrCharacter);
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"FAILD====%@", error);
+        blockFailure(error);
     }];
     [dataTask resume];
-    return character;
 }
-
 @end

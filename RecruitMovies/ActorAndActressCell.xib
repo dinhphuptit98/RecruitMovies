@@ -13,7 +13,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="ActorAndActressCell">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="gTV-IL-0wX" customClass="ActorAndActressCell">
             <rect key="frame" x="0.0" y="0.0" width="162" height="181"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -44,6 +44,10 @@
             </constraints>
             <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
             <size key="customSize" width="162" height="181"/>
+            <connections>
+                <outlet property="nameCharacter" destination="Ddo-Z4-swm" id="OMw-lo-lYM"/>
+                <outlet property="photoCharacter" destination="OLH-Cv-NnS" id="81u-wm-v2y"/>
+            </connections>
             <point key="canvasLocation" x="81" y="96.5"/>
         </collectionViewCell>
     </objects>

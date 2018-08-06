@@ -11,5 +11,5 @@
 #import "Constant.h"
 #import "Character.h"
 @interface CharacterManager : NSObject
-
++ (void) getDataCharacter:(NSString *)URLlink blockSuccess:(void(^)(NSMutableArray *resultCharacter))blockSuccess blockFailure:(void(^)(NSError *error))blockFailure;
 @end

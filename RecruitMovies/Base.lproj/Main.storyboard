@@ -729,6 +729,20 @@
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="05o-Dp-n4Y">
+                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </view>
+                                            </collectionViewCell>
+                                        </cells>
+                                        <connections>
+                                            <outlet property="dataSource" destination="lqN-lS-N4g" id="rMf-88-QpV"/>
+                                            <outlet property="delegate" destination="lqN-lS-N4g" id="Uzi-yB-li2"/>
+                                        </connections>
                                     </collectionView>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -771,6 +785,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="rPY-qZ-eGA"/>
                     <connections>
+                        <outlet property="collectionView" destination="n0N-3J-1Nb" id="kjo-GE-eGf"/>
                         <outlet property="dateMovieDetail" destination="Eas-CB-Z94" id="kd7-h4-PnW"/>
                         <outlet property="like" destination="RkD-gf-d6N" id="WBC-0N-gw5"/>
                         <outlet property="overMovieDetail" destination="52R-rW-uDM" id="mTo-Kz-KKv"/>

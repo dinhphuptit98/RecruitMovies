@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface ActorAndActressCell : UICollectionViewCell 
+@property (weak, nonatomic) IBOutlet UIImageView *photoCharacter;
+@property (weak, nonatomic) IBOutlet UILabel *nameCharacter;
 
 @end

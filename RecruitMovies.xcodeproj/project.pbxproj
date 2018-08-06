@@ -300,6 +300,15 @@
 			name = Character;
 			sourceTree = "<group>";
 		};
+		844FE4FA2117C8AF0068F4FF /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				844FF2EB211737F700E27636 /* CoreDataHelper.m */,
+				844FF2EA211737F700E27636 /* CoreDataHelper.h */,
+			);
+			name = CoreData;
+			sourceTree = "<group>";
+		};
 		845F327A211365A7000CE523 /* GetDataCharacter */ = {
 			isa = PBXGroup;
 			children = (
@@ -418,12 +427,11 @@
 		93A1EBE921101FA80053726E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				844FE4FA2117C8AF0068F4FF /* CoreData */,
 				38F37AE22112F53100F84857 /* GetDataMovie */,
 				38F37AE02112F51800F84857 /* Movie */,
 				845F327A211365A7000CE523 /* GetDataCharacter */,
 				8422E84A211336EF000563AB /* Character */,
-				844FF2EA211737F700E27636 /* CoreDataHelper.h */,
-				844FF2EB211737F700E27636 /* CoreDataHelper.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
