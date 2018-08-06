@@ -10,11 +10,11 @@
 #import "MovieCollectionViewCell.h"
 #import "SelectedMovieViewController.h"
 #import "FavoriteMoviesViewController.h"
-#import "Movie.h"
 #import "Constant.h"
 #import "RecruitMoviesFetcherManager.h"
 #import <SWRevealViewController.h>
 #import "MovieViewCell.h"
+#import "Movie.h"
 #import "CoreDataHelper.h"
 #import "MovieFavorite+CoreDataClass.h"
 
