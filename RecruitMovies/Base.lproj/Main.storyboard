@@ -67,28 +67,28 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie with rate with from:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6qh-az-JU1">
-                            <rect key="frame" x="10" y="0.0" width="188.5" height="25.5"/>
+                            <rect key="frame" x="20" y="0.0" width="188.5" height="25.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X02-ZH-zat">
-                            <rect key="frame" x="198.5" y="0.0" width="24" height="25.5"/>
+                            <rect key="frame" x="208.5" y="0.0" width="24" height="25.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="rVG-FJ-pAr">
-                            <rect key="frame" x="8" y="25.5" width="361" height="52"/>
+                            <rect key="frame" x="18" y="25.5" width="341" height="52"/>
                         </slider>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="From Release Year:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qj0-gx-hsF">
-                            <rect key="frame" x="10" y="76.5" width="146.5" height="25.5"/>
+                            <rect key="frame" x="20" y="76.5" width="146.5" height="38.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter date :" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pPU-Df-y5j">
-                            <rect key="frame" x="176.5" y="76.5" width="95.5" height="25.5"/>
+                            <rect key="frame" x="186.5" y="76.5" width="95.5" height="38.5"/>
                             <color key="backgroundColor" red="0.81855165155440412" green="0.81855165155440412" blue="0.81855165155440412" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -97,19 +97,19 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="rVG-FJ-pAr" secondAttribute="trailing" constant="10" id="1OH-ne-cTK"/>
+                        <constraint firstAttribute="trailing" secondItem="rVG-FJ-pAr" secondAttribute="trailing" constant="20" id="1OH-ne-cTK"/>
                         <constraint firstItem="pPU-Df-y5j" firstAttribute="height" secondItem="Qj0-gx-hsF" secondAttribute="height" id="35O-tc-Ff0"/>
                         <constraint firstItem="6qh-az-JU1" firstAttribute="top" secondItem="wvY-NX-41g" secondAttribute="top" id="6fW-7J-LOR"/>
                         <constraint firstItem="pPU-Df-y5j" firstAttribute="leading" secondItem="Qj0-gx-hsF" secondAttribute="trailing" constant="20" id="Ey5-e9-B8a"/>
                         <constraint firstItem="rVG-FJ-pAr" firstAttribute="height" secondItem="6qh-az-JU1" secondAttribute="height" multiplier="2" id="P0g-JH-iVd"/>
                         <constraint firstItem="6qh-az-JU1" firstAttribute="width" secondItem="wvY-NX-41g" secondAttribute="width" multiplier="1/2" id="Qou-sa-XtP"/>
-                        <constraint firstItem="Qj0-gx-hsF" firstAttribute="height" secondItem="6qh-az-JU1" secondAttribute="height" id="QxB-9v-HuO"/>
+                        <constraint firstItem="Qj0-gx-hsF" firstAttribute="height" secondItem="6qh-az-JU1" secondAttribute="height" multiplier="1.5" id="QxB-9v-HuO"/>
                         <constraint firstItem="6qh-az-JU1" firstAttribute="height" secondItem="wvY-NX-41g" secondAttribute="height" multiplier="1/5" id="Ths-EJ-l6D"/>
-                        <constraint firstItem="rVG-FJ-pAr" firstAttribute="leading" secondItem="wvY-NX-41g" secondAttribute="leading" constant="10" id="Y8C-aP-jTk"/>
+                        <constraint firstItem="rVG-FJ-pAr" firstAttribute="leading" secondItem="wvY-NX-41g" secondAttribute="leading" constant="20" id="Y8C-aP-jTk"/>
                         <constraint firstItem="X02-ZH-zat" firstAttribute="leading" secondItem="6qh-az-JU1" secondAttribute="trailing" id="ZOC-aW-jw5"/>
                         <constraint firstItem="Qj0-gx-hsF" firstAttribute="top" secondItem="rVG-FJ-pAr" secondAttribute="bottom" id="Zvx-Mt-JpD"/>
-                        <constraint firstItem="Qj0-gx-hsF" firstAttribute="leading" secondItem="wvY-NX-41g" secondAttribute="leading" constant="10" id="fb2-HV-kWH"/>
-                        <constraint firstItem="6qh-az-JU1" firstAttribute="leading" secondItem="wvY-NX-41g" secondAttribute="leading" constant="10" id="huX-eC-wqB"/>
+                        <constraint firstItem="Qj0-gx-hsF" firstAttribute="leading" secondItem="wvY-NX-41g" secondAttribute="leading" constant="20" id="fb2-HV-kWH"/>
+                        <constraint firstItem="6qh-az-JU1" firstAttribute="leading" secondItem="wvY-NX-41g" secondAttribute="leading" constant="20" id="huX-eC-wqB"/>
                         <constraint firstItem="pPU-Df-y5j" firstAttribute="top" secondItem="rVG-FJ-pAr" secondAttribute="bottom" id="ld6-Ri-fHJ"/>
                         <constraint firstItem="rVG-FJ-pAr" firstAttribute="top" secondItem="6qh-az-JU1" secondAttribute="bottom" id="ncN-ya-Y7z"/>
                         <constraint firstItem="X02-ZH-zat" firstAttribute="top" secondItem="wvY-NX-41g" secondAttribute="top" id="pge-nL-wEd"/>
@@ -176,7 +176,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i0C-YC-qHy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="804" y="-368.36581709145429"/>
+            <point key="canvasLocation" x="796" y="-207"/>
         </scene>
         <!--Slide Menu View Controller-->
         <scene sceneID="LuX-FQ-PLv">

@@ -10,5 +10,7 @@
 
 @interface FilterCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *nameMovieFilter;
+@property (weak, nonatomic) IBOutlet UITextField *numberPage;
+@property (weak, nonatomic) IBOutlet UIImageView *checkedFilter;
 
 @end

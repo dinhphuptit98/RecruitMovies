@@ -7,7 +7,6 @@
 //
 
 #import "SettingsViewController.h"
-#import "RatingAndDateCell.h"
 #import "FilterCell.h"
 @interface SettingsViewController () <UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -27,7 +26,6 @@
     self.menuItem.target = self.revealViewController;
     self.menuItem.action = @selector(revealToggle:);
     [self.tableView registerNib:[UINib nibWithNibName:@"FilterCell" bundle:nil] forCellReuseIdentifier:@"FilterCell"];
-    [self.tableView registerNib:[UINib nibWithNibName:@"RatingAndDateCell" bundle:nil] forCellReuseIdentifier:@"RatingAndDateCell"];
     
 
     self.arrFilterMovie = @[@"Popular Movie",@"Top Rate Movie",@"Upcoming Movies",@"Now Playing Movies"];
@@ -69,7 +67,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 1){
-        return   200;
+        return   100;
     }
     return 44;
 }
@@ -84,8 +82,12 @@
             break;
         case 2:
             filterCell.nameMovieFilter.text = self.arrSorted[indexPath.row];
+            break;
         case 3:
             filterCell.nameMovieFilter.text = @"Number Of Page perLoading";
+            filterCell.checkedFilter.hidden = true;
+            filterCell.numberPage.hidden = false;
+            break;
         default:
             break;
     }
@@ -95,27 +97,27 @@
 }
 - (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UIView *headerTableView = [[UIView alloc] init];
-    
+    UIView *tableHeader;
     if (section == 1) {
-        headerTableView = self.viewHeader;
+        tableHeader = self.viewHeader;
     }
-    headerTableView.backgroundColor = [UIColor greenColor];
-    return headerTableView;
+    return tableHeader;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    int height;
     if (section == 1) {
-        return  150;
+        height = 100;
+    }else{
+        height = 30;
     }
-    return 44;
+    return height;
 }
 
-- ( NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section;
-{
-    NSString *title = @"";
+-(NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    NSString *title;
     switch (section) {
         case 0:
-            title = @"Filter";
+            title = @"Filter Movies";
             break;
         case 2:
             title = @"Sort By";
@@ -127,5 +129,11 @@
             break;
     }
     return title;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 0){
+        FilterCell *cell;
+        cell.checkedFilter.image = [UIImage imageNamed:@"ic_checked_box"];
+    }
 }
 @end

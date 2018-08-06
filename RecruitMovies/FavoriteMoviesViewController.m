@@ -53,7 +53,7 @@
     if ([searchText  isEqual: @""]){
         self.arrSearchMovie = self.moviesFavorite;
     }else{
-        
+
     }
     [self.tableView reloadData];
 }
