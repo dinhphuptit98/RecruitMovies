@@ -45,7 +45,6 @@
         blockSuccess(arrMovie);
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"FAILD====%@", error);
         blockFailure(error);
     }];
     [dataTask resume];
@@ -76,7 +75,6 @@
             movie.adult = (NSInteger)[object valueForKey:@"adult"];
         
         blockSuccess(movie);
-        NSLog(@"%@",movie);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"FAILD====%@", error);
         blockFailure(error);

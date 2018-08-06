@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		38295F7D2111AB4D00DCEF75 /* ActorAndActressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38295F7B2111AB4D00DCEF75 /* ActorAndActressCell.m */; };
 		38295F7E2111AB4D00DCEF75 /* ActorAndActressCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38295F7C2111AB4D00DCEF75 /* ActorAndActressCell.xib */; };
+		388636222117FD6700E90F7B /* FilterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 388636202117FD6700E90F7B /* FilterCell.m */; };
+		388636232117FD6700E90F7B /* FilterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 388636212117FD6700E90F7B /* FilterCell.xib */; };
 		3886D35C2112AA9300C6D5C0 /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = 3886D35B2112AA9300C6D5C0 /* Movie.m */; };
 		38F37AC62112D84800F84857 /* Constant.m in Sources */ = {isa = PBXBuildFile; fileRef = 38F37AC52112D84800F84857 /* Constant.m */; };
 		38F37AC92112E00000F84857 /* RecruitMoviesFetcherManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 38F37AC82112E00000F84857 /* RecruitMoviesFetcherManager.m */; };
@@ -66,6 +68,9 @@
 		38295F7A2111AB4D00DCEF75 /* ActorAndActressCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActorAndActressCell.h; sourceTree = "<group>"; };
 		38295F7B2111AB4D00DCEF75 /* ActorAndActressCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActorAndActressCell.m; sourceTree = "<group>"; };
 		38295F7C2111AB4D00DCEF75 /* ActorAndActressCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActorAndActressCell.xib; sourceTree = "<group>"; };
+		3886361F2117FD6700E90F7B /* FilterCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilterCell.h; sourceTree = "<group>"; };
+		388636202117FD6700E90F7B /* FilterCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FilterCell.m; sourceTree = "<group>"; };
+		388636212117FD6700E90F7B /* FilterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterCell.xib; sourceTree = "<group>"; };
 		3886D35A2112AA9300C6D5C0 /* Movie.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Movie.h; sourceTree = "<group>"; };
 		3886D35B2112AA9300C6D5C0 /* Movie.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Movie.m; sourceTree = "<group>"; };
 		38F37AC42112D84800F84857 /* Constant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constant.h; sourceTree = "<group>"; };
@@ -159,6 +164,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		388636242117FD6E00E90F7B /* FilterCell */ = {
+			isa = PBXGroup;
+			children = (
+				3886361F2117FD6700E90F7B /* FilterCell.h */,
+				388636202117FD6700E90F7B /* FilterCell.m */,
+				388636212117FD6700E90F7B /* FilterCell.xib */,
+			);
+			name = FilterCell;
+			sourceTree = "<group>";
+		};
 		38DA829821129AFC0055B1B5 /* About */ = {
 			isa = PBXGroup;
 			children = (
@@ -415,6 +430,7 @@
 		93A1EBE821101FA10053726E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				388636242117FD6E00E90F7B /* FilterCell */,
 				8422E84921132547000563AB /* FavoritesCell */,
 				38F37AD92112F46300F84857 /* MovieCell */,
 				38F37ADA2112F47500F84857 /* MovieCollecCell */,
@@ -564,6 +580,7 @@
 				93A0D87C2111461900D97399 /* SelectedMovie.xib in Resources */,
 				8422E84821132543000563AB /* FavoritesViewCell.xib in Resources */,
 				93A1EBB0211011800053726E /* Main.storyboard in Resources */,
+				388636232117FD6700E90F7B /* FilterCell.xib in Resources */,
 				38295F7E2111AB4D00DCEF75 /* ActorAndActressCell.xib in Resources */,
 				93FD3B0721103B96005B4A03 /* Assets.xcassets in Resources */,
 			);
@@ -652,6 +669,7 @@
 				845F328421137450000CE523 /* SWRevealViewControllerViewController.m in Sources */,
 				93A1EBA7211011800053726E /* main.m in Sources */,
 				845F327D21136661000CE523 /* CharacterManager.m in Sources */,
+				388636222117FD6700E90F7B /* FilterCell.m in Sources */,
 				38F37AC92112E00000F84857 /* RecruitMoviesFetcherManager.m in Sources */,
 				93A1EBB3211011800053726E /* RecruitMovies.xcdatamodeld in Sources */,
 				93A1EBE621101F760053726E /* AboutViewController.m in Sources */,

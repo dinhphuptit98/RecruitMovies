@@ -7,18 +7,16 @@
 //
 
 #import "SettingsViewController.h"
-#import "YearCell.h"
-#import "RatingMovieCell.h"
-#import "FilterMovieCell.h"
+#import "RatingAndDateCell.h"
+#import "FilterCell.h"
 @interface SettingsViewController () <UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic,strong) NSArray *arrFilterMovie;
 @property (nonatomic,strong) NSArray *arrSorted;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *menuItem;
+@property (strong, nonatomic) IBOutlet UIView *viewHeader;
 @end
-
 @implementation SettingsViewController
-
 
 
 - (void)viewDidLoad {
@@ -28,10 +26,12 @@
     [self.view addGestureRecognizer:self.revealViewController.tapGestureRecognizer];
     self.menuItem.target = self.revealViewController;
     self.menuItem.action = @selector(revealToggle:);
-    [self.tableView registerNib:[UINib nibWithNibName:@"FilterMovieCell" bundle:nil] forCellReuseIdentifier:@"Cell1"];
-    [self.tableView registerNib:[UINib nibWithNibName:@"RatingMovieCell" bundle:nil] forCellReuseIdentifier:@"Cell2"];
-    [self.tableView registerNib:[UINib nibWithNibName:@"YearCell" bundle:nil] forCellReuseIdentifier:@"Cell3"];
-    [self.tableView reloadData];
+    [self.tableView registerNib:[UINib nibWithNibName:@"FilterCell" bundle:nil] forCellReuseIdentifier:@"FilterCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"RatingAndDateCell" bundle:nil] forCellReuseIdentifier:@"RatingAndDateCell"];
+    
+
+    self.arrFilterMovie = @[@"Popular Movie",@"Top Rate Movie",@"Upcoming Movies",@"Now Playing Movies"];
+    self.arrSorted = @[@"Release date",@"Rating"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -40,50 +40,92 @@
 }
 
 //UITableView
+
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 2;
+    return 4;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSInteger numberSetion = 0;
-    if (section == 0){
-        numberSetion = 6;
-    }
-    if  (section == 1){
-        numberSetion = 2;
+
+    switch (section) {
+        case 0:
+            numberSetion = 4;
+            break;
+        case 1:
+            numberSetion = 0;
+            break;
+        case 2:
+            numberSetion = 2;
+            break;
+        case 3:
+            numberSetion = 1;
+            break;
+        default:
+            break;
     }
     return numberSetion;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    NSInteger height;
-    if (indexPath.row == 4){
-        height = 100;
-    }else{
-        height = 50;
+    if (indexPath.section == 1){
+        return   200;
     }
-    return height;
+    return 44;
 }
 //hien thi cell
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell;
-    if (indexPath.row == 4){
-        RatingMovieCell *cell2 = [tableView dequeueReusableCellWithIdentifier:@"Cell2" forIndexPath:indexPath];
-        cell = cell2;
-    }else if(indexPath.row == 5){
-        YearCell *cell3 = [tableView dequeueReusableCellWithIdentifier:@"Cell3" forIndexPath:indexPath];
-        cell = cell3;
-    }else{
-        FilterMovieCell *cell1 = [tableView dequeueReusableCellWithIdentifier:@"Cell1" forIndexPath:indexPath];
-        cell = cell1;
+    
+    FilterCell *filterCell = [tableView dequeueReusableCellWithIdentifier:@"FilterCell" forIndexPath:indexPath];
+    switch (indexPath.section) {
+        case 0:
+            filterCell.nameMovieFilter.text = self.arrFilterMovie[indexPath.row];
+            break;
+        case 2:
+            filterCell.nameMovieFilter.text = self.arrSorted[indexPath.row];
+        case 3:
+            filterCell.nameMovieFilter.text = @"Number Of Page perLoading";
+        default:
+            break;
     }
     
-    return cell;
-}
-//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-//    
-//}
 
+    return filterCell;
+}
+- (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *headerTableView = [[UIView alloc] init];
+    
+    if (section == 1) {
+        headerTableView = self.viewHeader;
+    }
+    headerTableView.backgroundColor = [UIColor greenColor];
+    return headerTableView;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if (section == 1) {
+        return  150;
+    }
+    return 44;
+}
+
+- ( NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section;
+{
+    NSString *title = @"";
+    switch (section) {
+        case 0:
+            title = @"Filter";
+            break;
+        case 2:
+            title = @"Sort By";
+            break;
+        case 3:
+            title = @"Number Of Loading";
+            break;
+        default:
+            break;
+    }
+    return title;
+}
 @end

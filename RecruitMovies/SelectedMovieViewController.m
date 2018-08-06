@@ -34,34 +34,30 @@
     }else{
         self.like.selected = false;
     }
+    __weak SelectedMovieViewController *weakSelf= self;
     NSString *urlDetail = [NSString stringWithFormat:@"http://api.themoviedb.org/3/movie/%@?api_key=e7631ffcb8e766993e5ec0c1f4245f93",self.idMovie];
     self.movieDetail = [[Movie  alloc] init];
     [RecruitMoviesFetcherManager getDataDetailMovie:urlDetail blockSuccess:^(Movie *movie){
-        self.movieDetail = movie;
-        self.dateMovieDetail.text = self.movieDetail.dateMovie;
-        self.ratingMovieDetail.text = [NSString stringWithFormat:@"%.1f",[self.movieDetail rating]];
-        self.overMovieDetail.text = self.movieDetail.overView;
-        NSString *url = [NSString stringWithFormat:@"http://image.tmdb.org/t/p/w780/%@",[self.movieDetail URLImage]];
+        weakSelf.movieDetail = movie;
+        weakSelf.dateMovieDetail.text = weakSelf.movieDetail.dateMovie;
+        weakSelf.ratingMovieDetail.text = [NSString stringWithFormat:@"%.1f",[weakSelf.movieDetail rating]];
+        weakSelf.overMovieDetail.text = weakSelf.movieDetail.overView;
+        NSString *url = [NSString stringWithFormat:@"http://image.tmdb.org/t/p/w780/%@",[weakSelf.movieDetail URLImage]];
         NSData * data = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: url]];
-        self.photoMovieDetail.image = [UIImage imageWithData: data];
+        weakSelf.photoMovieDetail.image = [UIImage imageWithData: data];
     } blockFailure:^(NSError *error){
     }];
     
+    [self.collectionView registerNib:[UINib nibWithNibName:@"ActorAndActressCell" bundle:nil] forCellWithReuseIdentifier:@"CellCharacter"];
     // hien thi nhan vat trong phim
-    NSString *urlCharacter = [NSString stringWithFormat:@"api.themoviedb.org/3/movie/%@/credits?api_key=e7631ffcb8e766993e5ec0c1f4245f93",self.idMovie];
+    NSString *urlCharacter = [NSString stringWithFormat:@"http://api.themoviedb.org/3/movie/%@/credits?api_key=e7631ffcb8e766993e5ec0c1f4245f93",self.idMovie];
     self.arrCharacter = [[NSMutableArray  alloc] init];
-    __weak SelectedMovieViewController *weakSelf= self;
-    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-        [CharacterManager getDataCharacter:urlCharacter blockSuccess:^(NSMutableArray *resultCharacter) {
-            dispatch_async(dispatch_get_main_queue(), ^(void){
-                weakSelf.arrCharacter = resultCharacter;
-                NSLog(@"%@",_arrCharacter);
-                [self.collectionView reloadData];
-            });
-        } blockFailure:^(NSError *error) {
-            NSLog(@"%@",error);
-        }];
-    });
+    [CharacterManager getDataCharacter:urlCharacter blockSuccess:^(NSMutableArray *resultCharacter) {
+        weakSelf.arrCharacter = resultCharacter;
+        [weakSelf.collectionView reloadData];
+    } blockFailure:^(NSError *error) {
+    }];
+    
 }
 
 
@@ -71,7 +67,7 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    ActorAndActressCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ActorAndActressCell" forIndexPath:indexPath];
+    ActorAndActressCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CellCharacter" forIndexPath:indexPath];
     cell.nameCharacter.text = [NSString stringWithFormat:@"%@",[self.arrCharacter[indexPath.item] nameCharacter]];;
     dispatch_async(dispatch_get_global_queue(0,0), ^{
         NSString *url = [NSString stringWithFormat:@"http://image.tmdb.org/t/p/w780/%@",[self.arrCharacter[indexPath.row] URLImage]];
@@ -85,7 +81,7 @@
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(50, 80);
+    return CGSizeMake(100, 130);
 }
 
 

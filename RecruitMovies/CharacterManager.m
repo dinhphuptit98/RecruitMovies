@@ -25,7 +25,7 @@
     NSURLSessionDataTask *dataTask = [manager GET:urlString parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *object = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:NULL];
-        NSArray *casts = object[@"cast"];
+        NSMutableArray *casts = object[@"cast"];
         
         for(int i=0;i<casts.count;i++){
             Character *character = [[Character alloc] init];
@@ -36,7 +36,6 @@
         blockSuccess(arrCharacter);
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"FAILD====%@", error);
         blockFailure(error);
     }];
     [dataTask resume];

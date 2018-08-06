@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RatingAndDateCell" rowHeight="88" id="KGk-i7-Jjw" customClass="RatingAndDateCell">
+            <rect key="frame" x="0.0" y="0.0" width="463" height="88"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="463" height="87.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie with rate from:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z6R-60-Rho">
+                        <rect key="frame" x="20" y="0.0" width="231.5" height="17.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FeS-m8-OQz">
+                        <rect key="frame" x="261.5" y="0.0" width="24" height="17.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="rdY-fx-Ozr">
+                        <rect key="frame" x="28" y="17.5" width="407" height="36"/>
+                    </slider>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="From release Year:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EMO-DJ-cln">
+                        <rect key="frame" x="20" y="52.5" width="231.5" height="26.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Year :" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ypA-qy-yqo">
+                        <rect key="frame" x="251.5" y="52.5" width="181.5" height="26.5"/>
+                        <color key="backgroundColor" red="0.85392381088721314" green="0.85392381088721314" blue="0.85392381088721314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="textColor"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits"/>
+                    </textField>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="EMO-DJ-cln" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="59O-qV-l79"/>
+                    <constraint firstItem="rdY-fx-Ozr" firstAttribute="top" secondItem="Z6R-60-Rho" secondAttribute="bottom" id="5Kg-kp-yJp"/>
+                    <constraint firstItem="ypA-qy-yqo" firstAttribute="height" secondItem="EMO-DJ-cln" secondAttribute="height" id="7o1-Q5-URx"/>
+                    <constraint firstItem="EMO-DJ-cln" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="1/2" id="C9h-Oy-du6"/>
+                    <constraint firstItem="FeS-m8-OQz" firstAttribute="leading" secondItem="Z6R-60-Rho" secondAttribute="trailing" constant="10" id="O9O-gn-Xxc"/>
+                    <constraint firstItem="Z6R-60-Rho" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Qof-Ui-TVj"/>
+                    <constraint firstItem="Z6R-60-Rho" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="1/2" id="S4h-21-Afj"/>
+                    <constraint firstItem="EMO-DJ-cln" firstAttribute="height" secondItem="Z6R-60-Rho" secondAttribute="height" multiplier="1.5" id="TNb-fE-jdB"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="ypA-qy-yqo" secondAttribute="trailing" constant="10" id="Urf-Me-KVG"/>
+                    <constraint firstItem="ypA-qy-yqo" firstAttribute="leading" secondItem="EMO-DJ-cln" secondAttribute="trailing" id="ZKK-EY-73e"/>
+                    <constraint firstItem="EMO-DJ-cln" firstAttribute="top" secondItem="rdY-fx-Ozr" secondAttribute="bottom" id="aYq-OL-DBB"/>
+                    <constraint firstItem="Z6R-60-Rho" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="1/5" id="bqW-l4-gPu"/>
+                    <constraint firstItem="rdY-fx-Ozr" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="d3H-B1-yYv"/>
+                    <constraint firstItem="FeS-m8-OQz" firstAttribute="height" secondItem="Z6R-60-Rho" secondAttribute="height" id="fvl-JE-p4N"/>
+                    <constraint firstItem="ypA-qy-yqo" firstAttribute="top" secondItem="rdY-fx-Ozr" secondAttribute="bottom" id="laX-IY-eVa"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="rdY-fx-Ozr" secondAttribute="trailing" constant="10" id="rSb-cY-EdC"/>
+                    <constraint firstItem="FeS-m8-OQz" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="vq2-jc-xZc"/>
+                    <constraint firstItem="rdY-fx-Ozr" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="2/5" id="yMS-9f-euB"/>
+                    <constraint firstItem="Z6R-60-Rho" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="yi1-f3-m0g"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <point key="canvasLocation" x="113.5" y="-193"/>
+        </tableViewCell>
+    </objects>
+</document>

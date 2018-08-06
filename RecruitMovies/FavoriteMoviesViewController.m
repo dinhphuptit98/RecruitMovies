@@ -13,10 +13,11 @@
 #import "CoreDataHelper.h"
 #import "MoviesListViewController.h"
 
-@interface FavoriteMoviesViewController () <UITableViewDelegate,UITableViewDataSource,SWRevealViewControllerDelegate>
+@interface FavoriteMoviesViewController () <UITableViewDelegate,UITableViewDataSource,SWRevealViewControllerDelegate,UISearchBarDelegate>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *menuItem;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (strong,nonatomic) NSMutableArray *arrSearchMovie;
 @end
 
 @implementation FavoriteMoviesViewController
@@ -28,13 +29,13 @@
     self.menuItem.target = self.revealViewController;
     self.menuItem.action = @selector(revealToggle:);
     [self.tableView registerNib:[UINib nibWithNibName:@"FavoritesViewCell" bundle:nil] forCellReuseIdentifier:@"Cell"];
-    
+    self.searchBar.delegate = self;
 }
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.moviesFavorite = [NSMutableArray new];
-
+    
     UINavigationController *navi = [self.tabBarController viewControllers][0];
     MoviesListViewController * moviesListViewController = [navi viewControllers][0];
     self.allMovies = moviesListViewController.arrMoviePopular;
@@ -42,12 +43,20 @@
     for (Movie* movie in self.allMovies) {
         if ([[CoreDataHelper.shared getFavoriteMovies] containsObject:movie.nameMovie]) {
             [self.moviesFavorite addObject:movie];
+            NSLog(@"%@",self.moviesFavorite);
         }
     }
     
-     [self.tableView reloadData];
+    [self.tableView reloadData];
 }
-
+-(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
+    if ([searchText  isEqual: @""]){
+        self.arrSearchMovie = self.moviesFavorite;
+    }else{
+        
+    }
+    [self.tableView reloadData];
+}
 //Table View
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.moviesFavorite.count;
@@ -77,6 +86,6 @@
         [tableView reloadData];
         
     }
-
+    
 }
 @end

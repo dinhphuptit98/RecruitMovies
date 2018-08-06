@@ -55,11 +55,10 @@ int numberCheck = 1 ;
         [RecruitMoviesFetcherManager getDataMovie:MoviePopular pageNumber:3 blockSuccess:^(NSMutableArray *resultMovies) {
             dispatch_async(dispatch_get_main_queue(), ^(void){
                 weakSelf.arrMoviePopular = resultMovies;
-                [self.tableView reloadData];
-                [self.collectionView reloadData];
+                [weakSelf.tableView reloadData];
+                [weakSelf.collectionView reloadData];
             });
         } blockFailure:^(NSError *error) {
-            NSLog(@"%@",error);
         }];
     });
    
