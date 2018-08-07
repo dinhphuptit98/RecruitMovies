@@ -8,6 +8,9 @@
 
 #import "SlideMenuViewController.h"
 #import "EditProfileViewController.h"
+#import <CoreData/CoreData.h>
+#import "CoreDataHelper.h"
+#import "MoviesListViewController.h"
 @interface SlideMenuViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -29,6 +32,8 @@
         NSData *loadData = [defaults objectForKey:@"photoUser"];
         self.photoUser.image = [UIImage imageWithData:loadData];
     }
+    
+    [self.tableView reloadData];
 }
 - (IBAction)showAll:(UIButton *)sender {
 }

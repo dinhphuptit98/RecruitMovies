@@ -30,11 +30,13 @@
     self.menuItem.action = @selector(revealToggle:);
     [self.tableView registerNib:[UINib nibWithNibName:@"FavoritesViewCell" bundle:nil] forCellReuseIdentifier:@"Cell"];
     self.searchBar.delegate = self;
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.moviesFavorite = [NSMutableArray new];
+    
     
     UINavigationController *navi = [self.tabBarController viewControllers][0];
     MoviesListViewController * moviesListViewController = [navi viewControllers][0];
@@ -43,40 +45,68 @@
     for (Movie* movie in self.allMovies) {
         if ([[CoreDataHelper.shared getFavoriteMovies] containsObject:movie.nameMovie]) {
             [self.moviesFavorite addObject:movie];
-            NSLog(@"%@",self.moviesFavorite);
         }
     }
     
     [self.tableView reloadData];
 }
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
-    if ([searchText  isEqual: @""]){
+    self.arrSearchMovie = [[NSMutableArray alloc]init];
+    searchText = [searchText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    if ([searchText isEqualToString:@""] || (searchText == nil) || (searchText.length == 0)){
         self.arrSearchMovie = self.moviesFavorite;
     }else{
-
+        for (Movie *movie in self.moviesFavorite){
+            if ([movie.nameMovie containsString:searchText]){
+                [self.arrSearchMovie addObject:movie];
+            }
+        }
     }
     [self.tableView reloadData];
 }
 //Table View
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.moviesFavorite.count;
+    if (self.arrSearchMovie.count != 0) {
+        return self.arrSearchMovie.count;
+        
+    } else {
+        return self.moviesFavorite.count;
+    }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 200;
 }
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     FavoritesViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    cell.nameFavoriteMovie.text = [self.moviesFavorite[indexPath.row] nameMovie];
-    cell.dateFavoriteMovie.text = [self.moviesFavorite[indexPath.row] dateMovie];
-    cell.ratingFavoriteMovie.text = [NSString stringWithFormat:@"%.1f",[self.moviesFavorite[indexPath.row] rating]];
-    cell.overViewFavoriteMovie.text = [self.moviesFavorite[indexPath.row] overView];
-    dispatch_async(dispatch_get_global_queue(0,0), ^{
-        NSString *url = [NSString stringWithFormat:@"http://image.tmdb.org/t/p/w780/%@",[self.moviesFavorite[indexPath.row] URLImage]];
-        NSData * data = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: url]];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            cell.photoFavoriteMovie.image = [UIImage imageWithData: data];
+    if (self.arrSearchMovie.count != 0) {
+        cell.nameFavoriteMovie.text = [self.arrSearchMovie[indexPath.row] nameMovie];
+        cell.dateFavoriteMovie.text = [self.arrSearchMovie[indexPath.row] dateMovie];
+        cell.ratingFavoriteMovie.text = [NSString stringWithFormat:@"%.1f",[self.arrSearchMovie[indexPath.row] rating]];
+        cell.overViewFavoriteMovie.text = [self.arrSearchMovie[indexPath.row] overView];
+        dispatch_async(dispatch_get_global_queue(0,0), ^{
+            NSString *url = [NSString stringWithFormat:@"http://image.tmdb.org/t/p/w780/%@",[self.arrSearchMovie[indexPath.row] URLImage]];
+            NSData * data = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: url]];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                cell.photoFavoriteMovie.image = [UIImage imageWithData: data];
+            });
         });
-    });
+        
+        
+    } else {
+        cell.nameFavoriteMovie.text = [self.moviesFavorite[indexPath.row] nameMovie];
+        cell.dateFavoriteMovie.text = [self.moviesFavorite[indexPath.row] dateMovie];
+        cell.ratingFavoriteMovie.text = [NSString stringWithFormat:@"%.1f",[self.moviesFavorite[indexPath.row] rating]];
+        cell.overViewFavoriteMovie.text = [self.moviesFavorite[indexPath.row] overView];
+        dispatch_async(dispatch_get_global_queue(0,0), ^{
+            NSString *url = [NSString stringWithFormat:@"http://image.tmdb.org/t/p/w780/%@",[self.moviesFavorite[indexPath.row] URLImage]];
+            NSData * data = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: url]];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                cell.photoFavoriteMovie.image = [UIImage imageWithData: data];
+            });
+        });
+    }
+    
     return cell;
 }
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{

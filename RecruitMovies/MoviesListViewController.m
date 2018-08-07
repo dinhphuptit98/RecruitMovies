@@ -17,7 +17,7 @@
 #import "Movie.h"
 #import "CoreDataHelper.h"
 #import "MovieFavorite+CoreDataClass.h"
-
+#import "SVPullToRefresh.h"
 @interface MoviesListViewController () <UITableViewDelegate,UITableViewDataSource,UICollectionViewDataSource,UICollectionViewDelegate,MovieViewCellDelegate,SWRevealViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *menuItem;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -33,6 +33,8 @@ int numberCheck = 1 ;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    __weak MoviesListViewController *weakSelf= self;
+
     //SWRevealViewController.h
     [self.view addGestureRecognizer:self.revealViewController.tapGestureRecognizer];
     self.revealViewController.delegate = self;
@@ -45,14 +47,24 @@ int numberCheck = 1 ;
     self.tableView.dataSource = self;
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
-    [self.tableView registerNib:[UINib nibWithNibName:@"MovieViewCell" bundle:nil] forCellReuseIdentifier:@"Cell"];
-    [self.collectionView registerNib:[UINib nibWithNibName:@"MovieCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"CollectionCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"MovieViewCell" bundle:nil] forCellReuseIdentifier:@"MovieViewCell"];
+    [self.collectionView registerNib:[UINib nibWithNibName:@"MovieCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"MovieCollectionViewCell"];
+    
+    // SVPullToFresh
+    // setup pull-to-refresh
+    [self.tableView addPullToRefreshWithActionHandler:^{
+        
+    }];
+    
+    // setup infinite scrolling
+    [self.tableView addInfiniteScrollingWithActionHandler:^{
+        
+    }];
     
     //    getDataMoviePopular
     self.arrMoviePopular = [[NSMutableArray  alloc] init];
-    __weak MoviesListViewController *weakSelf= self;
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-        [RecruitMoviesFetcherManager getDataMovie:MoviePopular pageNumber:3 blockSuccess:^(NSMutableArray *resultMovies) {
+        [RecruitMoviesFetcherManager getDataMovie:MoviePopular pageNumber:2 blockSuccess:^(NSMutableArray *resultMovies) {
             dispatch_async(dispatch_get_main_queue(), ^(void){
                 weakSelf.arrMoviePopular = resultMovies;
                 [weakSelf.tableView reloadData];
@@ -61,9 +73,7 @@ int numberCheck = 1 ;
         } blockFailure:^(NSError *error) {
         }];
     });
-   
 }
-
 //UITableView
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -76,7 +86,7 @@ int numberCheck = 1 ;
 //hien thi cell
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    MovieViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    MovieViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieViewCell" forIndexPath:indexPath];
     cell.nameMovieLabel.text = [NSString stringWithFormat:@"%@",[self.arrMoviePopular[indexPath.row] nameMovie]];
     cell.timeMovie.text = [NSString stringWithFormat:@"%@",[self.arrMoviePopular[indexPath.row] dateMovie]];
     cell.rateMovie.text = [NSString stringWithFormat:@"%.1f%@",[self.arrMoviePopular[indexPath.row] rating],@"/10"];
@@ -116,10 +126,6 @@ int numberCheck = 1 ;
         [CoreDataHelper.shared deleteWith:nameMovieFavorite];
     }
    
-//    UINavigationController *navi = [self.tabBarController viewControllers][1];
-//    FavoriteMoviesViewController * favoriteViewController = [navi viewControllers][0];
-//    favoriteViewController.allMovies = self.arrMoviePopular;
-//    [self.tabBarController setSelectedIndex:1];
 }
 
 //UICollectionView
@@ -128,7 +134,7 @@ int numberCheck = 1 ;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    MovieCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CollectionCell" forIndexPath:indexPath];
+    MovieCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MovieCollectionViewCell" forIndexPath:indexPath];
     cell.nameMovieLabel.text = [NSString stringWithFormat:@"%@",[self.arrMoviePopular[indexPath.item] nameMovie]];;
     dispatch_async(dispatch_get_global_queue(0,0), ^{
         NSString *url = [NSString stringWithFormat:@"http://image.tmdb.org/t/p/w780/%@",[self.arrMoviePopular[indexPath.row] URLImage]];
@@ -149,7 +155,7 @@ int numberCheck = 1 ;
     SelectedMovieViewController *showMovieVC;
     showMovieVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SelectedMovieController"];
     showMovieVC.idMovie = [self.arrMoviePopular[indexPath.row] idMovie];
-    showMovieVC.check = numberCheck;
+    showMovieVC.check = [self.arrMoviePopular[indexPath.row] isFavorite];
     [[self navigationController] pushViewController:showMovieVC animated:YES];
     return YES;
 }
@@ -169,10 +175,5 @@ int numberCheck = 1 ;
     }
     
 }
-
-
-
-
-
 
 @end

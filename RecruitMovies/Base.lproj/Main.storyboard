@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="tCq-ZY-xdS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="tCq-ZY-xdS">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -13,7 +13,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Favorite Movies View Controller-->
+        <!--Favorite Movies-->
         <scene sceneID="gLE-Dx-nMg">
             <objects>
                 <viewController storyboardIdentifier="FavoriteMoviesViewController" id="bRt-X8-Q4L" customClass="FavoriteMoviesViewController" sceneMemberID="viewController">
@@ -59,7 +59,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="qo0-jg-eQR" secondAttribute="trailingMargin" id="mBg-1I-KoC"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="r3Q-b7-nLa">
+                    <navigationItem key="navigationItem" title="Favorite Movies" id="r3Q-b7-nLa">
                         <barButtonItem key="leftBarButtonItem" image="ic_menu" id="gwB-hX-lyV"/>
                     </navigationItem>
                     <connections>
@@ -467,7 +467,7 @@
         <!--Popular Movies-->
         <scene sceneID="rfV-I1-uFf">
             <objects>
-                <viewController id="xNJ-3L-sYN" customClass="MoviesListViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MoviesListViewController" id="xNJ-3L-sYN" customClass="MoviesListViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="uGv-bS-xFi"/>
                         <viewControllerLayoutGuide type="bottom" id="UKN-OK-qkb"/>
@@ -666,13 +666,17 @@
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hYL-Tf-BPc">
                                         <rect key="frame" x="20" y="245" width="107" height="30"/>
-                                        <color key="backgroundColor" red="0.095859837769999998" green="0.2113892929" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.28522959840000001" green="0.28995446660000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="iQM-ZV-mGS"/>
                                         </constraints>
                                         <state key="normal" title="REMIDER">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <state key="selected" title="REMIDERED"/>
+                                        <connections>
+                                            <action selector="remider:" destination="lqN-lS-N4g" eventType="touchUpInside" id="7aE-iH-eQd"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cast &amp; Crew" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ULR-ja-tgQ">
                                         <rect key="frame" x="20" y="315" width="97.5" height="21"/>
@@ -777,7 +781,7 @@
             </objects>
             <point key="canvasLocation" x="-1078" y="-597"/>
         </scene>
-        <!--About View Controller-->
+        <!--Abouts-->
         <scene sceneID="8JQ-Kj-ZlE">
             <objects>
                 <viewController id="Blx-Xo-cYP" customClass="AboutViewController" sceneMemberID="viewController">
@@ -808,7 +812,7 @@
                             <constraint firstAttribute="rightMargin" secondItem="3OZ-73-m2c" secondAttribute="rightMargin" constant="-8" id="x4C-sj-YuF"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="skv-sH-52T">
+                    <navigationItem key="navigationItem" title="Abouts" id="skv-sH-52T">
                         <barButtonItem key="leftBarButtonItem" image="ic_menu" id="jfh-nS-n4K"/>
                     </navigationItem>
                     <connections>
@@ -821,7 +825,7 @@
             </objects>
             <point key="canvasLocation" x="-807.20000000000005" y="322.48875562218893"/>
         </scene>
-        <!--Settings Table View Controller-->
+        <!--Settings-->
         <scene sceneID="rFs-da-11Y">
             <objects>
                 <tableViewController id="zqx-oN-Vlp" customClass="SettingsTableViewController" sceneMemberID="viewController">
@@ -1177,7 +1181,7 @@
                             <outlet property="delegate" destination="zqx-oN-Vlp" id="fmG-Vo-iq5"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="vGa-3w-pun">
+                    <navigationItem key="navigationItem" title="Settings" id="vGa-3w-pun">
                         <barButtonItem key="leftBarButtonItem" image="ic_menu" id="tEx-Zz-Mpp"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="hdx-kF-5at">
                             <connections>

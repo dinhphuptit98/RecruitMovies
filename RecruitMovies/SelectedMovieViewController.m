@@ -11,6 +11,8 @@
 #import "CharacterManager.h"
 #import "RecruitMoviesFetcherManager.h"
 #import "ActorAndActressCell.h"
+#import "SlideMenuViewController.h"
+#import "CoreDataHelper.h"
 @interface SelectedMovieViewController () <UICollectionViewDataSource,UICollectionViewDelegate>
 @property (strong, nonatomic)  Movie *movieDetail;
 @property (weak, nonatomic) IBOutlet UILabel *dateMovieDetail;
@@ -84,6 +86,12 @@
     return CGSizeMake(100, 130);
 }
 
+- (IBAction)remider:(UIButton *)sender {
+    [sender setSelected: !sender.selected];
+    SlideMenuViewController *slideMenuViewController;
+    slideMenuViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SlideMenuViewController"];
+    
+}
 
 
 

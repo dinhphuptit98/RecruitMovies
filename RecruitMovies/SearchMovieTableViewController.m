@@ -10,6 +10,7 @@
 #import "MovieViewCell.h"
 #import "Movie.h"
 #import "RecruitMoviesFetcherManager.h"
+#import "Sorted.h"
 @interface SearchMovieTableViewController ()
 
 @end
@@ -43,10 +44,7 @@
         }];
     });
 }
-- (NSMutableArray*)sorted{
-    NSMutableArray *arr;
-    return arr;
-}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.arrMovieSearch.count;
 }
