@@ -28,9 +28,14 @@
         [RecruitMoviesFetcherManager getDataSearchMovie:self.urlDetail blockSuccess:^(NSMutableArray *resultMovies) {
             dispatch_async(dispatch_get_main_queue(), ^(void){
                 for (Movie *i in resultMovies){
-                    if (i.rating > self.ratingCheck){
+                    if (i.rating > self.ratingCheck && [i.dateMovie integerValue] > [self.dateCheck integerValue]){
                         [weakSelf.arrMovieSearch addObject:i];
                     }
+                }
+                if (self.checkedSorted == true){
+                    
+                }else{
+                    
                 }
                 [weakSelf.tableView reloadData];
             });
@@ -38,7 +43,10 @@
         }];
     });
 }
-
+- (NSMutableArray*)sorted{
+    NSMutableArray *arr;
+    return arr;
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.arrMovieSearch.count;
 }
@@ -67,7 +75,6 @@
     [cell.starBt setSelected:[self.arrMovieSearch[indexPath.row] isFavorite]];
     return cell;
 }
-
 
 
 @end
