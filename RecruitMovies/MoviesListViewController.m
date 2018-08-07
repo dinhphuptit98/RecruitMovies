@@ -32,7 +32,8 @@
 @synthesize tableView = tableView;
 @synthesize collectionView = collectionView;
 int numberCheck = 1 ;
-int numberPage = 5;
+int numberPageDown = 5;
+int numberPageUp = 5;
 - (void)viewDidLoad {
     [super viewDidLoad];
     __weak MoviesListViewController *weakSelf= self;
@@ -55,7 +56,7 @@ int numberPage = 5;
     //    getDataMoviePopular
     self.arrMoviePopular = [[NSMutableArray  alloc] init];
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-        [RecruitMoviesFetcherManager getDataMovie:MoviePopular pageNumber: numberPage blockSuccess:^(NSMutableArray *resultMovies) {
+        [RecruitMoviesFetcherManager getDataMovie:MoviePopular pageNumber: 5 blockSuccess:^(NSMutableArray *resultMovies) {
             dispatch_async(dispatch_get_main_queue(), ^(void){
                 weakSelf.arrMoviePopular = resultMovies;
                 [weakSelf.tableView reloadData];
@@ -91,12 +92,11 @@ int numberPage = 5;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         [weakSelf.tableView beginUpdates];
-        numberPage = numberPage - 1;
-        NSLog(@"%d",numberPage);
+        numberPageDown = numberPageDown - 1;
 //            getDataMoviePopular
         self.arrDownPage = [[NSMutableArray  alloc] init];
         dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-            [RecruitMoviesFetcherManager getDataMovie:MoviePopular pageNumber: numberPage blockSuccess:^(NSMutableArray *resultMovies) {
+            [RecruitMoviesFetcherManager getDataMovie:MoviePopular pageNumber: numberPageDown blockSuccess:^(NSMutableArray *resultMovies) {
                 dispatch_async(dispatch_get_main_queue(), ^(void){
                     weakSelf.arrDownPage = resultMovies;
                     for (Movie *i in weakSelf.arrDownPage){
@@ -119,12 +119,11 @@ int numberPage = 5;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         [weakSelf.tableView beginUpdates];
-        numberPage = numberPage + 1;
-        NSLog(@"%d",numberPage);
+        numberPageUp = numberPageUp + 1;
         //    getDataMoviePopular
         self.arrUpPage = [[NSMutableArray  alloc] init];
         dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-            [RecruitMoviesFetcherManager getDataMovie:MoviePopular pageNumber: numberPage blockSuccess:^(NSMutableArray *resultMovies) {
+            [RecruitMoviesFetcherManager getDataMovie:MoviePopular pageNumber: numberPageUp blockSuccess:^(NSMutableArray *resultMovies) {
                 dispatch_async(dispatch_get_main_queue(), ^(void){
                     weakSelf.arrUpPage = resultMovies;
                     for (Movie *i in weakSelf.arrUpPage){
