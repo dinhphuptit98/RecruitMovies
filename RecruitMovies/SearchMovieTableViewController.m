@@ -20,7 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.tableView registerNib:[UINib nibWithNibName:@"MovieViewCell" bundle:nil] forCellReuseIdentifier:@"Cell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"MovieViewCell" bundle:nil] forCellReuseIdentifier:@"MovieViewCell"];
     
     //    getDataSearchMovie
     self.arrMovieSearch = [[NSMutableArray  alloc] init];
@@ -32,11 +32,6 @@
                     if (i.rating > self.ratingCheck && [i.dateMovie integerValue] > [self.dateCheck integerValue]){
                         [weakSelf.arrMovieSearch addObject:i];
                     }
-                }
-                if (self.checkedSorted == true){
-                    
-                }else{
-                    
                 }
                 [weakSelf.tableView reloadData];
             });
@@ -56,7 +51,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell1;
-    MovieViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    MovieViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieViewCell" forIndexPath:indexPath];
     cell1 = cell;
     cell.nameMovieLabel.text = [NSString stringWithFormat:@"%@",[self.arrMovieSearch[indexPath.row] nameMovie]];
     cell.timeMovie.text = [NSString stringWithFormat:@"%@",[self.arrMovieSearch[indexPath.row] dateMovie]];

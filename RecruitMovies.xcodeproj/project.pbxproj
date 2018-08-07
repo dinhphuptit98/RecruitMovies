@@ -414,9 +414,9 @@
 		93A1EBE721101F990053726E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				842155872118B154004CDD33 /* ShowSearchFilms */,
 				38F37AE52112FD0400F84857 /* ListMovie */,
 				38F37AE62112FD1500F84857 /* ShowMovie */,
+				842155872118B154004CDD33 /* ShowSearchFilms */,
 				38F37AE42112FCF900F84857 /* Favorite */,
 				38F37AE32112FCE900F84857 /* Setting */,
 				845F327E211373D6000CE523 /* SlideMenu */,
