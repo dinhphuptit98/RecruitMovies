@@ -24,11 +24,13 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *viewCollectionBt;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *changeDisplay;
-
+@property (strong, nonatomic) NSMutableArray *arrUpPage;
+@property (strong, nonatomic) NSMutableArray *arrDownPage;
 @end
 
 @implementation MoviesListViewController
 @synthesize tableView = tableView;
+@synthesize collectionView = collectionView;
 int numberCheck = 1 ;
 int numberPage = 5;
 - (void)viewDidLoad {
@@ -64,21 +66,34 @@ int numberPage = 5;
         }];
     });
     
+    //SVPoolToRefresh with TableView
     // setup pull-to-refresh
     [self.tableView addPullToRefreshWithActionHandler:^{
-        [weakSelf insertRowAtTop];
+        [weakSelf insertRowAtTopWithTableView];
     }];
     
     // setup infinite scrolling
     [self.tableView addInfiniteScrollingWithActionHandler:^{
-        [weakSelf insertRowAtBottom];
+        [weakSelf insertRowAtBottomWithTableView];
+    }];
+    
+    //SVPoolToRefresh with CollectionView
+    // setup pull-to-refresh
+    [self.collectionView addPullToRefreshWithActionHandler:^{
+        [weakSelf insertRowAtTopWithCollectionView];
+    }];
+    
+    // setup infinite scrolling
+    [self.collectionView addInfiniteScrollingWithActionHandler:^{
+        [weakSelf insertRowAtBottomWithCollectionView];
     }];
 }
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:TRUE];
     [tableView triggerPullToRefresh];
+    [collectionView triggerPullToRefresh];
 }
-- (void)insertRowAtTop {
+- (void)insertRowAtTopWithTableView {
     __weak MoviesListViewController *weakSelf = self;
     
     int64_t delayInSeconds = 5.0;
@@ -87,18 +102,18 @@ int numberPage = 5;
         [weakSelf.tableView beginUpdates];
         numberPage = numberPage - 1;
         NSLog(@"%d",numberPage);
-        //    getDataMoviePopular
-//        self.arrMoviePopular = [[NSMutableArray  alloc] init];
-//        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-//            [RecruitMoviesFetcherManager getDataMovie:MoviePopular pageNumber: numberPage blockSuccess:^(NSMutableArray *resultMovies) {
-//                dispatch_async(dispatch_get_main_queue(), ^(void){
-//                    weakSelf.arrMoviePopular = resultMovies;
-//                    [weakSelf.tableView reloadData];
-//                    [weakSelf.collectionView reloadData];
-//                });
-//            } blockFailure:^(NSError *error) {
-//            }];
-//        });
+//            getDataMoviePopular
+        self.arrDownPage = [[NSMutableArray  alloc] init];
+        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+            [RecruitMoviesFetcherManager getDataMovie:MoviePopular pageNumber: numberPage blockSuccess:^(NSMutableArray *resultMovies) {
+                dispatch_async(dispatch_get_main_queue(), ^(void){
+                    weakSelf.arrDownPage = resultMovies;
+                    [weakSelf.tableView reloadData];
+                    [weakSelf.collectionView reloadData];
+                });
+            } blockFailure:^(NSError *error) {
+            }];
+        });
 //        [weakSelf.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationBottom];
         [weakSelf.tableView endUpdates];
         [weakSelf.tableView.pullToRefreshView stopAnimating];
@@ -106,7 +121,7 @@ int numberPage = 5;
 }
 
 
-- (void)insertRowAtBottom {
+- (void)insertRowAtBottomWithTableView {
     __weak MoviesListViewController *weakSelf = self;
     
     int64_t delayInSeconds = 5.0;
@@ -116,18 +131,73 @@ int numberPage = 5;
         numberPage = numberPage + 1;
         NSLog(@"%d",numberPage);
         //    getDataMoviePopular
-//        self.arrMoviePopular = [[NSMutableArray  alloc] init];
-//        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-//            [RecruitMoviesFetcherManager getDataMovie:MoviePopular pageNumber: numberPage blockSuccess:^(NSMutableArray *resultMovies) {
-//                dispatch_async(dispatch_get_main_queue(), ^(void){
-//                    weakSelf.arrMoviePopular = resultMovies;
-//                    [weakSelf.tableView reloadData];
-//                    [weakSelf.collectionView reloadData];
-//                });
-//            } blockFailure:^(NSError *error) {
-//            }];
-//        });
+        self.arrUpPage = [[NSMutableArray  alloc] init];
+        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+            [RecruitMoviesFetcherManager getDataMovie:MoviePopular pageNumber: numberPage blockSuccess:^(NSMutableArray *resultMovies) {
+                dispatch_async(dispatch_get_main_queue(), ^(void){
+                    weakSelf.arrUpPage = resultMovies;
+                    [weakSelf.tableView reloadData];
+                    [weakSelf.collectionView reloadData];
+                });
+            } blockFailure:^(NSError *error) {
+            }];
+        });
 //        [weakSelf.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:weakSelf.dataSource.count-1 inSection:0]] withRowAnimation:UITableViewRowAnimationTop];
+        [weakSelf.tableView endUpdates];
+        [weakSelf.tableView.infiniteScrollingView stopAnimating];
+    });
+}
+
+- (void)insertRowAtTopWithCollectionView {
+    __weak MoviesListViewController *weakSelf = self;
+    
+    int64_t delayInSeconds = 5.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [weakSelf.tableView beginUpdates];
+        numberPage = numberPage - 1;
+        NSLog(@"%d",numberPage);
+        //            getDataMoviePopular
+        self.arrDownPage = [[NSMutableArray  alloc] init];
+        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+            [RecruitMoviesFetcherManager getDataMovie:MoviePopular pageNumber: numberPage blockSuccess:^(NSMutableArray *resultMovies) {
+                dispatch_async(dispatch_get_main_queue(), ^(void){
+                    weakSelf.arrDownPage = resultMovies;
+                    [weakSelf.tableView reloadData];
+                    [weakSelf.collectionView reloadData];
+                });
+            } blockFailure:^(NSError *error) {
+            }];
+        });
+        //        [weakSelf.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationBottom];
+        [weakSelf.tableView endUpdates];
+        [weakSelf.tableView.pullToRefreshView stopAnimating];
+    });
+}
+
+
+- (void)insertRowAtBottomWithCollectionView {
+    __weak MoviesListViewController *weakSelf = self;
+    
+    int64_t delayInSeconds = 5.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [weakSelf.tableView beginUpdates];
+        numberPage = numberPage + 1;
+        NSLog(@"%d",numberPage);
+        //    getDataMoviePopular
+        self.arrUpPage = [[NSMutableArray  alloc] init];
+        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+            [RecruitMoviesFetcherManager getDataMovie:MoviePopular pageNumber: numberPage blockSuccess:^(NSMutableArray *resultMovies) {
+                dispatch_async(dispatch_get_main_queue(), ^(void){
+                    weakSelf.arrUpPage = resultMovies;
+                    [weakSelf.tableView reloadData];
+                    [weakSelf.collectionView reloadData];
+                });
+            } blockFailure:^(NSError *error) {
+            }];
+        });
+        //        [weakSelf.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:weakSelf.dataSource.count-1 inSection:0]] withRowAnimation:UITableViewRowAnimationTop];
         [weakSelf.tableView endUpdates];
         [weakSelf.tableView.infiniteScrollingView stopAnimating];
     });
