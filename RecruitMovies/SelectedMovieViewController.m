@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *overMovieDetail;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic)  NSMutableArray *arrCharacter;
+@property (weak, nonatomic) IBOutlet UILabel *showNameMovie;
 
 @end
 
@@ -32,22 +33,30 @@
     [super viewDidLoad];
     
     //hien thi movie selected
-    if (self.check == true){
-        self.like.selected = true;
-    }else{
-        self.like.selected = false;
-    }
+    
+    
+    
     __weak SelectedMovieViewController *weakSelf= self;
     NSString *urlDetail = [NSString stringWithFormat:@"http://api.themoviedb.org/3/movie/%@?api_key=e7631ffcb8e766993e5ec0c1f4245f93",self.idMovie];
     self.movieDetail = [[Movie  alloc] init];
     [RecruitMoviesFetcherManager getDataDetailMovie:urlDetail blockSuccess:^(Movie *movie){
         weakSelf.movieDetail = movie;
-        weakSelf.dateMovieDetail.text = weakSelf.movieDetail.dateMovie;
-        weakSelf.ratingMovieDetail.text = [NSString stringWithFormat:@"%.1f",[weakSelf.movieDetail rating]];
-        weakSelf.overMovieDetail.text = weakSelf.movieDetail.overView;
-        NSString *url = [NSString stringWithFormat:@"http://image.tmdb.org/t/p/w780/%@",[weakSelf.movieDetail URLImage]];
-        NSData * data = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: url]];
-        weakSelf.photoMovieDetail.image = [UIImage imageWithData: data];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            weakSelf.showNameMovie.text = weakSelf.movieDetail.nameMovie;
+            weakSelf.dateMovieDetail.text = weakSelf.movieDetail.dateMovie;
+            weakSelf.ratingMovieDetail.text = [NSString stringWithFormat:@"%.1f",[weakSelf.movieDetail rating]];
+            weakSelf.overMovieDetail.text = weakSelf.movieDetail.overView;
+            NSString *url = [NSString stringWithFormat:@"http://image.tmdb.org/t/p/w780/%@",[weakSelf.movieDetail URLImage]];
+            NSData * data = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: url]];
+            weakSelf.photoMovieDetail.image = [UIImage imageWithData: data];
+            if ([[CoreDataHelper.shared getFavoriteMovies] containsObject:weakSelf.movieDetail.nameMovie]) {
+                self.like.selected = true;
+            }else{
+                self.like.selected = false;
+            }
+
+        });
+        
     } blockFailure:^(NSError *error){
     }];
     
@@ -97,8 +106,5 @@
     }
     
 }
-
-
-
 
 @end

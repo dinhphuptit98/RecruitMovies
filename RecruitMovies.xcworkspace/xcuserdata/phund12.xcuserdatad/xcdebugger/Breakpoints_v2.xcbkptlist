@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "RecruitMovies/SelectedMovieViewController.m"
-            timestampString = "555408706.12904"
+            filePath = "RecruitMovies/CoreDataHelper.m"
+            timestampString = "555410041.929406"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
-            landmarkName = "-remider:"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
+            landmarkName = "-deleteRemiderWith:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,13 +25,77 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "RecruitMovies/SelectedMovieViewController.m"
-            timestampString = "555408706.129504"
+            filePath = "RecruitMovies/CoreDataHelper.m"
+            timestampString = "555410041.929471"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
-            landmarkName = "-remider:"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "-innsertRemider:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RecruitMovies/FavoriteMoviesViewController.m"
+            timestampString = "555419857.762731"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "-viewWillAppear:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[FavoriteMoviesViewController viewWillAppear:]"
+                  moduleName = "RecruitMovies"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/phund12/Desktop/RecruitMovies/RecruitMovies/FavoriteMoviesViewController.m"
+                  timestampString = "555410042.0753"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "43"
+                  endingLineNumber = "43"
+                  offsetFromSymbolStart = "546">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[FavoriteMoviesViewController viewWillAppear:]"
+                  moduleName = "RecruitMovies"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/phund12/Desktop/RecruitMovies/RecruitMovies/FavoriteMoviesViewController.m"
+                  timestampString = "555410042.0780849"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "43"
+                  endingLineNumber = "43"
+                  offsetFromSymbolStart = "554">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RecruitMovies/FavoriteMoviesViewController.m"
+            timestampString = "555419857.76281"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "-viewWillAppear:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

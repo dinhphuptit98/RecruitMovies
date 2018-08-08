@@ -45,7 +45,7 @@
             [self.moviesFavorite addObject:movie];
         }
     }
-    
+    NSLog(@"%@",self.moviesFavorite);
     [self.tableView reloadData];
 }
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{

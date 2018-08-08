@@ -32,8 +32,8 @@
 @synthesize tableView = tableView;
 @synthesize collectionView = collectionView;
 int numberCheck = 1 ;
-int numberPageDown = 500;
-int numberPageUp = 500;
+int numberPageDown = 400;
+int numberPageUp = 400;
 - (void)viewDidLoad {
     [super viewDidLoad];
     __weak MoviesListViewController *weakSelf= self;
@@ -56,7 +56,7 @@ int numberPageUp = 500;
     //    getDataMoviePopular
     self.arrMoviePopular = [[NSMutableArray  alloc] init];
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-        [RecruitMoviesFetcherManager getDataMovie:MoviePopular pageNumber: 500 blockSuccess:^(NSMutableArray *resultMovies) {
+        [RecruitMoviesFetcherManager getDataMovie:MoviePopular pageNumber: 400 blockSuccess:^(NSMutableArray *resultMovies) {
             dispatch_async(dispatch_get_main_queue(), ^(void){
                 weakSelf.arrMoviePopular = resultMovies;
                 [weakSelf.tableView reloadData];

@@ -20,7 +20,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.moviesRemider = [NSMutableArray new];
+    MoviesListViewController *moviesListViewController;
+    moviesListViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"MoviesListViewController"];
+    self.allMoviesPopular = moviesListViewController.arrMoviePopular;
+    for (Movie* movieRemider in self.allMoviesPopular) {
+        if ([[CoreDataHelper.shared getRemiderMovies] containsObject:movieRemider.nameMovie]) {
+            [self.moviesRemider addObject:movieRemider];
+        }
+    }
+    NSLog(@"%@",self.moviesRemider);
+    [self.tableView reloadData];
 }
 -(void)viewWillAppear:(BOOL)animated{
     self.nameUser.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"nameUser"];
@@ -32,17 +44,6 @@
         NSData *loadData = [defaults objectForKey:@"photoUser"];
         self.photoUser.image = [UIImage imageWithData:loadData];
     }
-    self.moviesRemider = [NSMutableArray new];
-    UINavigationController *navi = [self.tabBarController viewControllers][0];
-    MoviesListViewController * moviesListViewController = [navi viewControllers][0];
-    self.allMoviesPopular = moviesListViewController.arrMoviePopular;
-    for (Movie* movieRemider in self.allMoviesPopular) {
-        if ([[CoreDataHelper.shared getRemiderMovies] containsObject:movieRemider.nameMovie]) {
-            [self.moviesRemider addObject:movieRemider];
-        }
-    }
-    NSLog(@"%@",self.moviesRemider);
-    [self.tableView reloadData];
 }
 
 //Table View
