@@ -32,8 +32,7 @@
 @synthesize tableView = tableView;
 @synthesize collectionView = collectionView;
 int numberCheck = 1 ;
-int numberPageDown = 400;
-int numberPageUp = 400;
+int numberPage = 1;
 - (void)viewDidLoad {
     [super viewDidLoad];
     __weak MoviesListViewController *weakSelf= self;
@@ -56,7 +55,7 @@ int numberPageUp = 400;
     //    getDataMoviePopular
     self.arrMoviePopular = [[NSMutableArray  alloc] init];
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-        [RecruitMoviesFetcherManager getDataMovie:MoviePopular pageNumber: 400 blockSuccess:^(NSMutableArray *resultMovies) {
+        [RecruitMoviesFetcherManager getDataMovie:MoviePopular pageNumber: numberPage blockSuccess:^(NSMutableArray *resultMovies) {
             dispatch_async(dispatch_get_main_queue(), ^(void){
                 weakSelf.arrMoviePopular = resultMovies;
                 [weakSelf.tableView reloadData];
@@ -66,11 +65,11 @@ int numberPageUp = 400;
         }];
     });
     
-    // setup pull-to-refresh
-    [self.tableView addPullToRefreshWithActionHandler:^{
-        [weakSelf insertRowAtTopWithTableView];
-        [weakSelf.collectionView reloadData];
-    }];
+//    // setup pull-to-refresh
+//    [self.tableView addPullToRefreshWithActionHandler:^{
+//        [weakSelf insertRowAtTopWithTableView];
+//        [weakSelf.collectionView reloadData];
+//    }];
     
     // setup infinite scrolling
     [self.tableView addInfiniteScrollingWithActionHandler:^{
@@ -88,21 +87,18 @@ int numberPageUp = 400;
 }
 - (void)insertRowAtTopWithTableView {
     __weak MoviesListViewController *weakSelf = self;
-    
-    int64_t delayInSeconds = 7.0;
+
+    int64_t delayInSeconds = 2.0;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         [weakSelf.tableView beginUpdates];
-        numberPageDown = numberPageDown - 1;
+        numberPage = 1;
         // getDataMoviePopular
         self.arrDownPage = [[NSMutableArray  alloc] init];
         dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-            [RecruitMoviesFetcherManager getDataMovie:MoviePopular pageNumber: numberPageDown blockSuccess:^(NSMutableArray *resultMovies) {
+            [RecruitMoviesFetcherManager getDataMovie:MoviePopular pageNumber: numberPage blockSuccess:^(NSMutableArray *resultMovies) {
                 dispatch_async(dispatch_get_main_queue(), ^(void){
-                    weakSelf.arrDownPage = resultMovies;
-                    for (Movie *i in weakSelf.arrDownPage){
-                        [weakSelf.arrMoviePopular insertObject:i atIndex:0];
-                    }
+                    weakSelf.arrMoviePopular = resultMovies;
                     [weakSelf.tableView reloadData];
                 });
             } blockFailure:^(NSError *error) {
@@ -115,15 +111,15 @@ int numberPageUp = 400;
 - (void)insertRowAtBottomWithTableView {
     __weak MoviesListViewController *weakSelf = self;
     
-    int64_t delayInSeconds = 7.0;
+    int64_t delayInSeconds = 5.0;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         [weakSelf.tableView beginUpdates];
-        numberPageUp = numberPageUp + 1;
+        numberPage = numberPage + 1;
         //    getDataMoviePopular
         self.arrUpPage = [[NSMutableArray  alloc] init];
         dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-            [RecruitMoviesFetcherManager getDataMovie:MoviePopular pageNumber: numberPageUp blockSuccess:^(NSMutableArray *resultMovies) {
+            [RecruitMoviesFetcherManager getDataMovie:MoviePopular pageNumber: numberPage blockSuccess:^(NSMutableArray *resultMovies) {
                 dispatch_async(dispatch_get_main_queue(), ^(void){
                     weakSelf.arrUpPage = resultMovies;
                     for (Movie *i in weakSelf.arrUpPage){
