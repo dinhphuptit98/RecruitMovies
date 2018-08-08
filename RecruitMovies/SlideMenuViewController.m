@@ -11,7 +11,7 @@
 #import <CoreData/CoreData.h>
 #import "CoreDataHelper.h"
 #import "MoviesListViewController.h"
-@interface SlideMenuViewController ()
+@interface SlideMenuViewController () <UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
@@ -32,8 +32,27 @@
         NSData *loadData = [defaults objectForKey:@"photoUser"];
         self.photoUser.image = [UIImage imageWithData:loadData];
     }
-    
+    self.moviesRemider = [NSMutableArray new];
+    UINavigationController *navi = [self.tabBarController viewControllers][0];
+    MoviesListViewController * moviesListViewController = [navi viewControllers][0];
+    self.allMoviesPopular = moviesListViewController.arrMoviePopular;
+    for (Movie* movieRemider in self.allMoviesPopular) {
+        if ([[CoreDataHelper.shared getRemiderMovies] containsObject:movieRemider.nameMovie]) {
+            [self.moviesRemider addObject:movieRemider];
+        }
+    }
+    NSLog(@"%@",self.moviesRemider);
     [self.tableView reloadData];
+}
+
+//Table View
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.moviesRemider.count;
+}
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    cell.textLabel.text = [self.moviesRemider[indexPath.row] nameMovie];
+    return cell;
 }
 - (IBAction)showAll:(UIButton *)sender {
 }

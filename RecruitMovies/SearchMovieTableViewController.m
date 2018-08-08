@@ -57,6 +57,7 @@
     cell.timeMovie.text = [NSString stringWithFormat:@"%@",[self.arrMovieSearch[indexPath.row] dateMovie]];
     cell.rateMovie.text = [NSString stringWithFormat:@"%.1f%@",[self.arrMovieSearch[indexPath.row] rating],@"/10"];
     cell.overViewMovie.text = [NSString stringWithFormat:@"%@",[self.arrMovieSearch[indexPath.row] overView]];
+    cell.starBt.hidden = true;
     dispatch_async(dispatch_get_global_queue(0,0), ^{
         NSString *url = [NSString stringWithFormat:@"http://image.tmdb.org/t/p/w780/%@",[self.arrMovieSearch[indexPath.row] URLImage]];
         NSData * data = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: url]];

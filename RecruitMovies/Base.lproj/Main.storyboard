@@ -87,7 +87,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rz7-2T-cS3">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="007" translatesAutoresizingMaskIntoConstraints="NO" id="Cte-gq-3wz">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="007" translatesAutoresizingMaskIntoConstraints="NO" id="Cte-gq-3wz">
                                         <rect key="frame" x="120.5" y="40" width="133" height="133.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Cte-gq-3wz" secondAttribute="height" id="2s5-Db-Lvy"/>
@@ -152,6 +152,10 @@
                                                 </tableViewCellContentView>
                                             </tableViewCell>
                                         </prototypes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="YdN-jt-hkK" id="5nI-VC-K7l"/>
+                                            <outlet property="delegate" destination="YdN-jt-hkK" id="rcm-Hv-jIG"/>
+                                        </connections>
                                     </tableView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7L3-wg-geg">
                                         <rect key="frame" x="149.5" y="587" width="76" height="30"/>

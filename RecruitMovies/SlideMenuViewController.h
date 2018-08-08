@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *emailUser;
 @property (weak, nonatomic) IBOutlet UILabel *sexUser;
 @property (weak, nonatomic) IBOutlet UILabel *dateUser;
-
+@property (strong, nonatomic) NSMutableArray *moviesRemider;
+@property (strong, nonatomic) NSMutableArray *allMoviesPopular;
 
 @end

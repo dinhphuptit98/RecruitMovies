@@ -13,6 +13,7 @@
 #import "ActorAndActressCell.h"
 #import "SlideMenuViewController.h"
 #import "CoreDataHelper.h"
+#import "MovieRemider+CoreDataClass.h"
 @interface SelectedMovieViewController () <UICollectionViewDataSource,UICollectionViewDelegate>
 @property (strong, nonatomic)  Movie *movieDetail;
 @property (weak, nonatomic) IBOutlet UILabel *dateMovieDetail;
@@ -88,8 +89,12 @@
 
 - (IBAction)remider:(UIButton *)sender {
     [sender setSelected: !sender.selected];
-    SlideMenuViewController *slideMenuViewController;
-    slideMenuViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SlideMenuViewController"];
+    NSString *nameMovieRemider = [self.movieDetail nameMovie];
+    if(sender.selected == true){
+        [CoreDataHelper.shared innsertRemider:nameMovieRemider];
+    }else{
+        [CoreDataHelper.shared deleteRemiderWith:nameMovieRemider];
+    }
     
 }
 

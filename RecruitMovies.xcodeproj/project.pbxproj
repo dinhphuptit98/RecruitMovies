@@ -317,6 +317,7 @@
 			children = (
 				844FF2EB211737F700E27636 /* CoreDataHelper.m */,
 				844FF2EA211737F700E27636 /* CoreDataHelper.h */,
+				93A1EBB1211011800053726E /* RecruitMovies.xcdatamodeld */,
 			);
 			name = CoreData;
 			sourceTree = "<group>";
@@ -386,7 +387,6 @@
 				93A1EBB6211011800053726E /* LaunchScreen.storyboard */,
 				93A1EBB9211011800053726E /* Info.plist */,
 				93FD3B0621103B96005B4A03 /* Assets.xcassets */,
-				93A1EBB1211011800053726E /* RecruitMovies.xcdatamodeld */,
 				93A1EBA6211011800053726E /* main.m */,
 			);
 			name = "Supporting Files";

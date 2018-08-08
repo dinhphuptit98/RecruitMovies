@@ -36,8 +36,6 @@
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.moviesFavorite = [NSMutableArray new];
-    
-    
     UINavigationController *navi = [self.tabBarController viewControllers][0];
     MoviesListViewController * moviesListViewController = [navi viewControllers][0];
     self.allMovies = moviesListViewController.arrMoviePopular;
@@ -111,7 +109,7 @@
 }
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [CoreDataHelper.shared deleteWith:[self.moviesFavorite[indexPath.row] nameMovie]];
+        [CoreDataHelper.shared deleteFavoriteWith:[self.moviesFavorite[indexPath.row] nameMovie]];
         [self.moviesFavorite removeObjectAtIndex:indexPath.row];
         [tableView reloadData];
         

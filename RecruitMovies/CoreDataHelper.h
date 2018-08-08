@@ -14,10 +14,12 @@
 
 @interface CoreDataHelper : NSObject
 - (NSMutableArray *)getFavoriteMovies;
--(void)deleteWith: (NSString *)name;
-- (void)innsert: (NSString *)name;
+- (NSMutableArray *)getRemiderMovies;
+-(void)deleteFavoriteWith: (NSString *)nameMovieFavorite;
+-(void)deleteRemiderWith: (NSString *)nameMovieRemider;
+- (void)innsertFavorite: (NSString *)nameMovieFavorite ;
+- (void)innsertRemider: (NSString *)nameMovieRemider;
 - (void)saveContext;
 + (CoreDataHelper *)shared;
-//@property (strong, nonatomic) NSFetchedResultsController<MovieFavorite *> *fetchedResultsController;
 
 @end

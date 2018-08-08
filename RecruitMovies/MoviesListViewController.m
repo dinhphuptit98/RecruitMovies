@@ -32,8 +32,8 @@
 @synthesize tableView = tableView;
 @synthesize collectionView = collectionView;
 int numberCheck = 1 ;
-int numberPageDown = 5;
-int numberPageUp = 5;
+int numberPageDown = 500;
+int numberPageUp = 500;
 - (void)viewDidLoad {
     [super viewDidLoad];
     __weak MoviesListViewController *weakSelf= self;
@@ -56,7 +56,7 @@ int numberPageUp = 5;
     //    getDataMoviePopular
     self.arrMoviePopular = [[NSMutableArray  alloc] init];
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-        [RecruitMoviesFetcherManager getDataMovie:MoviePopular pageNumber: 5 blockSuccess:^(NSMutableArray *resultMovies) {
+        [RecruitMoviesFetcherManager getDataMovie:MoviePopular pageNumber: 500 blockSuccess:^(NSMutableArray *resultMovies) {
             dispatch_async(dispatch_get_main_queue(), ^(void){
                 weakSelf.arrMoviePopular = resultMovies;
                 [weakSelf.tableView reloadData];
@@ -66,7 +66,6 @@ int numberPageUp = 5;
         }];
     });
     
-    //SVPoolToRefresh with TableView
     // setup pull-to-refresh
     [self.tableView addPullToRefreshWithActionHandler:^{
         [weakSelf insertRowAtTopWithTableView];
@@ -80,20 +79,22 @@ int numberPageUp = 5;
     }];
     
 }
+
+//SVPoolToRefresh with TableView
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:TRUE];
-    [tableView triggerPullToRefresh];
-    [collectionView triggerPullToRefresh];
+//    [tableView triggerPullToRefresh];
+//    [collectionView triggerPullToRefresh];
 }
 - (void)insertRowAtTopWithTableView {
     __weak MoviesListViewController *weakSelf = self;
     
-    int64_t delayInSeconds = 5.0;
+    int64_t delayInSeconds = 7.0;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         [weakSelf.tableView beginUpdates];
         numberPageDown = numberPageDown - 1;
-//            getDataMoviePopular
+        // getDataMoviePopular
         self.arrDownPage = [[NSMutableArray  alloc] init];
         dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
             [RecruitMoviesFetcherManager getDataMovie:MoviePopular pageNumber: numberPageDown blockSuccess:^(NSMutableArray *resultMovies) {
@@ -107,7 +108,6 @@ int numberPageUp = 5;
             } blockFailure:^(NSError *error) {
             }];
         });
-//        [weakSelf.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationBottom];
         [weakSelf.tableView endUpdates];
         [weakSelf.tableView.pullToRefreshView stopAnimating];
     });
@@ -115,7 +115,7 @@ int numberPageUp = 5;
 - (void)insertRowAtBottomWithTableView {
     __weak MoviesListViewController *weakSelf = self;
     
-    int64_t delayInSeconds = 5.0;
+    int64_t delayInSeconds = 7.0;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         [weakSelf.tableView beginUpdates];
@@ -134,7 +134,6 @@ int numberPageUp = 5;
             } blockFailure:^(NSError *error) {
             }];
         });
-//        [weakSelf.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:weakSelf.dataSource.count-1 inSection:0]] withRowAnimation:UITableViewRowAnimationTop];
         [weakSelf.tableView endUpdates];
         [weakSelf.tableView.infiniteScrollingView stopAnimating];
     });
@@ -176,21 +175,18 @@ int numberPageUp = 5;
     showMovieVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SelectedMovieController"];
     showMovieVC.idMovie = [self.arrMoviePopular[indexPath.row] idMovie];
     showMovieVC.check = [self.arrMoviePopular[indexPath.row] isFavorite];
-    
     [[self navigationController] pushViewController:showMovieVC animated:YES];
-    
-    
 }
 
-// delegate button star trong CEll
+// delegate button star trong CEll @ save nameMovie vao CoreData
 - (void)didSelectedRatingAt:(NSIndexPath *)indexPath with:(bool)isLike {
     NSString *nameMovieFavorite = [self.arrMoviePopular[indexPath.row] nameMovie];
     if (isLike) {
         // luu cai ten movie tai indexPath vao coredata
-        [CoreDataHelper.shared innsert:nameMovieFavorite];
+        [CoreDataHelper.shared innsertFavorite:nameMovieFavorite];
     } else {
         // xoa cai ten movie tai indexPath vao coredata
-        [CoreDataHelper.shared deleteWith:nameMovieFavorite];
+        [CoreDataHelper.shared deleteFavoriteWith:nameMovieFavorite];
     }
     
 }
@@ -240,7 +236,6 @@ int numberPageUp = 5;
         self.tableView.hidden = NO;
         self.collectionView.hidden = YES;
     }
-    
 }
 
 @end
