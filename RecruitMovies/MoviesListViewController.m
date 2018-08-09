@@ -85,29 +85,29 @@ int numberPage = 1;
 //    [tableView triggerPullToRefresh];
 //    [collectionView triggerPullToRefresh];
 }
-- (void)insertRowAtTopWithTableView {
-    __weak MoviesListViewController *weakSelf = self;
-
-    int64_t delayInSeconds = 2.0;
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [weakSelf.tableView beginUpdates];
-        numberPage = 1;
-        // getDataMoviePopular
-        self.arrDownPage = [[NSMutableArray  alloc] init];
-        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-            [RecruitMoviesFetcherManager getDataMovie:MoviePopular pageNumber: numberPage blockSuccess:^(NSMutableArray *resultMovies) {
-                dispatch_async(dispatch_get_main_queue(), ^(void){
-                    weakSelf.arrMoviePopular = resultMovies;
-                    [weakSelf.tableView reloadData];
-                });
-            } blockFailure:^(NSError *error) {
-            }];
-        });
-        [weakSelf.tableView endUpdates];
-        [weakSelf.tableView.pullToRefreshView stopAnimating];
-    });
-}
+//- (void)insertRowAtTopWithTableView {
+//    __weak MoviesListViewController *weakSelf = self;
+//
+//    int64_t delayInSeconds = 2.0;
+//    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+//    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+//        [weakSelf.tableView beginUpdates];
+//        numberPage = 1;
+//        // getDataMoviePopular
+//        self.arrDownPage = [[NSMutableArray  alloc] init];
+//        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+//            [RecruitMoviesFetcherManager getDataMovie:MoviePopular pageNumber: numberPage blockSuccess:^(NSMutableArray *resultMovies) {
+//                dispatch_async(dispatch_get_main_queue(), ^(void){
+//                    weakSelf.arrMoviePopular = resultMovies;
+//                    [weakSelf.tableView reloadData];
+//                });
+//            } blockFailure:^(NSError *error) {
+//            }];
+//        });
+//        [weakSelf.tableView endUpdates];
+//        [weakSelf.tableView.pullToRefreshView stopAnimating];
+//    });
+//}
 - (void)insertRowAtBottomWithTableView {
     __weak MoviesListViewController *weakSelf = self;
     
@@ -171,7 +171,6 @@ int numberPage = 1;
     showMovieVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SelectedMovieController"];
     showMovieVC.idMovie = [self.arrMoviePopular[indexPath.row] idMovie];
     showMovieVC.check = [self.arrMoviePopular[indexPath.row] isFavorite];
-    showMovieVC.moviesPopular = self.arrMoviePopular;
     [[self navigationController] pushViewController:showMovieVC animated:YES];
 }
 
@@ -200,7 +199,6 @@ int numberPage = 1;
         NSString *url = [NSString stringWithFormat:@"http://image.tmdb.org/t/p/w780/%@",[self.arrMoviePopular[indexPath.row] URLImage]];
         NSData * data = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: url]];
         dispatch_async(dispatch_get_main_queue(), ^{
-            // WARNING: is the cell still using the same data by this point??
             cell.photoMovie.image = [UIImage imageWithData: data];
         });
     });
@@ -216,7 +214,6 @@ int numberPage = 1;
     showMovieVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SelectedMovieController"];
     showMovieVC.idMovie = [self.arrMoviePopular[indexPath.row] idMovie];
     showMovieVC.check = [self.arrMoviePopular[indexPath.row] isFavorite];
-    showMovieVC.moviesPopular = self.arrMoviePopular;
     [[self navigationController] pushViewController:showMovieVC animated:YES];
     return YES;
 }

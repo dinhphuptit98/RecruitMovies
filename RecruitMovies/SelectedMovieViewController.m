@@ -97,16 +97,13 @@
 }
 
 - (IBAction)remider:(UIButton *)sender {
-    [sender setSelected: !sender.selected];
+    sender.selected = true;
     NSString *nameMovieRemider = [self.movieDetail nameMovie];
     if(sender.selected == true){
-        [CoreDataHelper.shared innsertRemider:nameMovieRemider];
+//        [CoreDataHelper.shared innsertRemider:nameMovieRemider];
     }else{
-        [CoreDataHelper.shared deleteRemiderWith:nameMovieRemider];
+//        [CoreDataHelper.shared deleteRemiderWith:nameMovieRemider];
     }
-    SlideMenuViewController *slideMenuViewController;
-    slideMenuViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SlideMenuViewController"];
-    slideMenuViewController.allMoviesPopular = self.moviesPopular;
 }
 
 @end

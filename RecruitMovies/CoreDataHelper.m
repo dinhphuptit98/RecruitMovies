@@ -20,8 +20,17 @@
     });
     return sharedObject;
 }
-
-//get Data name MovieFavorite
+- (void)saveContext {
+    // Save the context.
+    NSError *error = nil;
+    if (![[AppDelegate.shared persistentContainer].viewContext save:&error]) {
+        NSLog(@"Unresolved error %@, %@", error, error.userInfo);
+        abort();
+    } else {
+        NSLog(@"Save successful");
+    }
+}
+//get Data name MovieFavorite and insert and delete
 - (NSMutableArray *)getFavoriteMovies {
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"MovieFavorite"];
     NSError *error = nil;
@@ -36,44 +45,10 @@
     }
     return nameFavoriteMovies;
 }
-
-//get Data name MovieRemider
-- (NSMutableArray *)getRemiderMovies {
-    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"MovieRemider"];
-    NSError *error = nil;
-    NSArray *results = [[AppDelegate.shared persistentContainer].viewContext executeFetchRequest:fetchRequest error:&error];
-    if (!results) {
-        NSLog(@"Error fetching Movie objects: %@\n%@", [error localizedDescription], [error userInfo]);
-    }
-    
-    NSMutableArray *nameMoviesRemider = [NSMutableArray new];
-    for (MovieRemider* movie in results) {
-        [nameMoviesRemider addObject:movie.nameMovieRemider];
-    }
-    return nameMoviesRemider;
-}
-
-- (void)saveContext {
-    // Save the context.
-    NSError *error = nil;
-    if (![[AppDelegate.shared persistentContainer].viewContext save:&error]) {
-        NSLog(@"Unresolved error %@, %@", error, error.userInfo);
-        abort();
-    } else {
-        NSLog(@"Save successful");
-    }
-}
-
 - (void)innsertFavorite: (NSString *)nameMovieFavorite {
     NSManagedObjectContext *context = [AppDelegate.shared persistentContainer].viewContext;
     MovieFavorite *newEventFavorite = [[MovieFavorite alloc] initWithContext:context];
     newEventFavorite.nameMovie = nameMovieFavorite;
-    [self saveContext];
-}
-- (void)innsertRemider: (NSString *)nameMovieRemider {
-    NSManagedObjectContext *context = [AppDelegate.shared persistentContainer].viewContext;
-    MovieRemider *newEventRemider = [[MovieRemider alloc] initWithContext:context];
-    newEventRemider.nameMovieRemider = nameMovieRemider;
     [self saveContext];
 }
 -(void)deleteFavoriteWith: (NSString *)nameMovieFavorite {
@@ -90,18 +65,28 @@
     
     [self saveContext];
 }
--(void)deleteRemiderWith: (NSString *)nameMovieRemider {
+//get Data name MovieRemider and insert and delete
+- (NSMutableArray *)getRemiderMovies {
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"MovieRemider"];
+    NSError *error = nil;
+    NSArray *results = [[AppDelegate.shared persistentContainer].viewContext executeFetchRequest:fetchRequest error:&error];
+    if (!results) {
+        NSLog(@"Error fetching Movie objects: %@\n%@", [error localizedDescription], [error userInfo]);
+    }
+    
+    NSMutableArray<MovieRemider*> *moviesRemider = [NSMutableArray new];
+    for (MovieRemider* movie in results) {
+        [moviesRemider addObject:movie];
+    }
+    return moviesRemider;
+}
+- (void)insertRemider: (MovieRemider *)movieRemider {
     NSManagedObjectContext *context = [AppDelegate.shared persistentContainer].viewContext;
-    
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"MovieRemider"];
-    
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"nameMovieRemider = %@", nameMovieRemider];
-    [fetchRequest setPredicate:predicate];
-    NSArray *moviesRemider = [[context executeFetchRequest:fetchRequest error:nil] mutableCopy];
-    
-    MovieFavorite *movieRemider = moviesRemider[0];
-    [context deleteObject:movieRemider];
-    
+    MovieRemider *newMovieRemider = [[MovieRemider alloc] initWithContext:context];
+    newMovieRemider = movieRemider;
     [self saveContext];
 }
+
+
+
 @end

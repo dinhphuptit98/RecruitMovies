@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14135" systemVersion="17G65" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14135" systemVersion="17D102" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="MovieFavorite" representedClassName="MovieFavorite" syncable="YES" codeGenerationType="class">
         <attribute name="isFavotite" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="nameMovie" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="MovieRemider" representedClassName="MovieRemider" syncable="YES" codeGenerationType="class">
+        <attribute name="dateRemider" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isRemider" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="nameMovieRemider" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="ratingRemider" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="urlImage" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
         <element name="MovieFavorite" positionX="-63" positionY="-18" width="128" height="75"/>
-        <element name="MovieRemider" positionX="-54" positionY="-9" width="128" height="75"/>
+        <element name="MovieRemider" positionX="-54" positionY="-9" width="128" height="120"/>
     </elements>
 </model>

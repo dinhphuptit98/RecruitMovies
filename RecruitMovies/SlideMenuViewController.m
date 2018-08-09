@@ -22,13 +22,6 @@
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.moviesRemider = [NSMutableArray new];
-    for (Movie* movieRemider in self.allMoviesPopular) {
-        if ([[CoreDataHelper.shared getRemiderMovies] containsObject:movieRemider.nameMovie]) {
-            [self.moviesRemider addObject:movieRemider];
-        }
-    }
-    NSLog(@"%@",self.moviesRemider);
     [self.tableView reloadData];
 }
 -(void)viewWillAppear:(BOOL)animated{
@@ -45,11 +38,10 @@
 
 //Table View
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.moviesRemider.count;
+    return 0;
 }
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    cell.textLabel.text = [self.moviesRemider[indexPath.row] nameMovie];
     return cell;
 }
 - (IBAction)showAll:(UIButton *)sender {

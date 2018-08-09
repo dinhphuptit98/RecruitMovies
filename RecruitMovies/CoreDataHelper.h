@@ -9,16 +9,15 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 #import "MovieFavorite+CoreDataClass.h"
-
+#import "MovieRemider+CoreDataClass.h"
 @class CoreDataHelper;
 
 @interface CoreDataHelper : NSObject
 - (NSMutableArray *)getFavoriteMovies;
 - (NSMutableArray *)getRemiderMovies;
 - (void)deleteFavoriteWith: (NSString *)nameMovieFavorite;
-- (void)deleteRemiderWith: (NSString *)nameMovieRemider;
 - (void)innsertFavorite: (NSString *)nameMovieFavorite ;
-- (void)innsertRemider: (NSString *)nameMovieRemider;
+- (void)insertRemider: (MovieRemider *)movieRemider;
 - (void)saveContext;
 + (CoreDataHelper *)shared;
 
