@@ -13,7 +13,7 @@
 #import "MoviesListViewController.h"
 @interface SlideMenuViewController () <UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
+@property (nonatomic , strong) NSMutableArray *moviesRemider;
 @end
 
 @implementation SlideMenuViewController
@@ -23,6 +23,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView reloadData];
+    
 }
 -(void)viewWillAppear:(BOOL)animated{
     self.nameUser.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"nameUser"];
@@ -34,14 +35,18 @@
         NSData *loadData = [defaults objectForKey:@"photoUser"];
         self.photoUser.image = [UIImage imageWithData:loadData];
     }
+    self.moviesRemider = [[NSMutableArray alloc]init];
+    self.moviesRemider = [CoreDataHelper.shared getRemiderMovies];
+    NSLog(@"%@",self.moviesRemider);
 }
 
 //Table View
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 0;
+    return self.moviesRemider.count;
 }
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    cell.textLabel.text = [self.moviesRemider[indexPath.row] nameMovieRemider];
     return cell;
 }
 - (IBAction)showAll:(UIButton *)sender {

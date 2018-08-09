@@ -24,7 +24,7 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic)  NSMutableArray *arrCharacter;
 @property (weak, nonatomic) IBOutlet UILabel *showNameMovie;
-
+ 
 @end
 
 @implementation SelectedMovieViewController 
@@ -70,6 +70,7 @@
     } blockFailure:^(NSError *error) {
     }];
     
+    
 }
 
 
@@ -98,11 +99,16 @@
 
 - (IBAction)remider:(UIButton *)sender {
     sender.selected = true;
-    NSString *nameMovieRemider = [self.movieDetail nameMovie];
     if(sender.selected == true){
-//        [CoreDataHelper.shared innsertRemider:nameMovieRemider];
+        MovieRemider *movieRemider = [[MovieRemider alloc]init];
+        movieRemider.nameMovieRemider = [self.movieDetail nameMovie];
+        movieRemider.dateRemider = [self.movieDetail dateMovie];
+        movieRemider.ratingRemider = [self.movieDetail rating];
+        movieRemider.urlImage = [self.movieDetail URLImage];
+        movieRemider.isRemider = true;
+        [CoreDataHelper.shared insertRemider:movieRemider];
     }else{
-//        [CoreDataHelper.shared deleteRemiderWith:nameMovieRemider];
+        
     }
 }
 

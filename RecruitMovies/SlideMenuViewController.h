@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Movie.h"
 @interface SlideMenuViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIImageView *photoUser;
 @property (weak, nonatomic) IBOutlet UILabel *nameUser;

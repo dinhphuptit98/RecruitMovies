@@ -68,6 +68,7 @@
 //get Data name MovieRemider and insert and delete
 - (NSMutableArray *)getRemiderMovies {
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"MovieRemider"];
+    fetchRequest.returnsObjectsAsFaults = false;
     NSError *error = nil;
     NSArray *results = [[AppDelegate.shared persistentContainer].viewContext executeFetchRequest:fetchRequest error:&error];
     if (!results) {
