@@ -11,5 +11,5 @@
 @interface SelectedMovieViewController : UIViewController
 @property (nonatomic,assign) NSInteger idMovie;
 @property (nonatomic,assign) BOOL check;
-
+@property (nonatomic,strong) NSMutableArray *moviesPopular;
 @end

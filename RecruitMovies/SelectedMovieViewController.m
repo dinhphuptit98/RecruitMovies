@@ -104,7 +104,9 @@
     }else{
         [CoreDataHelper.shared deleteRemiderWith:nameMovieRemider];
     }
-    
+    SlideMenuViewController *slideMenuViewController;
+    slideMenuViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SlideMenuViewController"];
+    slideMenuViewController.allMoviesPopular = self.moviesPopular;
 }
 
 @end

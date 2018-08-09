@@ -171,6 +171,7 @@ int numberPage = 1;
     showMovieVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SelectedMovieController"];
     showMovieVC.idMovie = [self.arrMoviePopular[indexPath.row] idMovie];
     showMovieVC.check = [self.arrMoviePopular[indexPath.row] isFavorite];
+    showMovieVC.moviesPopular = self.arrMoviePopular;
     [[self navigationController] pushViewController:showMovieVC animated:YES];
 }
 
@@ -215,6 +216,7 @@ int numberPage = 1;
     showMovieVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SelectedMovieController"];
     showMovieVC.idMovie = [self.arrMoviePopular[indexPath.row] idMovie];
     showMovieVC.check = [self.arrMoviePopular[indexPath.row] isFavorite];
+    showMovieVC.moviesPopular = self.arrMoviePopular;
     [[self navigationController] pushViewController:showMovieVC animated:YES];
     return YES;
 }

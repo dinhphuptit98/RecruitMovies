@@ -23,9 +23,6 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.moviesRemider = [NSMutableArray new];
-    MoviesListViewController *moviesListViewController;
-    moviesListViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"MoviesListViewController"];
-    self.allMoviesPopular = moviesListViewController.arrMoviePopular;
     for (Movie* movieRemider in self.allMoviesPopular) {
         if ([[CoreDataHelper.shared getRemiderMovies] containsObject:movieRemider.nameMovie]) {
             [self.moviesRemider addObject:movieRemider];
